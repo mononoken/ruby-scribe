@@ -10,9 +10,15 @@ If you are interested in seeing features that are being worked on, please see ou
 
 ## Table of Contents
 
+<!-- - Install(#install) -->
+
 - [General Information](#general-information)
 - [Acknowledgements](#acknowledgements)
 - [Reporting Issues / Feedback / Contact](#reporting-issuesfeedbackcontact)
+
+<!-- ## Install -->
+<!---->
+<!-- Include dependencies and how to install and run the program on a local machine. -->
 
 ## General Information
 
