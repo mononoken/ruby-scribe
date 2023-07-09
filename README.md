@@ -16,7 +16,7 @@ If you are interested in seeing features that are being worked on, please see ou
 
 ## General Information
 
-tl
+to be documented
 
 ## Acknowledgements
 
@@ -26,6 +26,6 @@ tl
 
 ## Reporting Issues/Feedback/Contact
 
-Bug reports are greatly appreciated. You may create a new issue with a description of the problem, and the steps leading up to it.
+Bug reports are greatly appreciated. You may create a [new issue](https://github.com/mononoken/ruby-scribe/issues/new) with a description of the problem, and the steps leading up to it.
 
 You may also contact me at: mail@feelsufo.com
