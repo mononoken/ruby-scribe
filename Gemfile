@@ -78,3 +78,5 @@ group :test do
   gem "webdrivers"
   gem "minitest-reporters"
 end
+
+gem "dockerfile-rails", ">= 1.5", :group => :development
