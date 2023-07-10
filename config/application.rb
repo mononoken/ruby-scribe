@@ -18,10 +18,5 @@ module RubyScribe
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
-
-    config.generators do |g|
-      # Use Minitest::Spec for spec-style tests.
-      g.test_framework :minitest, spec: true
-    end
   end
 end
