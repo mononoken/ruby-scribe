@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
   root "rails/welcome#index"
+  devise_for :users
+  resources :notes, only: %i[index]
 end
