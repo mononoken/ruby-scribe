@@ -18,5 +18,15 @@ module RubyScribe
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    config.generators do |g|
+      g.test_framework :rspec,
+        controller_specs: false,
+        fixtures: false,
+        helper_specs: false,
+        request_specs: false,
+        routing_specs: false,
+        view_specs: false
+    end
   end
 end
