@@ -99,6 +99,11 @@ GEM
     dockerfile-rails (1.5.1)
       rails
     erubi (1.12.0)
+    factory_bot (6.2.1)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
     globalid (1.1.0)
       activesupport (>= 5.0)
     i18n (1.14.1)
@@ -299,6 +304,7 @@ DEPENDENCIES
   debug
   devise (~> 4.9)
   dockerfile-rails (>= 1.5)
+  factory_bot_rails (~> 6.2)
   importmap-rails
   jbuilder
   pg (~> 1.1)
