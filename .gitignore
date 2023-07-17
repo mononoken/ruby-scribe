@@ -35,3 +35,6 @@
 
 # Ignore SimpleCov output
 coverage/*
+
+# Ignore RSpec examples output
+spec/examples.txt
