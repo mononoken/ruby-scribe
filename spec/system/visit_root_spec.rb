@@ -35,11 +35,16 @@ RSpec.describe "visiting root", type: :system do
 
     context "when user does not have a selected campaign" do
       context "when user has any campaigns" do
-        it "shows campaign index"
+        it "shows campaign index" do
+        end
       end
 
       context "when user has no campaigns" do
-        it "redirects to new campaign page"
+        it "redirects to new campaign page" do
+          visit_root
+
+          expect(page).to have_text("New Campaign")
+        end
       end
     end
   end
