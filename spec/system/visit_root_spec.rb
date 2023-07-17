@@ -9,16 +9,10 @@ RSpec.describe "visiting root", type: :system do
       sign_out user
     end
 
-    it "redirects to login" do
+    it "redirects to a page with a link to user registration" do
       visit_root
 
-      expect(page).to have_current_path(user_session_path)
-    end
-
-    fit "redirects to splash page" do
-      visit_root
-
-      expect(page).to have_current_path(splash_path)
+      expect(page).to have_link(href: new_user_registration_path)
     end
   end
 
