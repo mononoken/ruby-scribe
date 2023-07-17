@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
-  root "rails/welcome#index"
   devise_for :users
-  resources :notes, only: %i[index]
+
+  devise_scope :user do
+    authenticated :user do
+      root "notes#index"
+    end
+
+    unauthenticated :user do
+      root "static_pages#splash", as: :unauthenticated_root
+    end
+  end
+
+  resources :notes, only: %i[new index]
 end
