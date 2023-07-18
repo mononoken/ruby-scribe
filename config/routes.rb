@@ -1,15 +1,19 @@
 Rails.application.routes.draw do
+  # Authentication
   devise_for :users
 
+  # Root path
   devise_scope :user do
     authenticated :user do
-      root "notes#index"
+      root "campaigns#new"
     end
 
     unauthenticated :user do
       root "static_pages#splash", as: :unauthenticated_root
     end
   end
+
+  resources :campaigns, only: %i[new]
 
   resources :notes, only: %i[new index]
 end
