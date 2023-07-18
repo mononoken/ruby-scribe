@@ -10,18 +10,19 @@ RSpec.describe Campaign, type: :model do
     end
 
     context "when campaign has no user" do
-      fit "is not valid" do
+      it "is not valid" do
         expect(campaign.valid?).to be(false)
       end
     end
 
     context "when campaign has a user" do
       let(:user) { create(:user) }
+
       subject(:campaign) do
-        described_class.new(name: "Test Campaign", user_id: user.id)
+        described_class.new(name: "Test Campaign", user:)
       end
 
-      fit "is valid" do
+      it "is valid" do
         expect(campaign.valid?).to be(true)
       end
     end
