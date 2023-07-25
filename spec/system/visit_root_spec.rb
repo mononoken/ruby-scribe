@@ -7,12 +7,19 @@ RSpec.describe "visiting root", type: :system do
   context "when user is signed out" do
     before do
       sign_out user
+      visit_root
     end
 
-    it "redirects to a page with a link to user registration" do
-      visit_root
+    it "directs to root path" do
+      expect(page).to have_current_path(root_path)
+    end
 
+    it "opens a page with a link to user registration" do
       expect(page).to have_link(href: new_user_registration_path)
+    end
+
+    it "opens a page with a link to user sign in" do
+      expect(page).to have_link(href: new_user_session_path)
     end
   end
 
@@ -40,10 +47,10 @@ RSpec.describe "visiting root", type: :system do
       end
 
       context "when user has no campaigns" do
-        it "redirects to new campaign page" do
+        it "redirects to new campaign path" do
           visit_root
 
-          expect(page).to have_text("New Campaign")
+          expect(page).to have_current_path(new_campaign_path)
         end
       end
     end

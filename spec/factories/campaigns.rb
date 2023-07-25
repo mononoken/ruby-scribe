@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :campaign do
+    # Use Tolkien generator for fun
     name { "#{Faker::Fantasy::Tolkien.character}'s Adventure" }
-    # need to add user here when I have internet to look at FactoryBot docs
+    user
   end
 end

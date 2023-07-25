@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # Root path
   devise_scope :user do
     authenticated :user do
-      root "campaigns#new"
+      root to: redirect("campaigns/new")
     end
 
     unauthenticated :user do
