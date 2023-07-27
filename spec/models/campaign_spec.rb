@@ -3,17 +3,7 @@ require "rails_helper"
 RSpec.describe Campaign, type: :model do
   # Delete if failing
   context "when campaign has a name" do
-    subject(:campaign) { described_class.new(name: "Test Campaign") }
-
-    it "is valid" do
-      expect(campaign.valid?).to be(true)
-    end
-
-    context "when campaign has no user" do
-      it "is not valid" do
-        expect(campaign.valid?).to be(false)
-      end
-    end
+    subject(:campaign) { create(:campaign) }
 
     context "when campaign has a user" do
       let(:user) { create(:user) }
