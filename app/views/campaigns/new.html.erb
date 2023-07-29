@@ -1,6 +1,9 @@
 <div>
   <h1 class="font-bold text-4xl">New Campaign</h1>
-  <p>Find me in app/views/campaigns/new.html.erb</p>
 
-  <button>Create</button>
+  <%= form_with model: @campaign do |form| %>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+    <%= form.submit "Create" %>
+  <% end %>
 </div>

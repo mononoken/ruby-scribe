@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :campaigns, only: %i[new]
+  resources :campaigns, only: %i[new create index]
 
   resources :notes, only: %i[new index]
 end
