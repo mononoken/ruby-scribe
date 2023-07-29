@@ -10,7 +10,8 @@ class CampaignsController < ApplicationController
     if @campaign.save
       redirect_to action: :index
     else
-      # render :new, status: :unprocessable_entity
+      flash.now[:error] = @campaign.errors.full_messages
+      render :new, status: :unprocessable_entity
     end
   end
 
