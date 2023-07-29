@@ -13,8 +13,16 @@
 
   <body>
     <main class="container mx-auto mt-28 px-5 flex">
-      <% flash.each do |type, msg| %>
-        <div><%= msg %></div>
+      <% flash.each do |type, message| %>
+        <% if message.is_a?(Array) %>
+          <ul>
+            <% message.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul> 
+        <% else %>
+          <div><%= message %></div>
+        <% end %>
       <% end %>
       <%= yield %>
     </main>
