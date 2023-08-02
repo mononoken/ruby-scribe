@@ -28,29 +28,29 @@ RSpec.describe "visiting root", type: :system do
       sign_in user
     end
 
-    context "when user has a selected campaign" do
+    context "when user has a selected journal" do
       before do
-        :FIX_ME_select_campaign
+        :FIX_ME_select_journal
       end
 
-      xit "redirects to the new note page for that campaign" do
+      xit "redirects to the new note page for that journal" do
         visit_root
 
         expect(page).to have_current_path(new_note_path)
       end
     end
 
-    context "when user does not have a selected campaign" do
-      context "when user has any campaigns" do
-        it "shows campaign index" do
+    context "when user does not have a selected journal" do
+      context "when user has any journals" do
+        it "shows journal index" do
         end
       end
 
-      context "when user has no campaigns" do
-        it "redirects to new campaign path" do
+      context "when user has no journals" do
+        it "redirects to new journal path" do
           visit_root
 
-          expect(page).to have_current_path(new_campaign_path)
+          expect(page).to have_current_path(new_journal_path)
         end
       end
     end

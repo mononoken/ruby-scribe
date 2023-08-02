@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-  get 'journals/new'
+  get "journals/new"
   # Authentication
   devise_for :users
 
   # Root path
   devise_scope :user do
     authenticated :user do
-      root to: redirect("campaigns/new")
+      root to: redirect("journals/new")
     end
 
     unauthenticated :user do
@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :campaigns, only: %i[new create index]
+  resources :journals, only: %i[new create index]
 
   resources :notes, only: %i[new index]
 end
