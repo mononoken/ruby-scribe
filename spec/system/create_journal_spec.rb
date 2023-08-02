@@ -19,7 +19,7 @@ RSpec.describe "creating journals", type: :system do
     context "when user does not enter a journal title and submits" do
       let(:error_msg) { "Name can't be blank" }
 
-      fit "shows an error" do
+      it "shows an error" do
         visit root_path
         click_button "Create"
 
