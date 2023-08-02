@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'journals/new'
   # Authentication
   devise_for :users
 
