@@ -2,7 +2,7 @@
 
 <!-- ![A screenshot showing a preview of the project.](screenshot.png "Project Preview") -->
 
-This app is for note-taking on your tabletop adventures! Its goal is to make navigating your past notes easier than with a physical journal, but it also emphasizes paying attention to the game in front of you while you input notes. It achieves this through its "Adventure/Library" modes.
+This app is for note-taking on your tabletop adventures! Its goal is to make navigating your past notes easier than with a physical journal, but it also emphasizes paying attention to the game in front of you while you input notes.
 
 If you are interested in seeing features that are being worked on, please see our (issues)[https://github.com/mononoken/ruby-scribe/issues].
 
