@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get "/about/", to: "static_pages#about"
+
   resources :journals, only: %i[new create index]
 
   resources :notes, only: %i[new create index]

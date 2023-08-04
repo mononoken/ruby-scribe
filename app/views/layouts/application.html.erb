@@ -13,13 +13,19 @@
 
   <body>
     <nav>
-      <% if current_user %>
-        <%= link_to "Journals", journals_path %>
-        <%= link_to "Sign out", destroy_user_session_path %>
-      <% else %>
-        <%= link_to "Sign in", new_user_session_path %>
-        <%= link_to "Sign up", new_user_registration_path %>
-      <% end %>
+      <ul>
+        <li><%= link_to "Home", root_path %></li>
+        <li><%= link_to "About", about_path %></li>
+      </ul>
+      <ul>
+        <% if current_user %>
+          <li><%= link_to "Journals", journals_path %></li>
+          <li><%= link_to "Sign out", destroy_user_session_path %></li>
+        <% else %>
+          <li><%= link_to "Sign in", new_user_session_path %></li>
+          <li><%= link_to "Sign up", new_user_registration_path %></li>
+        <% end %>
+      </ul>
     </nav>
     <main class="container mx-auto mt-28 px-5 flex">
       <% flash.each do |type, message| %>
