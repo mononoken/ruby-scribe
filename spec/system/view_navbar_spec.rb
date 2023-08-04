@@ -35,7 +35,7 @@ RSpec.describe "viewing navbar", type: :system do
         expect(page).to have_button(:FIX_ME_navbar_button)
       end
 
-      fit "has valid links in navbar" do
+      it "has valid links in navbar" do
         valid_links.each do |link|
           within "nav" do
             expect(page).to have_link(href: link)
@@ -43,7 +43,7 @@ RSpec.describe "viewing navbar", type: :system do
         end
       end
 
-      fit "does not have invalid links in navbar" do
+      it "does not have invalid links in navbar" do
         invalid_links.each do |link|
           within "nav" do
             expect(page).not_to have_link(href: link)
@@ -84,7 +84,7 @@ RSpec.describe "viewing navbar", type: :system do
         expect(page).to have_button(:FIX_ME_navbar_button)
       end
 
-      fit "has valid links in navbar" do
+      it "has valid links in navbar" do
         valid_links.each do |link|
           within "nav" do
             expect(page).to have_link(href: link)
@@ -92,7 +92,7 @@ RSpec.describe "viewing navbar", type: :system do
         end
       end
 
-      fit "does not have invalid links in navbar" do
+      it "does not have invalid links in navbar" do
         invalid_links.each do |link|
           within "nav" do
             expect(page).not_to have_link(href: link)
