@@ -9,6 +9,22 @@ RSpec.describe "viewing navbar", type: :system do
     end
 
     context "when user visits root" do
+      let(:valid_links) do
+        [
+          new_user_session_path,
+          new_user_registration_path,
+          root_path,
+          about_path
+        ]
+      end
+
+      let(:invalid_links) do
+        [
+          destroy_user_session_path,
+          journals_path
+        ]
+      end
+
       before do
         visit root_path
       end
@@ -19,27 +35,19 @@ RSpec.describe "viewing navbar", type: :system do
         expect(page).to have_button(:FIX_ME_navbar_button)
       end
 
-      it "has link to sign in in navbar" do
-        within "nav" do
-          expect(page).to have_link(href: new_user_session_path)
+      fit "has valid links in navbar" do
+        valid_links.each do |link|
+          within "nav" do
+            expect(page).to have_link(href: link)
+          end
         end
       end
 
-      it "has link to sign up in navbar" do
-        within "nav" do
-          expect(page).to have_link(href: new_user_registration_path)
-        end
-      end
-
-      it "does not have link to sign out user in navbar" do
-        within "nav" do
-          expect(page).not_to have_link(href: destroy_user_session_path)
-        end
-      end
-
-      it "does not have link to user notebook index" do
-        within "nav" do
-          expect(page).not_to have_link(href: journals_path)
+      fit "does not have invalid links in navbar" do
+        invalid_links.each do |link|
+          within "nav" do
+            expect(page).not_to have_link(href: link)
+          end
         end
       end
     end
@@ -51,6 +59,21 @@ RSpec.describe "viewing navbar", type: :system do
     end
 
     context "when user visits root" do
+      let(:valid_links) do
+        [
+          destroy_user_session_path,
+          journals_path,
+          root_path
+        ]
+      end
+
+      let(:invalid_links) do
+        [
+          new_user_session_path,
+          new_user_registration_path
+        ]
+      end
+
       before do
         visit root_path
       end
@@ -61,27 +84,19 @@ RSpec.describe "viewing navbar", type: :system do
         expect(page).to have_button(:FIX_ME_navbar_button)
       end
 
-      it "has link to sign out in navbar" do
-        within "nav" do
-          expect(page).to have_link(href: destroy_user_session_path)
+      fit "has valid links in navbar" do
+        valid_links.each do |link|
+          within "nav" do
+            expect(page).to have_link(href: link)
+          end
         end
       end
 
-      it "does not have link to sign in user in navbar" do
-        within "nav" do
-          expect(page).not_to have_link(href: new_user_session_path)
-        end
-      end
-
-      it "does not have link to sign up user in navbar" do
-        within "nav" do
-          expect(page).not_to have_link(href: new_user_registration_path)
-        end
-      end
-
-      it "has link to user notebook index" do
-        within "nav" do
-          expect(page).to have_link(href: journals_path)
+      fit "does not have invalid links in navbar" do
+        invalid_links.each do |link|
+          within "nav" do
+            expect(page).not_to have_link(href: link)
+          end
         end
       end
     end
