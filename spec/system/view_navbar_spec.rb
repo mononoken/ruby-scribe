@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.fdescribe "viewing navbar", type: :system do
+RSpec.describe "viewing navbar", type: :system do
   let(:user) { create(:user) }
 
   context "when user is signed out" do
@@ -70,6 +70,12 @@ RSpec.fdescribe "viewing navbar", type: :system do
       it "does not have link to sign up user in navbar" do
         within "nav" do
           expect(page).not_to have_link(href: new_user_registration_path)
+        end
+      end
+
+      fit "has link to user notebook index" do
+        within "nav" do
+          expect(page).to have_link(href: journals_path)
         end
       end
     end
