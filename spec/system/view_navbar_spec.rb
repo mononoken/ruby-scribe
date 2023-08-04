@@ -36,6 +36,12 @@ RSpec.describe "viewing navbar", type: :system do
           expect(page).not_to have_link(href: destroy_user_session_path)
         end
       end
+
+      it "does not have link to user notebook index" do
+        within "nav" do
+          expect(page).not_to have_link(href: journals_path)
+        end
+      end
     end
   end
 
@@ -73,7 +79,7 @@ RSpec.describe "viewing navbar", type: :system do
         end
       end
 
-      fit "has link to user notebook index" do
+      it "has link to user notebook index" do
         within "nav" do
           expect(page).to have_link(href: journals_path)
         end
