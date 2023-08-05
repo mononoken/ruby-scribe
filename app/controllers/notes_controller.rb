@@ -1,10 +1,12 @@
 class NotesController < ApplicationController
+  before_action :get_journal
+
   def new
-    @note = Note.new
+    @note = @journal.notes.build
   end
 
   def create
-    @note = Note.new(note_params)
+    @note = @journal.notes.build(note_params)
 
     if @note.save
       redirect_to action: :index
@@ -15,12 +17,16 @@ class NotesController < ApplicationController
   end
 
   def index
-    @notes = Note.all
+    @notes = @journal.notes
   end
 
   private
 
+  def get_journal
+    @journal = Journal.find(params[:journal_id])
+  end
+
   def note_params
-    params.require(:note).permit(:body)
+    params.require(:note).permit(:body, :journal_id)
   end
 end
