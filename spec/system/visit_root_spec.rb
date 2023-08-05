@@ -28,30 +28,31 @@ RSpec.describe "visiting root", type: :system do
       sign_in user
     end
 
-    context "when user has a selected journal" do
-      before do
-        :FIX_ME_select_journal
-      end
+    context "when user has one existing journal" do
+      let(:journal) { create(:journal, user: user) }
 
-      xit "redirects to the new note page for that journal" do
+      it "redirects to the new note page for that journal" do
+        pending "Method to check for user last journal to route to"
         visit_root
 
-        expect(page).to have_current_path(new_note_path)
+        expect(page).to have_current_path(new_journal_note_path(journal))
       end
     end
 
-    context "when user does not have a selected journal" do
-      context "when user has any journals" do
-        it "shows journal index" do
-        end
+    context "when user has many existing journals" do
+      it "redirects to the new note page for last visited journal" do
+        pending "Method to store last visited journal"
+        visit_root
+
+        expect(page).to have_current_path(new_journal_note_path(:FIX_ME_last_journal))
       end
+    end
 
-      context "when user has no journals" do
-        it "redirects to new journal path" do
-          visit_root
+    context "when user has no journals" do
+      it "redirects to new journal path" do
+        visit_root
 
-          expect(page).to have_current_path(new_journal_path)
-        end
+        expect(page).to have_current_path(new_journal_path)
       end
     end
   end

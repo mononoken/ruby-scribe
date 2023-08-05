@@ -11,7 +11,7 @@ RSpec.describe "creating notes", type: :system do
       sign_in user
     end
 
-    fit "shows first created note after submitting note" do
+    it "shows created journal note after submitting note" do
       visit new_journal_note_path(journal)
       fill_in "Body", with: note_input
       click_button "Create Note"
