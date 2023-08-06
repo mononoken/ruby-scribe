@@ -20,6 +20,11 @@
       <ul>
         <% if current_user %>
           <li><%= link_to "Journals", journals_path %></li>
+          <% if current_user.journals.any? %>
+            <% current_user.journals.each do |journal| %>
+              <li><%= link_to journal.name, journal_notes_path(journal) %></li>
+            <% end %>
+          <% end %>
           <li><%= link_to "Sign out", destroy_user_session_path %></li>
         <% else %>
           <li><%= link_to "Sign in", new_user_session_path %></li>
