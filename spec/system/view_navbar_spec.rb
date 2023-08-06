@@ -9,7 +9,7 @@ RSpec.describe "viewing navbar", type: :system do
     end
 
     context "when user visits root" do
-      let(:valid_links) do
+      let(:valid_paths) do
         [
           new_user_session_path,
           new_user_registration_path,
@@ -18,7 +18,7 @@ RSpec.describe "viewing navbar", type: :system do
         ]
       end
 
-      let(:invalid_links) do
+      let(:invalid_paths) do
         [
           destroy_user_session_path,
           journals_path
@@ -29,24 +29,24 @@ RSpec.describe "viewing navbar", type: :system do
         visit root_path
       end
 
-      it "has link to open navbar" do
+      it "has button to open navbar" do
         pending "Implement dynamic navbar"
 
         expect(page).to have_button(:FIX_ME_navbar_button)
       end
 
       it "has valid links in navbar" do
-        valid_links.each do |link|
+        valid_paths.each do |path|
           within "nav" do
-            expect(page).to have_link(href: link)
+            expect(page).to have_link(href: path)
           end
         end
       end
 
       it "does not have invalid links in navbar" do
-        invalid_links.each do |link|
+        invalid_paths.each do |path|
           within "nav" do
-            expect(page).not_to have_link(href: link)
+            expect(page).not_to have_link(href: path)
           end
         end
       end
@@ -59,7 +59,7 @@ RSpec.describe "viewing navbar", type: :system do
     end
 
     context "when user visits root" do
-      let(:valid_links) do
+      let(:valid_paths) do
         [
           destroy_user_session_path,
           journals_path,
@@ -67,7 +67,7 @@ RSpec.describe "viewing navbar", type: :system do
         ]
       end
 
-      let(:invalid_links) do
+      let(:invalid_paths) do
         [
           new_user_session_path,
           new_user_registration_path
@@ -78,25 +78,47 @@ RSpec.describe "viewing navbar", type: :system do
         visit root_path
       end
 
-      it "has link to open navbar" do
+      it "has path to open navbar" do
         pending "Implement dynamic navbar"
 
         expect(page).to have_button(:FIX_ME_navbar_button)
       end
 
       it "has valid links in navbar" do
-        valid_links.each do |link|
+        valid_paths.each do |path|
           within "nav" do
-            expect(page).to have_link(href: link)
+            expect(page).to have_link(href: path)
           end
         end
       end
 
       it "does not have invalid links in navbar" do
-        invalid_links.each do |link|
+        invalid_paths.each do |path|
           within "nav" do
-            expect(page).not_to have_link(href: link)
+            expect(page).not_to have_link(href: path)
           end
+        end
+      end
+    end
+  end
+
+  context "when user has journals" do
+    let!(:journal1) { create(:journal, user: user) }
+    let!(:journal2) { create(:journal, user: user) }
+
+    before do
+      sign_in user
+      visit root_path
+    end
+
+    it "has links to user's journals in navbar" do
+      journal_paths = [journal1, journal2].map do |journal|
+        journal_notes_path(journal)
+      end
+
+      journal_paths.each do |path|
+        within "nav" do
+          expect(page).to have_link(href: path)
         end
       end
     end
