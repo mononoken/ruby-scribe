@@ -28,6 +28,16 @@ RSpec.describe "deleting notes", type: :system do
       expect(page).not_to have_content(existing_note.body)
     end
 
-    it "shows flash notifying successful note deletion"
+    it "shows flash notifying successful note deletion" do
+      delete_notification = "Note successfully deleted."
+
+      accept_alert do
+        click_button "Delete Note"
+      end
+
+      within "div[data-testid='flash-msg']" do
+        expect(page).to have_content(delete_notification)
+      end
+    end
   end
 end
