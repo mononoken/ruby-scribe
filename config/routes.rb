@@ -19,4 +19,6 @@ Rails.application.routes.draw do
   resources :journals, only: %i[new create index] do
     resources :notes, only: %i[new create index]
   end
+
+  resources :notes, only: %i[destroy]
 end
