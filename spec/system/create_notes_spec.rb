@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe "creating notes", type: :system do
   let(:user) { create(:user) }
 
-  context "when user is signed in with one empty journal" do
+  context "when user with one empty journal is signed in" do
     let(:journal) { create(:journal, user: user) }
     let(:note_input) { "Test note" }
 
