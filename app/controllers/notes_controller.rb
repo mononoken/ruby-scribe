@@ -25,6 +25,7 @@ class NotesController < ApplicationController
   end
 
   def index
+    @note = Note.new
     @notes = @journal.notes
   end
 
