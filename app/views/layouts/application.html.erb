@@ -33,17 +33,19 @@
       </ul>
     </nav>
     <main class="container mx-auto mt-28 px-5 flex">
-      <% flash.each do |type, message| %>
-        <% if message.is_a?(Array) %>
-          <ul>
-            <% message.each do |msg| %>
-              <li><%= msg %></li>
-            <% end %>
-          </ul> 
-        <% else %>
-          <div><%= message %></div>
+      <div data-testid="flash-msg">
+        <% flash.each do |type, message| %>
+          <% if message.is_a?(Array) %>
+            <ul>
+              <% message.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul> 
+          <% else %>
+            <div><%= message %></div>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
       <%= yield %>
     </main>
   </body>

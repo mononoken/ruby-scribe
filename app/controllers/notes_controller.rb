@@ -20,6 +20,7 @@ class NotesController < ApplicationController
     @note = Note.find(params[:id])
     @note.destroy
 
+    flash[:success] = "Note successfully deleted."
     redirect_to journal_notes_path(@note.journal)
   end
 
