@@ -8,7 +8,7 @@ class JournalsController < ApplicationController
     @journal.user = current_user
 
     if @journal.save
-      redirect_to action: :index
+      redirect_to journal_notes_path(@journal)
     else
       flash.now[:error] = @journal.errors.full_messages
       render :new, status: :unprocessable_entity
