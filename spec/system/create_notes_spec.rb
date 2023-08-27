@@ -14,7 +14,7 @@ RSpec.describe "creating notes", type: :system do
     it "shows created journal note after submitting note" do
       visit new_journal_note_path(journal)
       fill_in "Body", with: note_input
-      click_button "Create Note"
+      click_button "Save Note"
 
       expect(page).to have_content(note_input)
     end
