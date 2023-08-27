@@ -11,7 +11,7 @@ RSpec.describe "creating journals", type: :system do
     it "shows the new journal title in the journal index" do
       visit root_path
       fill_in "Name", with: journal.name
-      click_button "Create"
+      click_button "journal-save-btn"
 
       expect(page).to have_text(journal.name)
     end
@@ -21,7 +21,7 @@ RSpec.describe "creating journals", type: :system do
 
       it "shows an error" do
         visit root_path
-        click_button "Create"
+        click_button "journal-save-btn"
 
         expect(page).to have_text(error_msg)
       end

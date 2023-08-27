@@ -24,7 +24,7 @@ RSpec.describe "editing notes", type: :system do
       click_link "Edit Note"
 
       fill_in "Body", with: "Note has been edited!"
-      click_button "Save Note"
+      click_button "note-save-btn"
 
       expect(page).to have_content("Note has been edited!")
     end
@@ -35,7 +35,7 @@ RSpec.describe "editing notes", type: :system do
       click_link "Edit Note"
 
       fill_in "Body", with: "Note has been edited!"
-      click_button "Save Note"
+      click_button "note-save-btn"
 
       expect(page).not_to have_content(original_note_body)
     end
