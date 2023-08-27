@@ -4,6 +4,6 @@
   <%= form_with model: @journal do |form| %>
     <%= form.label :name %>
     <%= form.text_field :name %>
-    <%= form.submit "Create" %>
+    <%= form.submit "Save Journal", data: {testid: "journal-save-btn"} %>
   <% end %>
 </div>
