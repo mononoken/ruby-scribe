@@ -20,5 +20,5 @@ Rails.application.routes.draw do
     resources :notes, only: %i[new create index]
   end
 
-  resources :notes, only: %i[destroy]
+  resources :notes, only: %i[destroy edit update show]
 end
