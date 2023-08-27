@@ -23,16 +23,16 @@ RSpec.describe "new user happy path", type: :system do
           click_button "Create"
         end
 
-        context "when user creates new notes in the journal" do
+        fcontext "when user creates new notes in the journal" do
           before do
             fill_in "Body", with: note1.body
-            click_button "Save Note"
+            click_button "note-save-btn"
 
             fill_in "Body", with: note2.body
-            click_button "Save Note"
+            click_button "note-save-btn"
 
             fill_in "Body", with: note3.body
-            click_button "Save Note"
+            click_button "note-save-btn"
           end
 
           it "displays users created notes" do
