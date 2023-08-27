@@ -13,7 +13,7 @@ RSpec.describe "editing notes", type: :system do
     end
 
     it "navigates to edit page of note when clicking edit button" do
-      click_link "Edit Note"
+      click_link "note-edit-link"
 
       expect(page).to have_current_path(edit_note_path(note))
     end
@@ -21,7 +21,7 @@ RSpec.describe "editing notes", type: :system do
     it "shows edited journal note after saving edited note" do
       original_note_body = note.body
 
-      click_link "Edit Note"
+      click_link "note-edit-link"
 
       fill_in "Body", with: "Note has been edited!"
       click_button "note-save-btn"
@@ -32,7 +32,7 @@ RSpec.describe "editing notes", type: :system do
     it "does not show original note content" do
       original_note_body = note.body
 
-      click_link "Edit Note"
+      click_link "note-edit-link"
 
       fill_in "Body", with: "Note has been edited!"
       click_button "note-save-btn"
