@@ -13,8 +13,6 @@ RSpec.describe "indexing notes", type: :system do
     let!(:note2) { create(:note, created_at: 1.minutes.ago, updated_at: 1.minutes.ago, journal: journal) }
     let!(:note3) { create(:note, created_at: 0.minutes.ago, updated_at: 0.minutes.ago, journal: journal) }
 
-    it "shows content of the three notes"
-
     it "shows notes in descending updated_at order" do
       visit journal_notes_path(journal)
 
