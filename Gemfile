@@ -54,6 +54,9 @@ gem "bootsnap", require: false
 # Use Devise for User authentication
 gem "devise", "~> 4.9"
 
+# Use RedCarpet to parse markdown
+gem "redcarpet", "~> 3.6.0"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "standard", "~> 1.30"
