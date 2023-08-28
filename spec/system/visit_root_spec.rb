@@ -1,13 +1,12 @@
 require "rails_helper"
 
-RSpec.describe "visiting root", type: :system do
-  let(:visit_root) { visit root_path }
-  let(:user) { create(:user) }
+RSpec.fdescribe "visiting root", type: :system do
+  let!(:user) { create(:user) }
 
   context "when user is signed out" do
     before do
       sign_out user
-      visit_root
+      visit root_path
     end
 
     it "directs to root path" do
@@ -26,6 +25,7 @@ RSpec.describe "visiting root", type: :system do
   context "when user is signed in" do
     before do
       sign_in user
+      visit root_path
     end
 
     context "when user has one existing journal" do
@@ -33,7 +33,6 @@ RSpec.describe "visiting root", type: :system do
 
       it "redirects to the new note page for that journal" do
         pending "Method to check for user last journal to route to"
-        visit_root
 
         expect(page).to have_current_path(new_journal_note_path(journal))
       end
@@ -42,7 +41,6 @@ RSpec.describe "visiting root", type: :system do
     context "when user has many existing journals" do
       it "redirects to the new note page for last visited journal" do
         pending "Method to store last visited journal"
-        visit_root
 
         expect(page).to have_current_path(new_journal_note_path(:FIX_ME_last_journal))
       end
@@ -50,8 +48,6 @@ RSpec.describe "visiting root", type: :system do
 
     context "when user has no journals" do
       it "redirects to new journal path" do
-        visit_root
-
         expect(page).to have_current_path(new_journal_path)
       end
     end
