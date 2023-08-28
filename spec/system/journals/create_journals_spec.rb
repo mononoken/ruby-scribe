@@ -1,11 +1,13 @@
 require "rails_helper"
 
 RSpec.describe "creating journals", type: :system do
+  let!(:user) { create(:user) }
+
   context "when user is creating their first journal" do
-    let(:journal) { create(:journal) }
+    let(:journal) { build(:journal) }
 
     before do
-      sign_in journal.user
+      sign_in user
     end
 
     it "shows the new journal title in the journal index" do
