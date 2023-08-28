@@ -18,16 +18,11 @@ RSpec.describe "showing notes", type: :system do
     end
     let!(:note) { create(:note, journal: journal, body: markdown) }
 
-    fit "shows converted markdown note when clicked" do
+    fit "shows parsed markdown note when clicked" do
       visit journal_notes_path(journal)
 
-      converted_markdown = <<~HTML
-        <h1>Header</h1>
-        <ul>
-          <li>List item</li>
-          <li>List item with <em>italics</em></li>
-        </ul>
-      HTML
+      converted_markdown = "<h1>Header</h1> <ul> <li>List item</li>" \
+        " <li>List item with <em>italics</em></li> </ul>"
 
       click_link "note-link"
 
