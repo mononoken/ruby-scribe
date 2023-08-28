@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # Root path
   devise_scope :user do
     authenticated :user do
-      root to: redirect("journals/new")
+      root to: redirect("dashboard")
     end
 
     unauthenticated :user do
@@ -13,7 +13,9 @@ Rails.application.routes.draw do
     end
   end
 
-  get "/about/", to: "static_pages#about"
+  get "about", to: "static_pages#about"
+
+  get "dashboard", to: "users#show", as: :dashboard
 
   resources :journals, only: %i[new create index] do
     resources :notes, only: %i[new create index]
