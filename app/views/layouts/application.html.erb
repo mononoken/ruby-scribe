@@ -25,27 +25,29 @@
               <li><%= link_to journal.name, journal_notes_path(journal) %></li>
             <% end %>
           <% end %>
-          <li><%= link_to "Sign out", destroy_user_session_path %></li>
+          <li>
+            <%= button_to "Sign out", destroy_user_session_path, 
+                method: :delete, data: {testid: "sign-out-btn"}%></li>
         <% else %>
           <li><%= link_to "Sign in", new_user_session_path %></li>
           <li><%= link_to "Sign up", new_user_registration_path %></li>
         <% end %>
       </ul>
     </nav>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <div data-testid="flash-msg">
-        <% flash.each do |type, message| %>
-          <% if message.is_a?(Array) %>
-            <ul>
-              <% message.each do |msg| %>
-                <li><%= msg %></li>
-              <% end %>
-            </ul> 
-          <% else %>
-            <div><%= message %></div>
-          <% end %>
+    <div data-testid="flash-msg">
+      <% flash.each do |type, message| %>
+        <% if message.is_a?(Array) %>
+          <ul>
+            <% message.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul> 
+        <% else %>
+          <div><%= message %></div>
         <% end %>
-      </div>
+      <% end %>
+    </div>
+    <main class="container mx-auto mt-28 px-5 flex">
       <%= yield %>
     </main>
   </body>
