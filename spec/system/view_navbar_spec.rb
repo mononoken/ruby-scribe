@@ -20,8 +20,13 @@ RSpec.describe "viewing navbar", type: :system do
 
       let(:invalid_paths) do
         [
-          destroy_user_session_path,
           journals_path
+        ]
+      end
+
+      let(:invalid_buttons) do
+        [
+          destroy_user_session_path
         ]
       end
 
@@ -50,6 +55,14 @@ RSpec.describe "viewing navbar", type: :system do
           end
         end
       end
+
+      it "does not have invalid buttons in navbar" do
+        invalid_buttons.each do |path|
+          within "nav" do
+            expect(page).not_to have_button("sign-out-btn")
+          end
+        end
+      end
     end
   end
 
@@ -61,9 +74,14 @@ RSpec.describe "viewing navbar", type: :system do
     context "when user visits root" do
       let(:valid_paths) do
         [
-          destroy_user_session_path,
           journals_path,
           root_path
+        ]
+      end
+
+      let(:valid_buttons) do
+        [
+          destroy_user_session_path
         ]
       end
 
@@ -88,6 +106,14 @@ RSpec.describe "viewing navbar", type: :system do
         valid_paths.each do |path|
           within "nav" do
             expect(page).to have_link(href: path)
+          end
+        end
+      end
+
+      it "has valid buttons in navbar" do
+        valid_buttons.each do |path|
+          within "nav" do
+            expect(page).to have_button("sign-out-btn")
           end
         end
       end
