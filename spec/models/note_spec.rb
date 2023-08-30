@@ -11,7 +11,7 @@ RSpec.describe Note, type: :model do
     end
   end
 
-  fdescribe "#valid?" do
+  describe "#valid?" do
     context "when note has already been taken by the user" do
       let(:existing_note) { create(:note) }
       subject(:duplicate_note) do
