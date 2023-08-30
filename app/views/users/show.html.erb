@@ -1,4 +1,9 @@
 <div>
-  <h1 class="font-bold text-4xl">Users#show</h1>
-  <p>Find me in app/views/users/show.html.erb</p>
+  <h1 class="font-bold text-4xl"><%= current_user.username %>'s Dashboard</h1>
+  <% if current_user.journals.any? %>
+
+  <% else %> 
+    <%= link_to "Create your first journal!", new_journal_path,
+        data: { testid: "new-journal-link" } %>
+  <% end %>
 </div>
