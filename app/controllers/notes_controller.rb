@@ -6,7 +6,7 @@ class NotesController < ApplicationController
   end
 
   def create
-    @note = @journal.notes.build(note_params)
+    @note = @journal.notes.build(note_params.merge({user: current_user}))
 
     if @note.save
       redirect_to action: :index
@@ -55,6 +55,6 @@ class NotesController < ApplicationController
   end
 
   def note_params
-    params.require(:note).permit(:body, :journal_id)
+    params.require(:note).permit(:name, :body, :journal_id, :user_id)
   end
 end
