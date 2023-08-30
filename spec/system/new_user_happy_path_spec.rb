@@ -14,17 +14,18 @@ RSpec.describe "new user happy path", type: :system do
       end
 
       context "when user creates a new journal" do
-        let!(:journal) { build(:journal, user: user) }
+        let(:journal) { build(:journal, user: user) }
 
         before do
+          click_link "new-journal-link"
           fill_in "Name", with: journal.name
           click_button "journal-save-btn"
         end
 
         context "when user creates new notes in the journal" do
-          let!(:note1) { build(:note, journal: journal) }
-          let!(:note2) { build(:note, journal: journal) }
-          let!(:note3) { build(:note, journal: journal) }
+          let(:note1) { build(:note, journal: journal) }
+          let(:note2) { build(:note, journal: journal) }
+          let(:note3) { build(:note, journal: journal) }
 
           before do
             fill_in "Body", with: note1.body
