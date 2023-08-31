@@ -12,7 +12,7 @@ RSpec.describe "creating journals", type: :system do
 
     it "shows the new journal title in the journal index" do
       visit new_journal_path
-      fill_in "Name", with: journal.name
+      fill_in "journal-name-input", with: journal.name
       click_button "journal-save-btn"
 
       expect(page).to have_text(journal.name)
