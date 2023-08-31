@@ -14,7 +14,7 @@ RSpec.describe "new user happy path", type: :system do
       end
 
       context "when user creates a new journal" do
-        let(:journal) { build(:journal, user: user) }
+        let(:journal) { build(:journal) }
 
         before do
           click_link "new-journal-link"
@@ -23,9 +23,9 @@ RSpec.describe "new user happy path", type: :system do
         end
 
         context "when user creates new notes in the journal" do
-          let(:note1) { build(:note, journal: journal) }
-          let(:note2) { build(:note, journal: journal) }
-          let(:note3) { build(:note, journal: journal) }
+          let(:note1) { build(:note) }
+          let(:note2) { build(:note) }
+          let(:note3) { build(:note) }
 
           before do
             fill_in "note-name-input", with: note1.name
@@ -49,8 +49,5 @@ RSpec.describe "new user happy path", type: :system do
         end
       end
     end
-  end
-
-  context "when existing user signs in" do
   end
 end
