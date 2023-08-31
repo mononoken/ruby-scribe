@@ -1,0 +1,5 @@
+<%= form_with model: journal do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name, data: {testid: "journal-name-input"}%>
+  <%= form.submit "Save Journal", data: {testid: "journal-save-btn"} %>
+<% end %>

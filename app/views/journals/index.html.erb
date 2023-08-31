@@ -1,5 +1,6 @@
 <ul>
   <% @journals.each do |journal| %>
     <li><%= journal.name %></li>
+    <%= link_to "Edit", edit_journal_path(journal) %>
   <% end %>
 </ul>
