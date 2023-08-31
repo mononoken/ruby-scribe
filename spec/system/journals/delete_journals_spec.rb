@@ -8,6 +8,12 @@ RSpec.describe "deleting journals", type: :system do
     sign_in user
   end
 
+  it "displays journal delete button on the journal index" do
+    visit journals_path
+
+    expect(page).to have_button("journal-delete-btn")
+  end
+
   it "does not show journal in index after deletion" do
     visit journals_path
     accept_alert do
