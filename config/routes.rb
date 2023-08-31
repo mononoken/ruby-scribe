@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   get "dashboard", to: "users#show", as: :dashboard
 
-  resources :journals, only: %i[new create index edit update] do
+  resources :journals, only: %i[new create index edit update destroy] do
     resources :notes, only: %i[new create index]
   end
 

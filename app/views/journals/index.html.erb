@@ -1,6 +1,11 @@
-<ul>
+<ul data-testid="journal-list">
   <% @journals.each do |journal| %>
     <li><%= journal.name %></li>
     <%= link_to "Edit", edit_journal_path(journal) %>
+    <%= button_to "Delete", journal_path(journal), method: :delete,
+      data: {
+        turbo_confirm: "Are you sure? All notes in the journal will be lost!",
+        testid: "journal-delete-btn"
+      } %>
   <% end %>
 </ul>
