@@ -64,6 +64,7 @@ group :development, :test do
   gem "rspec-rails", "~> 6.0"
   gem "factory_bot_rails", "~> 6.2"
   gem "faker", "~> 3.2"
+  gem "coderay", "~> 1.1.3"
 end
 
 group :development do
