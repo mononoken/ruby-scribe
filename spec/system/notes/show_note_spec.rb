@@ -21,12 +21,13 @@ RSpec.describe "showing notes", type: :system do
     it "shows parsed markdown note when clicked" do
       visit journal_notes_path(journal)
 
-      converted_markdown = "<h1>Header</h1> <ul> <li>List item</li>" \
-        " <li>List item with <em>italics</em></li> </ul>"
-
       click_link "note-link"
 
-      expect(page).to have_content(converted_markdown)
+      expect(page).to have_selector("h1", text: "Header")
+      expect(page).to have_selector("ul", text: "List item\nList item with italics")
+      expect(page).to have_selector("li", text: "List item")
+      expect(page).to have_selector("li", text: "List item with italics")
+      expect(page).to have_selector("em", text: "italics")
     end
   end
 end
