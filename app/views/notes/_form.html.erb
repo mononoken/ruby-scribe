@@ -2,6 +2,6 @@
   <%= form.label :name %>
   <%= form.text_field :name, data: {testid: "note-name-input"} %>
   <%= form.label :body %>
-  <%= form.text_field :body, data: {testid: "note-body-input"}  %>
+  <%= form.text_area :body, data: {testid: "note-body-input"}  %>
   <%= form.submit "Save Note", data: {testid: "note-save-btn"} %>
 <% end %>
