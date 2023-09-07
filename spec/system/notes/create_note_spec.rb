@@ -22,7 +22,7 @@ RSpec.describe "creating notes", type: :system do
 
   context "when user has existing notes" do
     let!(:journal) { create(:journal, author: user) }
-    let!(:existing_note) { create(:note, journal: journal, user: user) }
+    let!(:existing_note) { create(:note, journal: journal, author: user) }
 
     it "shows error when user tries to create a note with the same name" do
       visit new_journal_note_path(journal)

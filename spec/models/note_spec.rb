@@ -16,7 +16,7 @@ RSpec.describe Note, type: :model do
       let(:existing_note) { create(:note) }
       subject(:duplicate_note) do
         create(:note, name: existing_note.name,
-          user: existing_note.user)
+          author: existing_note.author)
       end
 
       it "raises an error" do

@@ -1,12 +1,13 @@
 class NotesController < ApplicationController
   before_action :get_journal, only: %i[new create index]
+  # before_action :verify_author
 
   def new
     @note = @journal.notes.build
   end
 
   def create
-    @note = @journal.notes.build(note_params.merge(user: current_user))
+    @note = @journal.notes.build(note_params.merge(author: current_user))
 
     if @note.save
       redirect_to action: :index
@@ -49,6 +50,13 @@ class NotesController < ApplicationController
   end
 
   private
+
+  def verify_author
+    # render status: :forbidden unless current_user == @journal.author
+    return if current_user == @journal.author
+
+    redirect_to root_path, status: :forbidden
+  end
 
   def get_journal
     @journal = Journal.find(params[:journal_id])
