@@ -2,14 +2,13 @@ require "rails_helper"
 
 RSpec.describe "editing journals", type: :system do
   let!(:user) { create(:user) }
+  let!(:journal) { create(:journal, author: user) }
 
   before do
     sign_in user
   end
 
   context "when user is viewing journal index" do
-    let!(:journal) { create(:journal, user: user) }
-
     it "has a link to journal's edit page" do
       visit journals_path
 
@@ -18,8 +17,6 @@ RSpec.describe "editing journals", type: :system do
   end
 
   context "when user is viewing journal notes index" do
-    let!(:journal) { create(:journal, user: user) }
-
     it "has a link to journal's edit page" do
       visit journal_notes_path(journal)
 
@@ -28,8 +25,6 @@ RSpec.describe "editing journals", type: :system do
   end
 
   context "when user has an existing journal" do
-    let!(:journal) { create(:journal, user: user) }
-
     it "shows the edited journal title in the journal index" do
       visit edit_journal_path(journal)
       fill_in "journal-name-input", with: "Edited Journal"

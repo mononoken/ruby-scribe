@@ -8,7 +8,7 @@ RSpec.describe "creating notes", type: :system do
   end
 
   context "when user has one empty journal" do
-    let!(:journal) { create(:journal, user: user) }
+    let!(:journal) { create(:journal, author: user) }
     let(:note_name) { "Test note" }
 
     it "shows created journal note after submitting note" do
@@ -21,7 +21,7 @@ RSpec.describe "creating notes", type: :system do
   end
 
   context "when user has existing notes" do
-    let!(:journal) { create(:journal, user: user) }
+    let!(:journal) { create(:journal, author: user) }
     let!(:existing_note) { create(:note, journal: journal, user: user) }
 
     it "shows error when user tries to create a note with the same name" do

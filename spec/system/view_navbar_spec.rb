@@ -129,8 +129,8 @@ RSpec.describe "viewing navbar", type: :system do
   end
 
   context "when user has journals" do
-    let!(:journal1) { create(:journal, user: user) }
-    let!(:journal2) { create(:journal, user: user) }
+    let!(:journal1) { create(:journal, author: user) }
+    let!(:journal2) { create(:journal, author: user) }
 
     before do
       sign_in user

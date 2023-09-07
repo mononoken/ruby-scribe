@@ -4,7 +4,7 @@ RSpec.describe Journal, type: :model do
   describe "#notes" do
     context "when journal has notes and is deleted" do
       let!(:journal) { create(:journal) }
-      let!(:note) { create(:note, journal: journal, user: journal.user) }
+      let!(:note) { create(:note, journal: journal, user: journal.author) }
 
       # Delete if failing
       it "destroys all associated notes" do
@@ -22,7 +22,7 @@ RSpec.describe Journal, type: :model do
         let(:user) { create(:user) }
 
         subject(:journal) do
-          described_class.new(name: "Test Journal", user:)
+          described_class.new(name: "Test Journal", author: user)
         end
 
         # Delete if failing

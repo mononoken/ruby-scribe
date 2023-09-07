@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "deleting journals", type: :system do
   let!(:user) { create(:user) }
-  let!(:journal) { create(:journal, user: user) }
+  let!(:journal) { create(:journal, author: user) }
 
   before do
     sign_in user

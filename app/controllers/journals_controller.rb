@@ -4,7 +4,7 @@ class JournalsController < ApplicationController
   end
 
   def create
-    @journal = Journal.new(journal_params.merge(user: current_user))
+    @journal = Journal.new(journal_params.merge(author: current_user))
 
     if @journal.save
       redirect_to journal_notes_path(@journal)
@@ -44,6 +44,6 @@ class JournalsController < ApplicationController
   private
 
   def journal_params
-    params.require(:journal).permit(:name, :user_id)
+    params.require(:journal).permit(:name, :author_id)
   end
 end

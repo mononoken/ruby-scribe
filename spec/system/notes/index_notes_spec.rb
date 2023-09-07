@@ -8,7 +8,7 @@ RSpec.describe "indexing notes", type: :system do
   end
 
   context "when user's journal has three notes" do
-    let!(:journal) { create(:journal, user: user) }
+    let!(:journal) { create(:journal, author: user) }
     let!(:note1) { create(:note, created_at: 2.minutes.ago, updated_at: 2.minutes.ago, journal: journal) }
     let!(:note2) { create(:note, created_at: 1.minutes.ago, updated_at: 1.minutes.ago, journal: journal) }
     let!(:note3) { create(:note, created_at: 0.minutes.ago, updated_at: 0.minutes.ago, journal: journal) }
@@ -21,6 +21,22 @@ RSpec.describe "indexing notes", type: :system do
       page_notes = page.all("[data-testid='note-body']").map(&:text)
 
       expect(page_notes).to eq(notes_desc)
+    end
+
+    xcontext "when other user tries to view journal's notes of user" do
+      let!(:other_user) { create(:user) }
+
+      before do
+        sign_in other_user
+      end
+
+      it "shows an http forbidden error page" do
+        visit journal_notes_path(journal)
+
+        within "error-title" do
+          expect(page).to have_content("Forbidden")
+        end
+      end
     end
   end
 end

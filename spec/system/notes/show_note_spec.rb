@@ -3,12 +3,8 @@ require "rails_helper"
 RSpec.describe "showing notes", type: :system do
   let!(:user) { create(:user) }
 
-  before do
-    sign_in user
-  end
-
   context "when user's journal has a note with markdown syntax" do
-    let!(:journal) { create(:journal, user: user) }
+    let!(:journal) { create(:journal, author: user) }
     let(:markdown) do
       <<~MARKDOWN.strip
         # Header
@@ -17,6 +13,10 @@ RSpec.describe "showing notes", type: :system do
       MARKDOWN
     end
     let!(:note) { create(:note, journal: journal, body: markdown) }
+
+    before do
+      sign_in user
+    end
 
     it "shows parsed markdown note when clicked" do
       visit journal_notes_path(journal)

@@ -4,7 +4,7 @@ RSpec.describe "editing notes", type: :system do
   let!(:user) { create(:user) }
 
   context "when user is viewing journal notes" do
-    let!(:journal) { create(:journal, user: user) }
+    let!(:journal) { create(:journal, author: user) }
     let!(:note) { create(:note, journal: journal) }
 
     before do
