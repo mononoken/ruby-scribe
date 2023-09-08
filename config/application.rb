@@ -28,5 +28,8 @@ module RubyScribe
         routing_specs: false,
         view_specs: false
     end
+
+    # Map authorization error to showing public/403.html (forbidden) page
+    config.action_dispatch.rescue_responses["ApplicationController::ForbiddenError"] = :forbidden
   end
 end
