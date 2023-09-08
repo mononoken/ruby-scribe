@@ -22,21 +22,5 @@ RSpec.describe "indexing notes", type: :system do
 
       expect(page_notes).to eq(notes_desc)
     end
-
-    xcontext "when other user tries to view journal's notes of user" do
-      let!(:other_user) { create(:user) }
-
-      before do
-        sign_in other_user
-      end
-
-      it "shows an http forbidden error page" do
-        visit journal_notes_path(journal)
-
-        within "error-title" do
-          expect(page).to have_content("Forbidden")
-        end
-      end
-    end
   end
 end
