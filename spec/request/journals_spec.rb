@@ -14,7 +14,7 @@ RSpec.describe "/journals", type: :request do
         sign_in other_user
       end
 
-      fit "returns http forbidden" do
+      it "returns http forbidden" do
         without_detailed_exceptions do
           get journal_notes_path(user_journal)
         end
