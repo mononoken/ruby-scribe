@@ -1,27 +1,27 @@
 require "rails_helper"
 
-RSpec.describe "sharing notes", type: :system do
+RSpec.describe "collections", type: :system do
   let!(:user) { create(:user) }
 
-  context "when user creates a shared journal" do
+  context "when user creates a collection" do
     let!(:user_journal) { create(:journal, author: user) }
     let!(:user_note) { create(:note, journal: user_journal, author: user) }
 
     before do
       sign_in user
       visit dashboard_path
-      click_link "new-shared-journal-link"
-      select journal.name, from: "journals-select"
+      click_link "new-collection-link"
+      select user_journal.name, from: "journals-select"
       click_button "invite-user-btn"
       select other_user.name, from: "invites-select"
-      click_button "save-shared-journal-btn"
+      click_button "save-collection-btn"
     end
 
-    fit "shows notes of user's journal in the shared journal" do
+    fit "shows notes of user's journal in the collection" do
       expect(page).to have_content(user_note.name)
     end
 
-    context "when other user joins the shared journal" do
+    context "when other user joins the collection" do
       let!(:other_user) { create(:user) }
       let!(:other_journal) { create(:journal, author: other_user) }
       let!(:other_note) { create(:note, journal: other_journal, author: other_user) }
@@ -31,18 +31,18 @@ RSpec.describe "sharing notes", type: :system do
         # visit notifications_path
         visit dashboard_path
         within "notifications-list" do
-          click_button "accept-shared-journal-btn"
+          click_button "accept-collection-btn"
         end
       end
 
-      it "shows notes of other's in the shared journal" do
-        click_link "shared-journal-link"
+      it "shows notes of other's in the collection" do
+        click_link "collection-link"
         expect(page).to have_content(other_note.name)
       end
     end
   end
 
-  xcontext "when user has joined a shared journal" do
+  xcontext "when user has joined a collection" do
     # let!(:user_journal) { create(:journal, author: user) }
     #
     # let!(:other_user1) { create(:user) }
