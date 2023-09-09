@@ -22,4 +22,6 @@ Rails.application.routes.draw do
   end
 
   resources :notes, only: %i[destroy edit update show]
+
+  resources :collections, only: %i[new]
 end
