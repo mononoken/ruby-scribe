@@ -28,7 +28,6 @@ RSpec.describe "collections", type: :system do
 
       before do
         sign_in other_user
-        # visit notifications_path
         visit dashboard_path
         within "notifications-list" do
           click_button "accept-collection-btn"
