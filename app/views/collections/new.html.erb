@@ -8,7 +8,7 @@
   <div>
     <%= form.label :journal %>
     <%= form.select :journal, @journals,
-  </div>
       data: {testid: "journals-select"} %>
+  </div>
   <%= form.submit "Save Collection", data: {testid: "collection-save-btn"} %>
 <% end %>
