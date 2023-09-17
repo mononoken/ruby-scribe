@@ -3,6 +3,8 @@ require "rails_helper"
 RSpec.describe "collections", type: :system do
   let!(:user) { create(:user) }
 
+  context "when user visits collections path from navbar"
+
   context "when user creates a collection" do
     let!(:user_journal) { create(:journal, author: user) }
     let!(:user_note) { create(:note, journal: user_journal, author: user) }
@@ -10,6 +12,7 @@ RSpec.describe "collections", type: :system do
     before do
       sign_in user
       visit dashboard_path
+
       click_link "new-collection-link"
       select user_journal.name, from: "journals-select"
       click_button "invite-user-btn"
@@ -29,6 +32,7 @@ RSpec.describe "collections", type: :system do
       before do
         sign_in other_user
         visit dashboard_path
+
         within "notifications-list" do
           click_button "accept-collection-btn"
         end

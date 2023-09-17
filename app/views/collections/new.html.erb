@@ -1,10 +1,14 @@
 <h1 class="font-bold text-4xl">New Collection</h1>
 
 <%= form_with model: @collection do |form| %>
-  <%= form.label :name %>
-  <%= form.text_field :name, data: {testid: "collection-name-input"}%>
-  <%= form.label :journal %>
-  <%= form.select :journal, @journals,
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name, data: {testid: "collection-name-input"}%>
+  </div>
+  <div>
+    <%= form.label :journal %>
+    <%= form.select :journal, @journals,
+  </div>
       data: {testid: "journals-select"} %>
   <%= form.submit "Save Collection", data: {testid: "collection-save-btn"} %>
 <% end %>
