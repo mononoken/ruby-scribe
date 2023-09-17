@@ -1,7 +1,13 @@
 <%= form_with model: note, url: [journal, note] do |form| %>
-  <%= form.label :name %>
-  <%= form.text_field :name, data: {testid: "note-name-input"} %>
-  <%= form.label :body %>
-  <%= form.text_area :body, data: {testid: "note-body-input"}  %>
-  <%= form.submit "Save Note", data: {testid: "note-save-btn"} %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name, data: {testid: "note-name-input"} %>
+  </div>
+  <div>
+    <%= form.label :body %>
+    <%= form.text_area :body, data: {testid: "note-body-input"}  %>
+  </div>
+  <div>
+    <%= form.submit "Save Note", data: {testid: "note-save-btn"} %>
+  </div>
 <% end %>
