@@ -30,6 +30,6 @@ module RubyScribe
     end
 
     # Map authorization error to showing public/403.html (forbidden) page
-    config.action_dispatch.rescue_responses["ApplicationController::ForbiddenError"] = :forbidden
+    config.action_dispatch.rescue_responses["CanCan::AccessDenied"] = :forbidden
   end
 end

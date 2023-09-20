@@ -1,6 +1,6 @@
 class NotesController < ApplicationController
-  before_action :get_journal, only: %i[new create index]
-  before_action :verify_author
+  load_and_authorize_resource :journal
+  load_and_authorize_resource :note, through: :journal, shallow: true
 
   def new
     @note = @journal.notes.build
@@ -50,14 +50,6 @@ class NotesController < ApplicationController
   end
 
   private
-
-  def verify_author
-    raise ForbiddenError unless current_user == @journal.author
-  end
-
-  def get_journal
-    @journal = Journal.find(params[:journal_id])
-  end
 
   def note_params
     params.require(:note).permit(:name, :body, :journal_id, :user_id)
