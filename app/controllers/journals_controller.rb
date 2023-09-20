@@ -1,4 +1,6 @@
 class JournalsController < ApplicationController
+  load_and_authorize_resource :journal
+
   def new
     @journal = Journal.new
   end
@@ -19,12 +21,9 @@ class JournalsController < ApplicationController
   end
 
   def edit
-    @journal = Journal.find(params[:id])
   end
 
   def update
-    @journal = Journal.find(params[:id])
-
     if @journal.update(journal_params)
       redirect_to journal_notes_path(@journal)
     else
@@ -34,7 +33,6 @@ class JournalsController < ApplicationController
   end
 
   def destroy
-    @journal = Journal.find(params[:id])
     @journal.destroy
 
     flash[:success] = "#{@journal.name} Journal successfully deleted."
