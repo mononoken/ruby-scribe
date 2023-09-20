@@ -6,16 +6,7 @@
   <ul>
     <% @notes.each do |note| %>
       <li class="border-solid border-2">
-        <%= link_to note.name, note_path(note),
-          data: {testid: "note-link"}  %>
-        <div data-testid="note-body"><%= note.body %></div>
-        <%= link_to "Edit Note", edit_note_path(note), 
-          data: {testid: "note-edit-link"} %>
-        <%= button_to "Delete Note", note_path(note), method: :delete,
-          data: {
-            turbo_confirm: "Are you sure?",
-            testid: "note-delete-btn"
-          } %>
+        <%= render partial: "note", locals: {note: note} %>
       </li>
     <% end %>
   </ul>

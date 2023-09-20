@@ -6,5 +6,4 @@ class User < ApplicationRecord
 
   has_many :journals, foreign_key: "author_id", inverse_of: "author"
   has_many :notes, foreign_key: "author_id", inverse_of: "author"
-  # has_many :shared_journals
 end
