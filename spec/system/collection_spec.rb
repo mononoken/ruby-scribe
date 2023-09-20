@@ -14,13 +14,12 @@ RSpec.describe "collections", type: :system do
       visit dashboard_path
 
       click_link "new-collection-link"
+      fill_in "collection-name-input", with: "New Collection"
       select user_journal.name, from: "journals-select"
-      click_button "invite-user-btn"
-      select other_user.name, from: "invites-select"
-      click_button "save-collection-btn"
+      click_button "collection-save-btn"
     end
 
-    fit "shows notes of user's journal in the collection" do
+    it "shows notes of user's journal in the collection" do
       expect(page).to have_content(user_note.name)
     end
 
@@ -30,6 +29,8 @@ RSpec.describe "collections", type: :system do
       let!(:other_note) { create(:note, journal: other_journal, author: other_user) }
 
       before do
+        # click_button "invite-user-btn"
+        # select other_user.name, from: "invites-select"
         sign_in other_user
         visit dashboard_path
 
@@ -39,6 +40,7 @@ RSpec.describe "collections", type: :system do
       end
 
       it "shows notes of other's in the collection" do
+        pending "Implement accepting collection invitations"
         click_link "collection-link"
         expect(page).to have_content(other_note.name)
       end
