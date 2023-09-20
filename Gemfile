@@ -57,6 +57,9 @@ gem "devise", "~> 4.9"
 # Use RedCarpet to parse markdown
 gem "redcarpet", "~> 3.6.0"
 
+# Use Cancancan for user authorization
+gem "cancancan", "~> 3.5.0"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "standard", "~> 1.30"
