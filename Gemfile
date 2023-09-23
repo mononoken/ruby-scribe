@@ -51,14 +51,14 @@ gem "bootsnap", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
-# Use Devise for User authentication
+# User authentication
 gem "devise", "~> 4.9"
 
-# Use RedCarpet to parse markdown
+# Parse markdown
 gem "redcarpet", "~> 3.6.0"
 
-# Use Cancancan for user authorization
-gem "cancancan", "~> 3.5.0"
+# User authorization
+gem "action_policy", "~> 0.6.7"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
