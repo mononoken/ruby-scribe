@@ -5,7 +5,7 @@ RSpec.describe "deleting notes", type: :system do
 
   context "when user with one journal and one note is signed at notes index" do
     let!(:journal) { create(:journal, author: user) }
-    let!(:existing_note) { create(:note, journal: journal) }
+    let!(:existing_note) { create(:note, journal: journal, author: user) }
 
     before do
       sign_in user

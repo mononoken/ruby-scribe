@@ -12,7 +12,10 @@ RSpec.describe "showing notes", type: :system do
         - List item with *italics*
       MARKDOWN
     end
-    let!(:note) { create(:note, journal: journal, body: markdown) }
+    let!(:note) {
+      create(:note, journal: journal, author: user,
+        body: markdown)
+    }
 
     before do
       sign_in user
