@@ -1,5 +1,6 @@
 class JournalsController < ApplicationController
-  load_and_authorize_resource :journal
+  before_action :set_journal, only: %i[edit update destroy]
+  skip_verify_authorized only: %i[index new]
 
   def new
     @journal = Journal.new
@@ -7,6 +8,7 @@ class JournalsController < ApplicationController
 
   def create
     @journal = Journal.new(journal_params.merge(author: current_user))
+    authorize! @journal
 
     if @journal.save
       redirect_to journal_notes_path(@journal)
@@ -40,6 +42,12 @@ class JournalsController < ApplicationController
   end
 
   private
+
+  def set_journal
+    @journal = Journal.find(params[:id])
+
+    authorize! @journal
+  end
 
   def journal_params
     params.require(:journal).permit(:name, :author_id)

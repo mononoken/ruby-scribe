@@ -1,6 +1,11 @@
 class NotesController < ApplicationController
-  load_and_authorize_resource :journal
-  load_and_authorize_resource :note, through: :journal, shallow: true
+  before_action :set_journal, only: %i[index new create]
+  before_action :set_note, only: %i[edit update destroy show]
+
+  def index
+    @note = Note.new
+    @notes = @journal.notes
+  end
 
   def new
     @note = @journal.notes.build
@@ -18,7 +23,6 @@ class NotesController < ApplicationController
   end
 
   def destroy
-    @note = Note.find(params[:id])
     @note.destroy
 
     flash[:success] = "Note successfully deleted."
@@ -26,12 +30,9 @@ class NotesController < ApplicationController
   end
 
   def edit
-    @note = Note.find(params[:id])
   end
 
   def update
-    @note = Note.find(params[:id])
-
     if @note.update(note_params)
       redirect_to @note
     else
@@ -40,16 +41,22 @@ class NotesController < ApplicationController
     end
   end
 
-  def index
-    @note = Note.new
-    @notes = @journal.notes
-  end
-
   def show
-    @note = Note.find(params[:id])
   end
 
   private
+
+  def set_journal
+    @journal = Journal.find(params[:journal_id])
+
+    authorize! @journal
+  end
+
+  def set_note
+    @note = Note.find(params[:id])
+
+    authorize! @note
+  end
 
   def note_params
     params.require(:note).permit(:name, :body, :journal_id, :user_id)
