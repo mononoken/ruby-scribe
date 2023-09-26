@@ -1,3 +1,4 @@
+<h2><%= current_user.username %>'s Journals</h2>
 <ul data-testid="journal-list">
   <% @journals.each do |journal| %>
     <li><%= journal.name %></li>
