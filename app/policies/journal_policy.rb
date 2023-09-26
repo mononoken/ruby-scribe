@@ -1,14 +1,21 @@
 class JournalPolicy < ApplicationPolicy
   default_rule :manage?
-  alias_rule :index?, :create?, to: :manage?
+
+  def index?
+    user.present?
+  end
+
+  def new?
+    create?
+  end
+
+  def create?
+    user.present?
+  end
 
   def manage?
     author?
   end
-
-  # def new?
-  #   true
-  # end
 
   private
 
