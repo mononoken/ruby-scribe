@@ -49,7 +49,7 @@ class NotesController < ApplicationController
   def set_journal
     @journal = Journal.find(params[:journal_id])
 
-    authorize! @journal
+    authorize! context: {journal: @journal}
   end
 
   def set_note
