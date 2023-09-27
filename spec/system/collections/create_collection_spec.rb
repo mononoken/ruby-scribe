@@ -27,21 +27,4 @@ RSpec.describe "creating collections", type: :system do
       expect(page).to have_content(user_note.name)
     end
   end
-
-  xcontext "when user has joined a collection" do
-    # let!(:user_journal) { create(:journal, author: user) }
-    #
-    # let!(:other_user1) { create(:user) }
-    # let!(:other_user2) { create(:user) }
-    let!(:party_journal) { create(:party_journal) }
-
-    before do
-      visit journal_path(user_journal)
-    end
-
-    it "shows user's notes from their joined journal"
-    it "shows notes of the other journal party members"
-    it "does not show other's private notes"
-    it "does show user's own private notes"
-  end
 end

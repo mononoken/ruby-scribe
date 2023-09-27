@@ -1,26 +1,6 @@
 require "rails_helper"
 
 RSpec.describe "collections", type: :system do
-  # let!(:user) { create(:user) }
-  #
-  # context "when user creates a collection" do
-  #   let!(:user_journal) { create(:journal, author: user) }
-  #   let!(:user_note) { create(:note, journal: user_journal, author: user) }
-  #
-  #   before do
-  #     sign_in user
-  #     visit dashboard_path
-  #
-  #     click_link "new-collection-link"
-  #     fill_in "collection-name-input", with: "New Collection"
-  #     select user_journal.name, from: "journals-select"
-  #     click_button "collection-save-btn"
-  #   end
-  #
-  #   it "shows notes of user's journal in the collection" do
-  #     expect(page).to have_content(user_note.name)
-  #   end
-  #
   #   context "when other user joins the collection" do
   #     # let!(:other_user) { create(:user) }
   #     # let!(:other_journal) { create(:journal, author: other_user) }
