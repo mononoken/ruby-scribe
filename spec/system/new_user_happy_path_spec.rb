@@ -27,22 +27,11 @@ RSpec.describe "new user happy path", type: :system do
           let(:note2) { build(:note) }
           let(:note3) { build(:note) }
 
-          before do
-            fill_in "note-name-input", with: note1.name
-            fill_in "note-body-input", with: note1.body
-            click_button "note-save-btn"
-
-            fill_in "note-name-input", with: note2.name
-            fill_in "note-body-input", with: note2.body
-            click_button "note-save-btn"
-
-            fill_in "note-name-input", with: note3.name
-            fill_in "note-body-input", with: note3.body
-            click_button "note-save-btn"
-          end
-
-          it "displays users created notes" do
+          it "displays users created notes' names after each save" do
             [note1, note2, note3].each do |note|
+              fill_in "note-name-input", with: note.name
+              fill_in "note-body-input", with: note.body
+              click_button "note-save-btn"
               expect(page).to have_content(note.name)
             end
           end
