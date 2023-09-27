@@ -6,11 +6,11 @@ class JournalPolicy < ApplicationPolicy
   end
 
   def new?
-    create?
+    user.present?
   end
 
   def create?
-    user.present?
+    author?
   end
 
   def manage?

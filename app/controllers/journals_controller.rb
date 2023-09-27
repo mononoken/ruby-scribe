@@ -1,6 +1,6 @@
 class JournalsController < ApplicationController
   before_action :set_journal, only: %i[edit update destroy]
-  skip_verify_authorized only: %i[index new]
+  before_action :authorize!, only: %i[new index]
 
   def new
     @journal = Journal.new
