@@ -26,7 +26,7 @@ RSpec.describe "deleting journals", type: :system do
       click_on "journal-delete-btn"
     end
 
-    within "ul[data-testid='journal-list']" do
+    within "ul[data-testid='journals-list']" do
       expect(page).not_to have_content(journal.name)
     end
   end
