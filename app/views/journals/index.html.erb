@@ -3,12 +3,16 @@
     data: { testid: "new-journal-link" } %>
 <ul data-testid="journals-list">
   <% @journals.each do |journal| %>
-    <li><%= journal.name %></li>
-    <%= link_to "Edit", edit_journal_path(journal) %>
-    <%= button_to "Delete", journal_path(journal), method: :delete,
-      data: {
-        turbo_confirm: "Are you sure? All notes in the journal will be lost!",
-        testid: "journal-delete-btn"
-      } %>
+    <li>
+      <h3><%= link_to journal.name, journal_notes_path(journal) %></h3>
+      <div>
+        <%= link_to "Edit", edit_journal_path(journal) %>
+        <%= button_to "Delete", journal_path(journal), method: :delete,
+          data: {
+            turbo_confirm: "Are you sure? All notes in the journal will be lost!",
+            testid: "journal-delete-btn"
+          } %>
+      </div>
+    </li>
   <% end %>
 </ul>
