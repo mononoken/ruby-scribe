@@ -2,8 +2,8 @@ require "rails_helper"
 
 RSpec.describe "indexing collections", type: :system do
   let!(:user) { create(:user) }
-  let!(:collection1) { create(:collection, owner: user) }
-  let!(:collection2) { create(:collection, owner: user) }
+  # let!(:collection1) { create(:collection, owner: user) }
+  # let!(:collection2) { create(:collection, owner: user) }
 
   context "when user visits collections path from navbar" do
     before do
