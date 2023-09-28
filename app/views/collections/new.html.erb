@@ -6,7 +6,7 @@
     <%= form.text_field :name, data: {testid: "collection-name-input"} %>
   </div>
   <div>
-    <%= form.fields_for :collection_invitations do |invitations_form| %> 
+    <%= form.fields_for :invitations do |invitations_form| %> 
       <%= invitations_form.hidden_field :accepted_at, value: DateTime.now %>
       <div>
         <%= invitations_form.label :journal_id %>

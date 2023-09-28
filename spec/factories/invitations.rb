@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :collection_invitation do
+  factory :invitation do
     collection { nil }
     journal { nil }
     accepted_at { nil }

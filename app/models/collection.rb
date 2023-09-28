@@ -1,6 +1,9 @@
 class Collection < ApplicationRecord
-  has_many :collection_invitations, dependent: :destroy
-  has_many :journals, through: :collection_invitations
+  belongs_to :owner, class_name: "User"
 
-  accepts_nested_attributes_for :collection_invitations
+  has_many :invitations, dependent: :destroy
+  has_many :journals, through: :invitations
+  has_many :authors, through: :journals, class_name: "User"
+
+  accepts_nested_attributes_for :invitations
 end
