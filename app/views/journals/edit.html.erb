@@ -1,5 +1,8 @@
-<div>
-  <h1 class="font-bold text-4xl">Edit Journal</h1>
+<h2 class="font-bold text-4xl">Edit Journal</h1>
 
-  <%= render partial: "form", locals: {journal: @journal} %>
-</div>
+<%= render partial: "form", locals: {journal: @journal} %>
+<%= button_to "Delete", journal_path(@journal), method: :delete,
+  data: {
+    turbo_confirm: "Are you sure? All notes in the journal will be lost!",
+    testid: "journal-delete-btn"
+  } %>
