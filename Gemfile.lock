@@ -114,15 +114,14 @@ GEM
       activesupport (>= 5.0)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
-    importmap-rails (1.2.1)
-      actionpack (>= 6.0.0)
-      railties (>= 6.0.0)
     io-console (0.6.0)
     irb (1.7.1)
       reline (>= 0.3.0)
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    jsbundling-rails (1.2.1)
+      railties (>= 6.0.0)
     json (2.6.3)
     language_server-protocol (3.17.0.3)
     lint_roller (1.1.0)
@@ -318,8 +317,8 @@ DEPENDENCIES
   dockerfile-rails (>= 1.5)
   factory_bot_rails (~> 6.2)
   faker (~> 3.2)
-  importmap-rails
   jbuilder
+  jsbundling-rails
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.6)

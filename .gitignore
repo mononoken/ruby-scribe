@@ -38,3 +38,5 @@ coverage/*
 
 # Ignore RSpec examples output
 spec/examples.txt
+
+/node_modules
