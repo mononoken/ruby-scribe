@@ -2,7 +2,7 @@
 
 <ul data-testid="journal-notes">
   <% @collection.journals.map(&:notes).flatten.each do |note| %>
-    <li class="border-solid border-2">
+    <li>
       <%= render partial: "notes/note", locals: {note: note} %>
     </li>
   <% end %>
