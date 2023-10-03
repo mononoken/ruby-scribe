@@ -11,12 +11,15 @@
   </head>
 
   <body>
-    <nav>
-      <ul>
+    <nav data-controller="popover">
+      <button data-action="popover#toggle" data-testid="nav-hamburger-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+      </button>
+      <ul data-popover-target="toggled" hidden>
         <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "About", about_path %></li>
-      </ul>
-      <ul>
         <% if current_user %>
           <li><%= link_to "Journals", journals_path %></li>
           <% if current_user.journals.any? %>

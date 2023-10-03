@@ -32,6 +32,8 @@ RSpec.describe "viewing navbar", type: :system do
 
       before do
         visit root_path
+
+        click_button "nav-hamburger-btn"
       end
 
       it "has button to open navbar" do
@@ -94,6 +96,8 @@ RSpec.describe "viewing navbar", type: :system do
 
       before do
         visit root_path
+
+        click_button "nav-hamburger-btn"
       end
 
       it "has path to open navbar" do
@@ -135,6 +139,8 @@ RSpec.describe "viewing navbar", type: :system do
     before do
       sign_in user
       visit root_path
+
+      click_button "nav-hamburger-btn"
     end
 
     it "has links to user's journals in navbar" do
