@@ -30,6 +30,9 @@ to be documented
 - [The Odin Project](https://www.theodinproject.com), my primary guide in the vast sea of web-development learning.
   - And the Discord community!
 
+Resources:
+SVGs: https://heroicons.com/
+
 ## Reporting Issues/Feedback/Contact
 
 Bug reports are greatly appreciated. You may create a [new issue](https://github.com/mononoken/fae-scribe/issues/new) with a description of the problem, and the steps leading up to it.

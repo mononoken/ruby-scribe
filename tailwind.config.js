@@ -1,3 +1,5 @@
+const colors = require("tailwindcss/colors");
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -7,4 +9,11 @@ export default {
     "./app/javascript/**/*.js",
   ],
   plugins: [require("@tailwindcss/forms"), require("@tailwindcss/typography")],
+  theme: {
+    extend: {
+      colors: {
+        purplehaze: "#93628f",
+      },
+    },
+  },
 };

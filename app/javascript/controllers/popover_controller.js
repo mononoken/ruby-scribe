@@ -9,4 +9,8 @@ export default class extends Controller {
   toggle() {
     this.toggledTarget.hidden = !this.toggledTarget.hidden;
   }
+
+  // popover() {
+  //   document.startViewTransition(() => toggle());
+  // }
 }

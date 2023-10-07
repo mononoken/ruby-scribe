@@ -11,47 +11,132 @@
     <%= hotwire_livereload_tags if Rails.env.development? %>
   </head>
 
-  <body class="grid bg-slate-800 text-indigo-300">
-    <nav class="fixed top-0 left-0 bg-slate-600 rounded-lg p-4" data-controller="popover">
-      <button data-action="popover#toggle" data-testid="nav-hamburger-btn">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-        </svg>
-      </button>
-      <ul data-popover-target="toggled" hidden>
-        <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "About", about_path %></li>
-        <% if current_user %>
-          <li><%= link_to "Journals", journals_path %></li>
-          <% if current_user.journals.any? %>
-            <% current_user.journals.each do |journal| %>
-              <li><%= link_to journal.name, journal_notes_path(journal) %></li>
+  <body class="bg-slate-800 text-indigo-300">
+    <header
+      class="min-h-80 sticky inset-0 flex w-full items-center 
+             justify-between bg-slate-800 px-4 py-2"
+    >
+      <h1 class="text-3xl font-bold text-orange-300">Fae Scribe</h1>
+      <nav class="" data-controller="popover">
+        <button
+          class="inline"
+          data-action="popover#toggle"
+          data-testid="nav-hamburger-btn"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="h-8 w-8"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+            />
+          </svg>
+        </button>
+        <div
+          hidden
+          class="fixed inset-0"
+          data-popover-target="toggled"
+        >
+          <div class="flex h-full w-full">
+            <div
+              class="flex-[0_1_20%] min-w-0 z-40 bg-slate-800/30 backdrop-blur-sm"
+              data-action="click->popover#toggle"
+              aria-hidden="true"
+            >
+            </div>
+            <div
+              class="flex-[1_0_320px] max-w-full z-50
+                     flex flex-col justify-between
+                     bg-slate-600 p-[24px] rounded-l-2xl"
+            >
+              <div
+                class="flex-none flex justify-between"
+              >
+                <h2
+                  class="flex-none"
+                >
+                  <%= link_to "Fae Scribe", root_path %>
+                </h2>
+                <button
+                  class="flex-none h-8 w-8"
+                  data-action="popover#toggle"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-6 h-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <ul
+                class="flex-auto overflow-auto"
+              >
+                <li><%= link_to "Home (REMOVE_ME)", root_path %></li>
+                <li><%= link_to "About", about_path %></li>
+                <% if current_user %>
+                  <li><%= link_to "Journals", journals_path %></li>
+                  <% if current_user.journals.any? %>
+                    <% current_user.journals.each do |journal| %>
+                      <li><%= link_to journal.name, journal_notes_path(journal) %></li>
+                    <% end %>
+                  <% end %>
+                  <li>
+                    <%= button_to "Sign out", destroy_user_session_path, 
+                        method: :delete, data: {testid: "sign-out-btn"}%></li>
+                <% else %>
+                  <li><%= link_to "Sign in", new_user_session_path %></li>
+                  <li><%= link_to "Sign up", new_user_registration_path %></li>
+                <% end %>
+              </ul>
+              <div
+                class="flex-none"
+              >
+                <button>Github Link</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div class="flex-col overflow-y-auto">
+      <% if flash.any? %>
+        <div
+          class="px-4 py-2 font-medium text-rose-400 bg-purplehaze"
+          data-testid="flash-msg"
+        >
+          <% flash.each do |type, message| %>
+            <% if message.is_a?(Array) %>
+              <ul>
+                <% message.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+              </ul> 
+            <% else %>
+              <div><%= message %></div>
             <% end %>
           <% end %>
-          <li>
-            <%= button_to "Sign out", destroy_user_session_path, 
-                method: :delete, data: {testid: "sign-out-btn"}%></li>
-        <% else %>
-          <li><%= link_to "Sign in", new_user_session_path %></li>
-          <li><%= link_to "Sign up", new_user_registration_path %></li>
-        <% end %>
-      </ul>
-    </nav>
-    <div data-testid="flash-msg">
-      <% flash.each do |type, message| %>
-        <% if message.is_a?(Array) %>
-          <ul>
-            <% message.each do |msg| %>
-              <li><%= msg %></li>
-            <% end %>
-          </ul> 
-        <% else %>
-          <div><%= message %></div>
-        <% end %>
+        </div>
       <% end %>
+      <main class="">
+        <%= yield %>
+      </main>
+      <footer>
+      </footer>
     </div>
-    <main>
-      <%= yield %>
-    </main>
   </body>
 </html>
