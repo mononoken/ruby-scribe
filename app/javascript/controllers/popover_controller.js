@@ -2,12 +2,12 @@ import { Controller } from "@hotwired/stimulus";
 
 // Connects to data-controller="popover"
 export default class extends Controller {
-  static targets = ["toggled"];
+  static targets = ["togglable"];
 
   initialize() {}
 
   toggle() {
-    this.toggledTarget.hidden = !this.toggledTarget.hidden;
+    this.togglableTarget.hidden = !this.togglableTarget.hidden;
   }
 
   // popover() {
