@@ -20,7 +20,7 @@
       <nav class="" data-controller="popover">
         <button
           class="inline"
-          data-action="popover#toggle"
+          data-action="popover#popover"
           data-testid="nav-hamburger-btn"
         >
           <svg
@@ -40,74 +40,73 @@
         </button>
         <div
           hidden
-          class="fixed inset-0"
+          class="fixed inset-0 h-full w-full"
           data-popover-target="togglable"
         >
-          <div class="flex h-full w-full">
+          <div
+            class="fixed h-full w-full z-40 bg-slate-800/30 backdrop-blur-sm"
+            data-action="click->popover#popover"
+            aria-hidden="true"
+          >
+          </div>
+          <div
+            class="fixed right-[-80%] h-full w-[80%] z-50
+                   flex flex-col justify-between
+                   bg-slate-600 p-[24px] rounded-l-2xl"
+            data-popover-target="slideable"
+          >
             <div
-              class="flex-[0_1_20%] min-w-0 z-40 bg-slate-800/30 backdrop-blur-sm"
-              data-action="click->popover#toggle"
-              aria-hidden="true"
+              class="flex-none flex justify-between"
             >
-            </div>
-            <div
-              class="flex-[1_0_320px] max-w-full z-50
-                     flex flex-col justify-between
-                     bg-slate-600 p-[24px] rounded-l-2xl"
-            >
-              <div
-                class="flex-none flex justify-between"
-              >
-                <h2
-                  class="flex-none"
-                >
-                  <%= link_to "Fae Scribe", root_path %>
-                </h2>
-                <button
-                  class="flex-none h-8 w-8"
-                  data-action="popover#toggle"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="w-6 h-6"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                </button>
-              </div>
-              <ul
-                class="flex-auto overflow-auto"
-              >
-                <li><%= link_to "Home (REMOVE_ME)", root_path %></li>
-                <li><%= link_to "About", about_path %></li>
-                <% if current_user %>
-                  <li><%= link_to "Journals", journals_path %></li>
-                  <% if current_user.journals.any? %>
-                    <% current_user.journals.each do |journal| %>
-                      <li><%= link_to journal.name, journal_notes_path(journal) %></li>
-                    <% end %>
-                  <% end %>
-                  <li>
-                    <%= button_to "Sign out", destroy_user_session_path, 
-                        method: :delete, data: {testid: "sign-out-btn"}%></li>
-                <% else %>
-                  <li><%= link_to "Sign in", new_user_session_path %></li>
-                  <li><%= link_to "Sign up", new_user_registration_path %></li>
-                <% end %>
-              </ul>
-              <div
+              <h2
                 class="flex-none"
               >
-                <button>Github Link</button>
-              </div>
+                <%= link_to "Fae Scribe", root_path %>
+              </h2>
+              <button
+                class="flex-none h-8 w-8"
+                data-action="popover#popover"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+            <ul
+              class="flex-auto overflow-auto"
+            >
+              <li><%= link_to "Home (REMOVE_ME)", root_path %></li>
+              <li><%= link_to "About", about_path %></li>
+              <% if current_user %>
+                <li><%= link_to "Journals", journals_path %></li>
+                <% if current_user.journals.any? %>
+                  <% current_user.journals.each do |journal| %>
+                    <li><%= link_to journal.name, journal_notes_path(journal) %></li>
+                  <% end %>
+                <% end %>
+                <li>
+                  <%= button_to "Sign out", destroy_user_session_path, 
+                      method: :delete, data: {testid: "sign-out-btn"}%></li>
+              <% else %>
+                <li><%= link_to "Sign in", new_user_session_path %></li>
+                <li><%= link_to "Sign up", new_user_registration_path %></li>
+              <% end %>
+            </ul>
+            <div
+              class="flex-none"
+            >
+              <button>Github Link</button>
             </div>
           </div>
         </div>
