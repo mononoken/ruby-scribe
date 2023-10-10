@@ -16,7 +16,9 @@
       class="min-h-80 sticky inset-0 flex w-full items-center 
              justify-between bg-slate-800 px-4 py-2"
     >
-      <h1 class="text-3xl font-bold text-orange-300">Fae Scribe</h1>
+      <h1 class="text-3xl font-bold text-orange-300">
+        <%= link_to "Fae Scribe", root_path %>
+      </h1>
       <nav class="" data-controller="popover">
         <button
           class="inline"
@@ -59,7 +61,7 @@
               class="flex-none flex justify-between"
             >
               <h2
-                class="flex-none"
+                class="flex-none text-2xl font-bold text-orange-300"
               >
                 <%= link_to "Fae Scribe", root_path %>
               </h2>
@@ -84,29 +86,58 @@
               </button>
             </div>
             <ul
-              class="flex-auto overflow-auto"
+              class="flex-auto overflow-auto flex-vertical space-y-[4px] items-stretch text-base leading-4"
             >
-              <li><%= link_to "Home (REMOVE_ME)", root_path %></li>
-              <li><%= link_to "About", about_path %></li>
+              <li 
+                class="relative bg-slate-700 px-[16px] py-[8px] rounded-md"
+              >
+                <%= link_to "About", about_path,
+                  class: "text-purple-400 before:absolute before:inset-0" %>
+              </li>
               <% if current_user %>
-                <li><%= link_to "Journals", journals_path %></li>
+                <li 
+                  class="relative bg-slate-700 px-[16px] py-[8px] rounded-md"
+                >
+                  <%= link_to "Journals", journals_path,
+                    class: "text-purple-400 before:absolute before:inset-0" %>
+                </li>
                 <% if current_user.journals.any? %>
                   <% current_user.journals.each do |journal| %>
-                    <li><%= link_to journal.name, journal_notes_path(journal) %></li>
+                    <li 
+                      class="relative bg-slate-700 px-[16px] py-[8px] rounded-md"
+                    >
+                      <%= link_to journal.name, journal_notes_path(journal),
+                        class: "text-purple-400 before:absolute before:inset-0" %>
+                    </li>
                   <% end %>
                 <% end %>
-                <li>
+                <li 
+                  class="bg-slate-700 rounded-md"
+                >
                   <%= button_to "Sign out", destroy_user_session_path, 
-                      method: :delete, data: {testid: "sign-out-btn"}%></li>
+                    method: :delete, data: {testid: "sign-out-btn"},
+                    class: "h-full w-full text-left text-purple-400 px-[16px] py-[8px]" %>
+                </li>
               <% else %>
-                <li><%= link_to "Sign in", new_user_session_path %></li>
-                <li><%= link_to "Sign up", new_user_registration_path %></li>
+                <li 
+                  class="relative bg-slate-700 px-[16px] py-[8px] rounded-md"
+                >
+                  <%= link_to "Sign in", new_user_session_path,
+                    class: "text-purple-400 before:absolute before:inset-0" %>
+                </li>
+                <li 
+                  class="relative bg-slate-700 px-[16px] py-[8px] rounded-md"
+                >
+                  <%= link_to "Sign up", new_user_registration_path,
+                    class: "text-purple-400 before:absolute before:inset-0" %>
+                </li>
               <% end %>
             </ul>
             <div
-              class="flex-none"
+              class="flex-none relative bg-slate-700 px-[16px] py-[8px] rounded-md text-base leading-4"
             >
-              <button>Github Link</button>
+              <%= link_to "Github", "https://github.com/mononoken/fae-scribe",
+                class: "text-purple-400 before:absolute before:inset-0" %>
             </div>
           </div>
         </div>
