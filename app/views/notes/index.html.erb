@@ -1,5 +1,9 @@
-<div class="bg-slate-800 px-4 py-2">
-  <h1 ><%= @journal.name %> Notes</h1>
+<div class="bg-slate-600 px-4 py-2">
+  <h1
+    class="text-xl text-lime-300 font-bold mb-[16px]"
+  >
+    <%= @journal.name %> Notes
+  </h1>
   <%= link_to "Edit Journal", edit_journal_path(@journal) %>
 
   <%= render partial: "form", locals: {note: @note, journal: @journal} %>

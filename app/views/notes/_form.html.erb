@@ -1,15 +1,31 @@
 <%= form_with model: note, url: [journal, note],
-  class: "" do |form|
+  class: "flex flex-col items-stretch" do |form|
 %>
-  <div>
-    <%= form.label :name %>
-    <%= form.text_field :name, data: {testid: "note-name-input"} %>
-  </div>
-  <div>
-    <%= form.label :body %>
-    <%= form.text_area :body, data: {testid: "note-body-input"}  %>
-  </div>
-  <div>
-    <%= form.submit "Save Note", data: {testid: "note-save-btn"} %>
+  <div
+    class="space-y-[16px]"
+  >
+    <div>
+      <%= form.label :name,
+        class: "block text-sm text-indigo-400 font-bold"
+      %>
+      <%= form.text_field :name, data: {testid: "note-name-input"},
+        class: "w-full bg-slate-800 border-slate-600 rounded-md placeholder:italic placeholder:text-slate-600",
+        placeholder: "Name your note"
+      %>
+    </div>
+    <div>
+      <%= form.label :body,
+        class: "block text-sm text-indigo-400 font-bold"
+      %>
+      <%= form.text_area :body,
+        class: "w-full bg-slate-800 border-slate-600 rounded-md placeholder:italic placeholder:text-slate-600",
+        data: {testid: "note-body-input"}
+      %>
+    </div>
+    <div>
+      <%= form.submit "Save Note", data: {testid: "note-save-btn"},
+        class: "h-8 w-full px-[8px] text-lg text-stone-300 bg-indigo-500 rounded-md hover:bg-indigo-600 focus:bg-indigo-700 hover:cursor-pointer"
+      %>
+    </div>
   </div>
 <% end %>

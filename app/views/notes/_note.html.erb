@@ -1,15 +1,19 @@
-<h4 class="font-bold">
-  <%= link_to note.name, note_path(note), data: {testid: "note-link"} %>
-</h4>
+<h3 class="font-bold">
+  <%= link_to note.name, note_path(note),
+    data: {testid: "note-link"}
+  %>
+</h3>
 <p class="bg-slate-600 rounded-md p-2" data-testid="note-body">
   <%= note.body %>
 </p>
 <ul class="flex justify-end">
   <%= link_to "Edit Note", edit_note_path(note), 
-        data: {testid: "note-edit-link"} %>
+    data: {testid: "note-edit-link"}
+  %>
   <%= button_to "Delete Note", note_path(note), method: :delete,
-        data: {
-          turbo_confirm: "Are you sure?",
-          testid: "note-delete-btn"
-        } %>
+    data: {
+      turbo_confirm: "Are you sure?",
+      testid: "note-delete-btn"
+    }
+  %>
 </ul>
