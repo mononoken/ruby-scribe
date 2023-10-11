@@ -1,8 +1,16 @@
-<div>
-  <h1>Share your adventuring notes with your companions.</h1>
-  <p>Wherever your journeys take you, don't let them be forgotten! <strong>Fae Scribe</strong> helps you keep your notes organized and share them with your friends. It was built with RPG players in mind and continues to work to help make your scribing easy.</p>
-  <ul>
-    <li><%= link_to "Sign up", new_user_registration_path %></li>
-    <li><%= link_to "Sign in", new_user_session_path %></li>
-  </ul>
-</div>
+<h1 class="text-xl text-lime-300 font-bold mb-[16px]">Share your adventuring notes with your companions.</h1>
+<p
+  class="mb-[16px]"
+>
+  Wherever your journeys take you, don't let them be forgotten! <strong>Fae Scribe</strong> helps you keep your notes organized and share them with your friends. It was built with RPG players in mind and continues to work to help make your scribing easy.
+</p>
+<ul
+  class="flex flex-col space-y-[16px]"
+>
+  <li class="h-8 w-full text-center px-[8px] py-[4px] text-lg text-stone-300 bg-indigo-500 rounded-md hover:bg-indigo-600 focus:bg-indigo-700 hover:cursor-pointer">
+    <%= link_to "Sign up", new_user_registration_path %>
+  </li>
+  <li class="h-8 w-full text-center px-[8px] py-[4px] text-lg text-stone-300 bg-indigo-500 rounded-md hover:bg-indigo-600 focus:bg-indigo-700 hover:cursor-pointer">
+    <%= link_to "Sign in", new_user_session_path %>
+  </li>
+</ul>

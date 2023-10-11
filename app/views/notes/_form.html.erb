@@ -1,5 +1,6 @@
 <%= form_with model: note, url: [journal, note],
-              class: "" do |form| %>
+  class: "" do |form|
+%>
   <div>
     <%= form.label :name %>
     <%= form.text_field :name, data: {testid: "note-name-input"} %>

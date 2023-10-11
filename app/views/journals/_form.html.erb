@@ -1,5 +1,22 @@
-<%= form_with model: journal do |form| %>
-  <%= form.label :name %>
-  <%= form.text_field :name, data: {testid: "journal-name-input"}%>
-  <%= form.submit "Save Journal", data: {testid: "journal-save-btn"} %>
+<%= form_with model: journal,
+  class: "flex flex-col items-stretch" do |form|
+%>
+  <div
+    class="space-y-[16px]"
+  >
+    <div> 
+      <%= form.label :name, "Journal Name",
+        class: "block text-sm text-indigo-400 font-bold"
+      %>
+      <%= form.text_field :name,
+        class: "w-full bg-slate-800 border-slate-600 rounded-md placeholder:italic placeholder:text-slate-600",
+        placeholder: "Name your journal",
+        data: {testid: "journal-name-input"}
+      %>
+    </div>
+    <%= form.submit "Save Journal",
+      class: "h-8 w-full px-[8px] text-lg text-stone-300 bg-indigo-500 rounded-md hover:bg-indigo-600 focus:bg-indigo-700 hover:cursor-pointer",
+      data: {testid: "journal-save-btn"}
+    %>
+  </div>
 <% end %>
