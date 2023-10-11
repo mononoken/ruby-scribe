@@ -27,6 +27,6 @@ export default class extends Controller {
     // Timeout required because display is being changed to none
     setTimeout(() => {
       this.togglableTarget.hidden = !this.togglableTarget.hidden;
-    }, 1000);
+    }, 500);
   }
 }
