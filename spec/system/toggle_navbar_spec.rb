@@ -36,9 +36,9 @@ RSpec.describe "navbar button", type: :system do
       end
     end
 
-    it "does not show valid links when toggled a second time" do
+    it "does not show valid links when closed" do
       click_button "nav-hamburger-btn"
-      click_button "nav-hamburger-btn"
+      click_button "nav-close-btn"
 
       within "nav" do
         valid_paths.each do |path|
