@@ -7,6 +7,18 @@ RSpec.describe "/journals", type: :request do
     let!(:user_journal) { create(:journal, author: user) }
     let!(:user_note) { create(:note, journal: user_journal, author: user) }
 
+    context "when user signed in" do
+      before do
+        sign_in user
+      end
+
+      it "returns http success" do
+        get journal_notes_path(user_journal)
+
+        expect(response).to have_http_status(:success)
+      end
+    end
+
     context "when other user signed in" do
       let!(:other_user) { create(:user) }
 
