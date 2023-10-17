@@ -1,13 +1,8 @@
 class CollectionsController < ApplicationController
-  def index
-    # @collections = current_user.collections
-    # authorize! @collections
-  end
-
   def new
     authorize!
     @collection = Collection.new
-    @collection.invitations.build(accepted_at: DateTime.now)
+    @collection.memberships.build
 
     @journals = current_user.journals
   end
@@ -24,6 +19,11 @@ class CollectionsController < ApplicationController
     end
   end
 
+  # def index
+  #   @collections = current_user.collections
+  #   authorize! @collections
+  # end
+
   def show
     @collection = Collection.find(params[:id])
     authorize! @collection
@@ -34,7 +34,7 @@ class CollectionsController < ApplicationController
   def collection_params
     params.require(:collection)
       .permit(:name, :owner_id,
-        invitations_attributes:
-          [:collection_id, :journal_id, :accepted_at])
+        memberships_attributes:
+          [:collection_id, :member_id, :journal_id])
   end
 end

@@ -1,6 +1,33 @@
-<h2><%= @collection.name %></h2>
+<h1
+  class="text-xl text-lime-300 font-bold mb-[16px]"
+>
+  <%= link_to @collection.name, @collection %>
+</h1>
+<%= link_to "Edit Collection", "" %>
+<div 
+  data-controller="reveal"
+>
+  <button
+    class=""
+    data-action="reveal#toggle"
+    data-testid="invite-reveal-btn"
+  >
+    Invite
+  </button>
+  <div
+    hidden
+    class=""
+    data-reveal-target="revealable"
+  >
+    <input type="text" data-testid="collection-username-search">
+    <button data-testid="invite-send-btn">Search</button>
+  </div>
+</div>
 
-<ul data-testid="journal-notes">
+<ul
+  class="px-4 py-2 space-y-2"
+  data-testid="journal-notes"
+>
   <% @collection.journals.map(&:notes).flatten.each do |note| %>
     <li>
       <%= render partial: "notes/note", locals: {note: note} %>
