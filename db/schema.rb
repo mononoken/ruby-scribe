@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_28_031438) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_17_104826) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -38,6 +38,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_28_031438) do
     t.datetime "updated_at", null: false
     t.bigint "author_id", null: false
     t.index ["author_id"], name: "index_journals_on_author_id"
+  end
+
+  create_table "memberships", force: :cascade do |t|
+    t.bigint "collection_id", null: false
+    t.bigint "member_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "journal_id"
+    t.index ["collection_id"], name: "index_memberships_on_collection_id"
+    t.index ["journal_id"], name: "index_memberships_on_journal_id"
+    t.index ["member_id"], name: "index_memberships_on_member_id"
   end
 
   create_table "notes", force: :cascade do |t|
@@ -69,6 +80,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_28_031438) do
   add_foreign_key "invitations", "collections"
   add_foreign_key "invitations", "journals"
   add_foreign_key "journals", "users", column: "author_id"
+  add_foreign_key "memberships", "collections"
+  add_foreign_key "memberships", "journals"
+  add_foreign_key "memberships", "users", column: "member_id"
   add_foreign_key "notes", "journals"
   add_foreign_key "notes", "users", column: "author_id"
 end
