@@ -13,6 +13,10 @@ class CollectionPolicy < ApplicationPolicy
     owner?
   end
 
+  def show?
+    owner? || member?
+  end
+
   def manage?
     owner?
   end
@@ -21,6 +25,10 @@ class CollectionPolicy < ApplicationPolicy
 
   def owner?
     user.id == record.owner_id
+  end
+
+  def member?
+    record.members.any? { |member| user == member }
   end
 
   # def manager?
