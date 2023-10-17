@@ -1,16 +1,18 @@
-<div class="bg-slate-600 px-4 py-2">
-  <h1
-    class="text-xl text-lime-300 font-bold mb-[16px]"
-  >
-    <%= @journal.name %> Notes
-  </h1>
-  <%= link_to "Edit Journal", edit_journal_path(@journal) %>
+<h1
+  class="text-xl text-lime-300 font-bold mb-[16px]"
+>
+  <%= @journal.name %> Notes
+</h1>
+<%= link_to "Edit Journal", edit_journal_path(@journal) %>
 
+<div class="bg-slate-600 px-4 py-2">
   <%= render partial: "form", locals: {note: @note, journal: @journal} %>
 </div>
-<ul class="px-4 py-2 space-y-2">
+<ul
+  class="px-4 py-2 space-y-2"
+>
   <% @notes.each do |note| %>
-    <li class="">
+    <li>
       <%= render partial: "note", locals: {note: note} %>
     </li>
   <% end %>
