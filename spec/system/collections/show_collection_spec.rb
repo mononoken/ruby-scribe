@@ -25,15 +25,18 @@ RSpec.describe "creating collections", type: :system do
 
   context "when user does not own the visited collection" do
     let!(:other_user) { create(:user) }
+    let!(:others_journal) { create(:journal, author: other_user) }
+    let!(:others_note) {
+      create(:note, author: other_user,
+        journal: others_journal)
+    }
 
-    context "when user has accepted an invitation to the collection" do
+    context "when user has a membership to the collection" do
       let!(:users_journal) { create(:journal, author: user) }
-      let!(:others_journal) { create(:journal, author: other_user) }
+      let!(:users_note) { create(:note, author: user, journal: users_journal) }
       let!(:journals) {
         [users_journal, others_journal]
       }
-      let!(:users_note) { create(:note, author: user, journal: users_journal) }
-      let!(:others_note) { create(:note, author: other_user, journal: others_journal) }
       let!(:collection) {
         collection_with_journals(journals: journals, owner: other_user)
       }
@@ -49,19 +52,6 @@ RSpec.describe "creating collections", type: :system do
       it "shows notes of other user's joined journal in collection" do
         expect(page).to have_content(others_note.name)
       end
-    end
-
-    context "when user has not accepted an invitation to the collection" do
-      let!(:others_journal) { create(:journal, author: other_user) }
-      let!(:journals) {
-        [others_journal]
-      }
-      let!(:others_note) { create(:note, author: other_user, journal: others_journal) }
-      let!(:collection) {
-        collection_with_journals(journals: journals, owner: other_user)
-      }
-
-      it "forbids user to view collection"
     end
   end
 end
