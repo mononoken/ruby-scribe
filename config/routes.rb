@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "invitations/new"
+  get "invitations/create"
   # Authentication
   devise_for :users, controllers: {registrations: "users/registrations",
                                    sessions: "users/sessions"}
@@ -22,5 +24,9 @@ Rails.application.routes.draw do
     resources :notes, shallow: true
   end
 
-  resources :collections, only: %i[new create index show]
+  resources :collections, only: %i[new create index show] do
+    resources :invitations, only: %i[new create index]
+  end
+
+  resources :invitations, only: %i[destroy]
 end

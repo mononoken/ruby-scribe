@@ -14,4 +14,8 @@ class User < ApplicationRecord
     dependent: :destroy
   has_many :collections, through: :memberships,
     dependent: :destroy
+  has_many :sent_invitations, class_name: "Invitation",
+    foreign_key: "sender_id", dependent: :destroy
+  has_many :received_invitations, class_name: "Invitation",
+    foreign_key: "recipient_id", dependent: :destroy
 end

@@ -3,6 +3,14 @@
 >
   <%= current_user.username %>'s Dashboard
 </h1>
+<h2>Notifications</h2>
+<ul data-testid="notifications-list">
+  <% current_user.received_invitations.each do |invitation| %>
+    <li>
+      <%= "#{invitation.sender.username} has invited you to their collection #{invitation.collection.name}." %>
+    </li>
+  <% end %>
+</ul>
 <ul
   class="flex flex-col space-y-[24px]"
 >

@@ -1,0 +1,24 @@
+<h1><%= @collection.name %>'s Invitations</h1>
+<%= link_to "New Invitation", new_collection_invitation_path(@collection),
+    data: { testid: "new-invitation-link" } %>
+<ul data-testid="invitations-list">
+  <% @invitations.each do |invitation| %>
+    <li>
+      <ul>
+        <li>
+          To: <%= invitation.recipient.username %>
+        </li>
+        <li>
+          From: <%= invitation.sender.username %>
+        </li>
+      </ul>
+
+      <div>
+        <%= button_to "Delete", invitation_path(invitation), method: :delete,
+          data: {
+            testid: "invitation-delete-btn"
+          } %>
+      </div>
+    </li>
+  <% end %>
+</ul>

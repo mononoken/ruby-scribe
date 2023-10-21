@@ -19,8 +19,9 @@
     class=""
     data-reveal-target="revealable"
   >
-    <input type="text" data-testid="collection-username-search">
-    <button data-testid="invite-send-btn">Search</button>
+    <%= render partial: "invitations/form",
+      locals: {collection: @collection, invitation: @invitation}
+    %>
   </div>
 </div>
 
