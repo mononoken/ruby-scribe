@@ -14,19 +14,24 @@ RSpec.describe "invitations", type: :system do
       visit dashboard_path
 
       within "[data-testid='notifications-list']" do
-        expect(page).not_to have_content("#{sender.username} has invited you to their collection")
+        expect(page).not_to have_content(
+          "#{sender.username} has invited you to their collection"
+        )
       end
     end
   end
 
-  context "when sending an invitation" do
+  context "when sending an invitation to owned collection" do
     let(:collection) { create(:collection, owner: sender) }
 
     before do
       visit collection_path(collection)
       click_button "invite-reveal-btn"
-      fill_in "collection-username-search", with: recipient.username
-      click_button "invite-send-btn"
+      expect(page).to have_test_id("invitation-form")
+
+      select recipient.username, from: "collection-username-select"
+      click_button "invite-submit-btn"
+      sleep 0.5
     end
 
     it "shows invitation in recipient user's dashboard" do
@@ -34,8 +39,16 @@ RSpec.describe "invitations", type: :system do
       visit dashboard_path
 
       within "[data-testid='notifications-list']" do
-        expect(page).to have_content("#{sender.username} has invited you to their collection #{collection.name}.")
+        expect(page).to have_content(
+          "#{sender.username} has invited you to their collection #{collection.name}."
+        )
       end
+    end
+
+    it "shows invitation sent success message with recipient name" do
+      expect(page).to have_content(
+        "You invited #{recipient.username} to your collection #{collection.name}"
+      )
     end
   end
 
