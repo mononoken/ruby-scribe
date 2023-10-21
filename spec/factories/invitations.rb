@@ -1,7 +1,8 @@
 FactoryBot.define do
   factory :invitation do
-    collection { nil }
-    journal { nil }
+    sender
+    recipient
+    collection { build(:collection, owner: sender) }
     accepted_at { nil }
   end
 end
