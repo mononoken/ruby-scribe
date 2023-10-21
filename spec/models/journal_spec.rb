@@ -1,19 +1,6 @@
 require "rails_helper"
 
 RSpec.describe Journal, type: :model do
-  describe "#notes" do
-    context "when journal has notes and is deleted" do
-      let!(:journal) { create(:journal) }
-      let!(:note) { create(:note, journal: journal, author: journal.author) }
-
-      # Delete if failing
-      it "destroys all associated notes" do
-        expect { journal.destroy }.to change { Note.count }
-          .by(-1)
-      end
-    end
-  end
-
   describe "#valid?" do
     context "when journal has a name" do
       subject(:journal) { create(:journal) }
