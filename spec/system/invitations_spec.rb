@@ -4,10 +4,6 @@ RSpec.describe "invitations", type: :system do
   let!(:sender) { create(:user) }
   let!(:recipient) { create(:user) }
 
-  before do
-    sign_in sender
-  end
-
   context "when no invitations have been sent" do
     it "does not show invitations in recipient's dashboard notifications" do
       sign_in recipient
@@ -25,6 +21,7 @@ RSpec.describe "invitations", type: :system do
     let(:collection) { create(:collection, owner: sender) }
 
     before do
+      sign_in sender
       visit collection_path(collection)
       click_button "invite-reveal-btn"
       expect(page).to have_test_id("invitation-form")
@@ -52,25 +49,48 @@ RSpec.describe "invitations", type: :system do
     end
   end
 
-  context "when accepting an invitation" do
+  context "when an invitation has been received" do
     let!(:collection) { create(:collection, owner: sender) }
     let!(:invitation) { create(:invitation, sender:, recipient:, collection:) }
 
     before do
       sign_in recipient
-      visit users_invitations_path
-      click_button "accept-invitation-btn"
-      sleep 0.5
     end
 
-    it "shows accepted invitation's collection in user's collections" do
-      visit collections_path
+    it "shows link to the invitation on dashboard" do
+      visit dashboard_path
 
-      expect(page).to have_content(collection.name)
+      expect(page).to have_link(href: users_invitation_path(invitation))
     end
 
-    it "redirects to the accepted collection" do
-      expect(page).to have_current_path(collection_path(collection))
+    context "when accepting an invitation" do
+      before do
+        visit users_invitations_path
+        click_button "accept-invitation-btn"
+        sleep 0.5
+      end
+
+      it "shows accepted invitation's collection in user's collections" do
+        visit collections_path
+
+        expect(page).to have_content(collection.name)
+      end
+
+      it "redirects to the accepted collection" do
+        expect(page).to have_current_path(collection_path(collection))
+      end
+
+      it "does not show invitation anymore on invitations index" do
+        visit users_invitations_path
+
+        expect(page).not_to have_content(invitation.message)
+      end
+
+      it "does not show link to the invitation on dashboard" do
+        visit dashboard_path
+
+        expect(page).not_to have_link(href: users_invitation_path(invitation))
+      end
     end
   end
 end
