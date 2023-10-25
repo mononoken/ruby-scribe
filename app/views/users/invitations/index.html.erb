@@ -1,0 +1,26 @@
+<h1><%= current_user.username %>'s Collection Invitations</h1>
+<ul data-testid="invitations-list">
+  <% @invitations.each do |invitation| %>
+    <li>
+      <ul>
+        <li>
+          For: <%= invitation.collection.name %>
+        </li>
+        <li>
+          From: <%= invitation.sender.username %>
+        </li>
+      </ul>
+
+      <div>
+        <%= button_to "Accept", accept_users_invitation_path(invitation),
+          data: {
+            testid: "accept-invitation-btn"
+          } %>
+        <%= button_to "Delete", invitation_path(invitation), method: :delete,
+          data: {
+            testid: "invitation-delete-btn"
+          } %>
+      </div>
+    </li>
+  <% end %>
+</ul>

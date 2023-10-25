@@ -1,9 +1,11 @@
 class CollectionPolicy < ApplicationPolicy
   default_rule :manage?
 
-  # def index?
-  #   user.present?
-  # end
+  def index?
+    record.all? do |collection|
+      collection.members.any? { |member| user.id == member.id }
+    end
+  end
 
   def new?
     user.present?
