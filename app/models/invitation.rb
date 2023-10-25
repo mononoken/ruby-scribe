@@ -5,9 +5,13 @@ class Invitation < ApplicationRecord
 
   validates :collection, uniqueness: {scope: :recipient, message: "User has already been invited to this collection."}
 
-  def accept
+  def accept(membership_class = Membership)
     update(accepted_at: DateTime.now)
 
-    Membership.create(collection: collection, member: recipient)
+    membership_class.create(collection: collection, member: recipient)
+  end
+
+  def message
+    "#{sender.username} has invited you to their collection #{collection.name}."
   end
 end
