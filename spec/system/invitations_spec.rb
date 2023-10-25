@@ -53,8 +53,24 @@ RSpec.describe "invitations", type: :system do
   end
 
   context "when accepting an invitation" do
+    let!(:collection) { create(:collection, owner: sender) }
+    let!(:invitation) { create(:invitation, sender:, recipient:, collection:) }
+
+    before do
+      sign_in recipient
+      visit users_invitations_path
+      click_button "accept-invitation-btn"
+      sleep 0.5
+    end
+
     it "shows accepted invitation's collection in user's collections" do
-      # expect(page).to have_content(collection.name)
+      visit collections_path
+
+      expect(page).to have_content(collection.name)
+    end
+
+    it "redirects to the accepted collection" do
+      expect(page).to have_current_path(collection_path(collection))
     end
   end
 end
