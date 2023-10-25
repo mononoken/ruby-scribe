@@ -1,7 +1,19 @@
 require "rails_helper"
 
 RSpec.describe Invitation, type: :model do
+  include ActiveSupport::Testing::TimeHelpers
+
   let!(:invitation) { create(:invitation) }
+
+  describe "accept" do
+    it "sets accepted_at to current time" do
+      freeze_time
+
+      expect { invitation.accept }
+        .to change { invitation.accepted_at }
+        .to(DateTime.now)
+    end
+  end
 
   describe "#valid?" do
     context "when duplicate invitation is built" do
