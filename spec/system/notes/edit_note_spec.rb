@@ -23,6 +23,7 @@ RSpec.describe "editing notes", type: :system do
 
       fill_in "Body", with: "Note has been edited!"
       click_button "note-save-btn"
+      sleep 0.5
 
       expect(page).to have_content("Note has been edited!")
     end
