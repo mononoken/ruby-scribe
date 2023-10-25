@@ -1,0 +1,19 @@
+<h2><%= current_user.username %>'s Collections</h2>
+<%= link_to "New collection", new_collection_path,
+    data: { testid: "new-collection-link" } %>
+<ul data-testid="collections-list">
+  <% @collections.each do |collection| %>
+    <li>
+      <h3><%= link_to collection.name, collection_path(collection) %></h3>
+      <div>
+        <%= link_to "Edit", edit_collection_path(collection) %>
+        <%= button_to "Delete", collection_path(collection), method: :delete,
+          data: {
+            turbo_confirm: "Are you sure?",
+            testid: "collection-delete-btn"
+          }
+        %>
+      </div>
+    </li>
+  <% end %>
+</ul>

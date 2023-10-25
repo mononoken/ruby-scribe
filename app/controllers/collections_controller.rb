@@ -1,4 +1,6 @@
 class CollectionsController < ApplicationController
+  before_action :set_collection, only: %i[show edit update destroy]
+
   def new
     authorize!
     @collection = Collection.new
@@ -19,19 +21,40 @@ class CollectionsController < ApplicationController
     end
   end
 
-  # def index
-  #   @collections = current_user.collections
-  #   authorize! @collections
-  # end
+  def index
+    @collections = current_user.collections
+    authorize! @collections
+  end
 
   def show
-    @collection = Collection.find(params[:id])
-    authorize! @collection
-
     @invitation = @collection.invitations.build
   end
 
+  def edit
+  end
+
+  def update
+    if @collection.update(collection_params)
+      redirect_to @collection
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @collection.destroy
+
+    flash[:success] = "Collection successfully deleted."
+    redirect_to collections_path, status: :see_other
+  end
+
   private
+
+  def set_collection
+    @collection = Collection.find(params[:id])
+
+    authorize! @collection
+  end
 
   def collection_params
     params.require(:collection)
