@@ -3,15 +3,32 @@ require "rails_helper"
 RSpec.describe Invitation, type: :model do
   include ActiveSupport::Testing::TimeHelpers
 
-  let!(:invitation) { create(:invitation) }
+  let(:invitation) { build(:invitation) }
 
-  describe "accept" do
+  describe "#message" do
+  end
+
+  describe "#accept" do
+    let(:membership_class) { spy("Membership") }
+
+    before do
+      allow(membership_class).to receive(:create)
+        .with(collection: invitation.collection, member: invitation.recipient)
+    end
+
     it "sets accepted_at to current time" do
       freeze_time
 
       expect { invitation.accept }
         .to change { invitation.accepted_at }
         .to(DateTime.now)
+    end
+
+    it "sends create to Membership class with collection and recipient" do
+      invitation.accept(membership_class)
+
+      expect(membership_class).to have_received(:create)
+        .with(collection: invitation.collection, member: invitation.recipient)
     end
   end
 
