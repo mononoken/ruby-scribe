@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   resources :invitations, only: %i[destroy]
 
   namespace :users do
-    resources :invitations, only: %i[index] do
+    resources :invitations, only: %i[index show] do
       post :accept, on: :member
     end
   end

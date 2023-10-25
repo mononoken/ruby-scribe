@@ -1,5 +1,5 @@
 class Users::InvitationsController < Users::ApplicationController
-  before_action :set_invitation, only: %i[accept]
+  before_action :set_invitation, only: %i[accept show]
 
   def accept
     @invitation.accept
@@ -10,6 +10,9 @@ class Users::InvitationsController < Users::ApplicationController
   def index
     @invitations = Invitation.where(recipient_id: current_user.id)
     authorize! @invitations
+  end
+
+  def show
   end
 
   private

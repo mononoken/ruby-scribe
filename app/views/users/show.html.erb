@@ -7,7 +7,9 @@
 <ul data-testid="notifications-list">
   <% current_user.received_invitations.each do |invitation| %>
     <li>
-      <%= "#{invitation.sender.username} has invited you to their collection #{invitation.collection.name}." %>
+      <%= link_to "#{invitation.sender.username} has invited you to their collection #{invitation.collection.name}.",
+        users_invitation_path(invitation)
+      %>
     </li>
   <% end %>
 </ul>

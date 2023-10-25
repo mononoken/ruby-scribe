@@ -1,10 +1,7 @@
 module Users
   class InvitationPolicy < Users::ApplicationPolicy
     default_rule :manage?
-
-    def accept?
-      user.id == record.recipient.id
-    end
+    alias_rule :accept?, to: :manage?
 
     def index?
       record.all? do |item|
@@ -13,7 +10,13 @@ module Users
     end
 
     def manage?
-      false
+      recipient?
+    end
+
+    private
+
+    def recipient?
+      user.id == record.recipient.id
     end
   end
 end
