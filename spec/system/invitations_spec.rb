@@ -83,7 +83,7 @@ RSpec.describe "invitations", type: :system do
       it "does not show invitation anymore on invitations index" do
         visit users_invitations_path
 
-        expect(page).not_to have_content(invitation.message)
+        expect(page).not_to have_content(collection.name)
       end
 
       it "does not show link to the invitation on dashboard" do

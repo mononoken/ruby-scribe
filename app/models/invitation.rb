@@ -5,6 +5,8 @@ class Invitation < ApplicationRecord
 
   validates :collection, uniqueness: {scope: :recipient, message: "User has already been invited to this collection."}
 
+  scope :pending, -> { where(accepted_at: nil) }
+
   def accept(membership_class = Membership)
     update(accepted_at: DateTime.now)
 

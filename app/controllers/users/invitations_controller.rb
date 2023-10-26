@@ -8,7 +8,7 @@ class Users::InvitationsController < Users::ApplicationController
   end
 
   def index
-    @invitations = Invitation.where(recipient_id: current_user.id)
+    @invitations = Invitation.pending.where(recipient_id: current_user.id)
     authorize! @invitations
   end
 
