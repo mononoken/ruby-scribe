@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  skip_verify_authorized only: %i[show]
-
   def show
+    @invitations = Invitation.pending.where(recipient_id: current_user.id)
+    authorize! context: {invitations: @invitations}
   end
 end
