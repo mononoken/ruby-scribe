@@ -1,14 +1,28 @@
 require "rails_helper"
 
 RSpec.describe Invitation, type: :model do
-  include ActiveSupport::Testing::TimeHelpers
-
   let(:invitation) { build(:invitation) }
 
   describe "#message" do
+    let(:sender) { build_stubbed(:user, username: "Gandalf") }
+    let(:collection) { build_stubbed(:collection, name: "Thorin's Quest") }
+    let(:invitation) { build(:invitation, sender:, collection:) }
+
+    before do
+      allow(sender).to receive(:username).and_return("Gandalf")
+      allow(collection).to receive(:name).and_return("Thorin's Quest")
+    end
+
+    it "returns string showing message with sender and collection" do
+      expected_message = "Gandalf has invited you to their collection Thorin's Quest."
+
+      expect(invitation.message).to eq(expected_message)
+    end
   end
 
   describe "#accept" do
+    include ActiveSupport::Testing::TimeHelpers
+
     let(:membership_class) { spy("Membership") }
 
     before do
@@ -33,6 +47,8 @@ RSpec.describe Invitation, type: :model do
   end
 
   describe "#valid?" do
+    let!(:invitation) { create(:invitation) }
+
     context "when duplicate invitation is built" do
       let(:duplicate_invitation) {
         build(:invitation, sender: invitation.sender,
