@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_21_013421) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_26_105021) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,6 +51,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_21_013421) do
     t.bigint "journal_id"
     t.index ["collection_id"], name: "index_memberships_on_collection_id"
     t.index ["journal_id"], name: "index_memberships_on_journal_id"
+    t.index ["member_id", "collection_id"], name: "index_memberships_on_member_id_and_collection_id", unique: true
     t.index ["member_id"], name: "index_memberships_on_member_id"
   end
 
