@@ -28,6 +28,9 @@ class CollectionsController < ApplicationController
 
   def show
     @invitation = @collection.invitations.build
+    @membership = Membership.find_by(
+      member: current_user, collection: @collection
+    )
   end
 
   def edit

@@ -25,6 +25,12 @@
   </div>
 </div>
 
+<% if @collection.members.any? { |member| current_user == member } %>
+  <%= button_to "Leave", membership_path(@membership), method: :delete,
+    data: {testid: "membership-destroy-btn"}
+  %>
+<% end %>
+
 <ul
   class="px-4 py-2 space-y-2"
   data-testid="journal-notes"
