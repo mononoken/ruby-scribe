@@ -34,4 +34,6 @@ Rails.application.routes.draw do
       post :accept, on: :member
     end
   end
+
+  resources :memberships, only: %i[destroy]
 end
