@@ -77,6 +77,7 @@ RSpec.describe "viewing navbar", type: :system do
       let(:valid_paths) do
         [
           journals_path,
+          collections_path,
           root_path
         ]
       end

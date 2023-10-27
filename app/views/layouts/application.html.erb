@@ -104,6 +104,13 @@
                     class: "before:absolute before:inset-0"
                   %>
                 </li>
+                <li 
+                  class="relative px-[16px] py-[8px] rounded-md text-indigo-200"
+                >
+                  <%= link_to "Collections", collections_path,
+                    class: "before:absolute before:inset-0"
+                  %>
+                </li>
                 <% if current_user.journals.any? %>
                   <% current_user.journals.each do |journal| %>
                     <li 
