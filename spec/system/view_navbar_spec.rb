@@ -156,4 +156,29 @@ RSpec.describe "viewing navbar", type: :system do
       end
     end
   end
+
+  context "when user has collections" do
+    let!(:collection1) { create(:collection, owner: user) }
+    let!(:collection2) { collection_with_members(members: [user]) }
+
+    before do
+      sign_in user
+      visit root_path
+
+      click_button "nav-hamburger-btn"
+    end
+
+    # This test currently fails because users are not `members` of owned collections!
+    fit "has links to user's collections in navbar" do
+      collection_paths = [collection1, collection2].map do |collection|
+        collection_path(collection)
+      end
+
+      collection_paths.each do |path|
+        within "nav" do
+          expect(page).to have_link(href: path)
+        end
+      end
+    end
+  end
 end
