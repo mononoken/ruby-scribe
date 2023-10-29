@@ -27,7 +27,11 @@ RSpec.describe Invitation, type: :model do
 
     before do
       allow(membership_class).to receive(:create)
-        .with(collection: invitation.collection, member: invitation.recipient)
+        .with(
+          collection: invitation.collection,
+          member: invitation.recipient,
+          role: :member
+        )
     end
 
     it "sets accepted_at to current time" do
@@ -42,7 +46,11 @@ RSpec.describe Invitation, type: :model do
       invitation.accept(membership_class)
 
       expect(membership_class).to have_received(:create)
-        .with(collection: invitation.collection, member: invitation.recipient)
+        .with(
+          collection: invitation.collection,
+          member: invitation.recipient,
+          role: :member
+        )
     end
   end
 

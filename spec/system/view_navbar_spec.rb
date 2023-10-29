@@ -169,7 +169,7 @@ RSpec.describe "viewing navbar", type: :system do
     end
 
     # This test currently fails because users are not `members` of owned collections!
-    fit "has links to user's collections in navbar" do
+    it "has links to user's collections in navbar" do
       collection_paths = [collection1, collection2].map do |collection|
         collection_path(collection)
       end

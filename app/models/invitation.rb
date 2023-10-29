@@ -10,7 +10,11 @@ class Invitation < ApplicationRecord
   def accept(membership_class = Membership)
     update(accepted_at: DateTime.now)
 
-    membership_class.create(collection: collection, member: recipient)
+    membership_class.create(
+      collection: collection,
+      member: recipient,
+      role: :member
+    )
   end
 
   def message
