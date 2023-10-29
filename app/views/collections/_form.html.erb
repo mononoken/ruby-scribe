@@ -17,7 +17,6 @@
     </div>
     <div>
       <%= form.fields_for :memberships do |memberships_form| %> 
-        <%= memberships_form.hidden_field :member_id, value: current_user.id %>
         <div>
           <%= memberships_form.label :journal_id %>
           <%= memberships_form.select :journal_id, journals.pluck(:name, :id), 

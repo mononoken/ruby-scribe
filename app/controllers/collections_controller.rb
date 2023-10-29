@@ -10,7 +10,12 @@ class CollectionsController < ApplicationController
   end
 
   def create
-    @collection = Collection.new(collection_params.merge(owner: current_user))
+    @collection = Collection.new(collection_params
+      .with_defaults(owner: current_user))
+
+    @collection.memberships.first.member = current_user
+    @collection.memberships.first.role = :owner
+
     authorize! @collection
 
     if @collection.save
@@ -27,6 +32,7 @@ class CollectionsController < ApplicationController
   end
 
   def show
+    @members = @collection.members
     @invitation = @collection.invitations.build
     @membership = Membership.find_by(
       member: current_user, collection: @collection
@@ -63,6 +69,6 @@ class CollectionsController < ApplicationController
     params.require(:collection)
       .permit(:name, :owner_id,
         memberships_attributes:
-          [:collection_id, :member_id, :journal_id])
+          [:collection_id, :member_id, :journal_id, :role])
   end
 end
