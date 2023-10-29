@@ -24,13 +24,22 @@
     %>
   </div>
 </div>
-
 <% if @collection.members.any? { |member| current_user == member } %>
   <%= button_to "Leave", membership_path(@membership), method: :delete,
     data: {testid: "membership-destroy-btn"}
   %>
 <% end %>
-
+<div>
+  <h2>Members:</h2>
+  <ul data-testid="members-list">
+    <% @members.each do |member| %>
+      <li>
+        <%= member.username %>
+        <%# link_to member.username, user_path(member) %>
+      </li>
+    <% end %>
+  </ul>
+</div>
 <ul
   class="px-4 py-2 space-y-2"
   data-testid="journal-notes"
