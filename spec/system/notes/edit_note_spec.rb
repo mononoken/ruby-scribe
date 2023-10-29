@@ -34,18 +34,10 @@ RSpec.describe "editing notes", type: :system do
       click_link "note-edit-link"
 
       fill_in "Body", with: "Note has been edited!"
+      sleep 0.5
       click_button "note-save-btn"
 
       expect(page).not_to have_content(original_note_body)
     end
-
-    # it "allows editing dynamically on the index page" do
-    #   click_button "note-edit-btn"
-    #
-    #   fill_in "Body", with: "Note has been dynamically edited!"
-    #   click_button "note-save-btn"
-    #
-    #   expect(page).to have_content("Note has been dynamically edited!")
-    # end
   end
 end
