@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "creating collections", type: :system do
+RSpec.describe "showing collections", type: :system do
   let!(:user) { create(:user) }
 
   before do
