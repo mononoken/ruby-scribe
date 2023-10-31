@@ -1,4 +1,8 @@
-<h2><%= current_user.username %>'s Collections</h2>
+<h2
+  class="text-lg text-lime-300 font-bold mb-[16px]"
+>
+  <%= current_user.username %>'s Collections
+</h2>
 <%= link_to "New collection", new_collection_path,
     data: { testid: "new-collection-link" } %>
 <ul data-testid="collections-list">

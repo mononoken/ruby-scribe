@@ -3,7 +3,11 @@
 >
   <%= current_user.username %>'s Dashboard
 </h1>
-<h2>Notifications</h2>
+<h2
+  class="text-lg text-lime-300 font-bold mb-[16px]"
+>
+  Notifications
+</h2>
 <ul data-testid="notifications-list">
   <% @invitations.each do |invitation| %>
     <li>
@@ -19,7 +23,7 @@
   <% else %> 
     <li>
       <%= link_to new_journal_path,
-        class: "inline-flex items-center text-xl text-emerald-300 bg-slate-600 px-[24px] py-[16px] rounded-full",
+        class: "inline-flex items-center text-xl text-emerald-300 bg-slate-600 px-[16px] py-[8px] rounded-full",
         data: { testid: "new-journal-link" } do %>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -44,7 +48,7 @@
   <% else %> 
     <li>
       <%= link_to new_collection_path,
-          class: "inline-flex items-center text-xl text-emerald-300 bg-slate-600 px-[24px] py-[16px] rounded-full",
+          class: "inline-flex items-center text-xl text-emerald-300 bg-slate-600 px-[16px] py-[8px] rounded-full",
           data: { testid: "new-collection-link" } do %>
         <svg
           xmlns="http://www.w3.org/2000/svg"
