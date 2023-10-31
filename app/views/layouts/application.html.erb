@@ -104,6 +104,17 @@
                     class: "before:absolute before:inset-0"
                   %>
                 </li>
+                <% if current_user.journals.any? %>
+                  <% current_user.journals.each do |journal| %>
+                    <li 
+                      class="relative px-[16px] py-[8px] rounded-md text-indigo-200"
+                    >
+                      <%= link_to journal.name, journal_notes_path(journal),
+                        class: "before:absolute before:inset-0"
+                      %>
+                    </li>
+                  <% end %>
+                <% end %>
                 <li 
                   class="relative px-[16px] py-[8px] rounded-md text-indigo-200"
                 >
@@ -111,12 +122,12 @@
                     class: "before:absolute before:inset-0"
                   %>
                 </li>
-                <% if current_user.journals.any? %>
-                  <% current_user.journals.each do |journal| %>
+                <% if current_user.collections.any? %>
+                  <% current_user.collections.each do |collection| %>
                     <li 
                       class="relative px-[16px] py-[8px] rounded-md text-indigo-200"
                     >
-                      <%= link_to journal.name, journal_notes_path(journal),
+                      <%= link_to collection.name, collection_path(collection),
                         class: "before:absolute before:inset-0"
                       %>
                     </li>
