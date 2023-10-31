@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_28_070017) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_31_101437) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_28_070017) do
     t.string "name", null: false
     t.bigint "owner_id", null: false
     t.index ["owner_id"], name: "index_collections_on_owner_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "body"
+    t.bigint "note_id", null: false
+    t.bigint "author_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_comments_on_author_id"
+    t.index ["note_id"], name: "index_comments_on_note_id"
   end
 
   create_table "invitations", force: :cascade do |t|
@@ -82,6 +92,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_28_070017) do
   end
 
   add_foreign_key "collections", "users", column: "owner_id"
+  add_foreign_key "comments", "notes"
+  add_foreign_key "comments", "users", column: "author_id"
   add_foreign_key "invitations", "collections"
   add_foreign_key "invitations", "users", column: "recipient_id"
   add_foreign_key "invitations", "users", column: "sender_id"
