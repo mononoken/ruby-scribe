@@ -34,11 +34,10 @@ RSpec.describe "showing collections", type: :system do
     context "when user has a membership to the collection" do
       let!(:users_journal) { create(:journal, author: user) }
       let!(:users_note) { create(:note, author: user, journal: users_journal) }
-      let!(:journals) {
-        [users_journal, others_journal]
-      }
+      let!(:journals) { [users_journal, others_journal] }
       let!(:collection) {
-        collection_with_journals(journals: journals, owner: other_user)
+        collection_with_journals(journals: journals, owner: other_user,
+          owner_journal: others_journal)
       }
 
       before do

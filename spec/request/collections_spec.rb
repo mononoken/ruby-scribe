@@ -25,7 +25,7 @@ RSpec.describe "/collections", type: :request do
 
       let!(:collection) {
         collection_with_journals(journals: [users_journal, others_journal],
-          owner: other_user)
+          owner: other_user, owner_journal: others_journal)
       }
 
       it "returns http success" do
