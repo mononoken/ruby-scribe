@@ -7,6 +7,5 @@ class Collection < ApplicationRecord
   has_many :authors, through: :journals, class_name: "User"
   has_many :invitations, dependent: :destroy
 
-  # accepts_nested_attributes_for :invitations
   accepts_nested_attributes_for :memberships
 end

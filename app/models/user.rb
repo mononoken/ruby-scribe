@@ -8,6 +8,8 @@ class User < ApplicationRecord
     dependent: :destroy
   has_many :notes, foreign_key: "author_id", inverse_of: "author",
     dependent: :destroy
+  has_many :comments, foreign_key: "author_id", inverse_of: "author",
+    dependent: :destroy
   has_many :owned_collections, class_name: "Collection",
     foreign_key: "owner_id", inverse_of: "owner", dependent: :destroy
   has_many :memberships, foreign_key: "member_id", inverse_of: "member",

@@ -4,6 +4,7 @@ class Note < ApplicationRecord
   belongs_to :journal
   belongs_to :author, class_name: "User"
 
-  # validates :name, presence: true, uniqueness: {scope: :user_id}
+  has_many :comments
+
   validates :name, presence: true, uniqueness: {scope: :author_id}
 end
