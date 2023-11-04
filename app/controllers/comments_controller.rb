@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   include ActionView::RecordIdentifier
 
   before_action :set_note, only: %i[index new create]
-  before_action :set_comment, only: %i[edit update destroy]
+  before_action :set_comment, only: %i[edit update destroy show]
 
   def index
     @comments = @note.comments.desc
@@ -22,6 +22,8 @@ class CommentsController < ApplicationController
             [@note, :comments],
             target: dom_id(@note, :comments)
           )
+
+          @comment = @note.comments.build
         end
         format.html { redirect_to @note }
       else
@@ -55,10 +57,16 @@ class CommentsController < ApplicationController
         format.turbo_stream { @comment.broadcast_replace }
         format.html { redirect_to @comment }
       else
-        # flash.now[:error] = @comment.errors.full_messages
-        render :edit, status: :unprocessable_entity
+        format.turbo_stream { @comment.broadcast_replace }
+        format.html do
+          flash.now[:error] = @comment.errors.full_messages
+          redirect_to @note, status: :unprocessable_entity
+        end
       end
     end
+  end
+
+  def show
   end
 
   private
