@@ -42,6 +42,8 @@ class NotesController < ApplicationController
   end
 
   def show
+    @journal = @note.journal
+    @comments = @note.comments
   end
 
   private
