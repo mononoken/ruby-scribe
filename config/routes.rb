@@ -19,7 +19,9 @@ Rails.application.routes.draw do
   get "dashboard", to: "users#show", as: :dashboard
 
   resources :journals, only: %i[new create index edit update destroy] do
-    resources :notes, shallow: true
+    resources :notes, shallow: true do
+      resources :comments, shallow: true, except: %i[show]
+    end
   end
 
   resources :collections do
