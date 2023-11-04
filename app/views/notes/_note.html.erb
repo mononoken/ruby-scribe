@@ -3,9 +3,13 @@
     data: {testid: "note-link"}
   %>
 </h3>
-<p class="bg-slate-600 rounded-md p-2" data-testid="note-body">
-  <%= note.body %>
-</p>
+<div
+  class="prose prose-invert bg-slate-600 rounded-md px-4 py-2"
+  data-testid="note-body"
+>
+  <%= markdown(note.body) 
+%>
+</div>
 <ul class="flex justify-end">
   <%= link_to edit_note_path(note), 
     data: {testid: "note-edit-link"},
@@ -18,7 +22,7 @@
   <%= button_to note_path(note), method: :delete,
     data: {
       turbo_confirm: "This will permanently delete this note. Are you sure?",
-      testid: "note-delete-btn"
+      testid: "note-destroy-btn"
     },
     aria: {label: "delete note"} do
   %>

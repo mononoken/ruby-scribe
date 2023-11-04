@@ -1,0 +1,5 @@
+<%# Prepend is performed by Turbo Stream channel in controller %>
+
+<%= turbo_stream.replace dom_id(@note, :new_comment) do %>
+  <%= turbo_frame_tag dom_id(@note, :new_comment), src: new_note_comment_path %>
+<% end %>

@@ -1,2 +1,15 @@
-<h3><%= @note.name %></h3>
-<div class="prose prose-invert"><%= markdown(@note.body) %></div>
+<%= link_to "Back to Journal", journal_notes_path(@journal),
+  class: ""
+%>
+<%= render @note %>
+
+<div>
+  <%= turbo_frame_tag dom_id(@note, :new_comment),
+    src: new_note_comment_path(@note)
+  %>
+  <h3>Comments</h3>
+  <%= turbo_stream_from @note, :comments %>
+  <%= turbo_frame_tag dom_id(@note, :comments),
+    src: note_comments_path(@note)
+  %>
+</div>

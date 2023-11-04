@@ -1,0 +1,5 @@
+<%= link_to "Back to Note", note_path(@note) %>
+
+<%= turbo_frame_tag dom_id(@note, :comments) do %>
+  <%= render @comments %>
+<% end %>
