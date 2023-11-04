@@ -27,6 +27,7 @@ RSpec.describe "comments", type: :system do
 
         before do
           fill_in "comment-body-input", with: comment_input
+          click_button "comment-save-btn"
         end
 
         it "shows new comment on the note page" do
@@ -34,7 +35,8 @@ RSpec.describe "comments", type: :system do
         end
 
         it "shows indicator that note has comments on the journal notes page" do
-          visit journal_notes_path(note.journal)
+          pending "Implement comment indicator"
+          # visit journal_notes_path(note.journal)
 
           # How should this be checked? What would indicator look like?
           # expect(page).to have_content()
