@@ -1,4 +1,6 @@
-<%= form_with model: [note, comment] do |form| %>
+<%= form_with model: [note, comment],
+  class: "flex flex-col space-y-[8px]" do |form|
+%>
   <% if comment.errors.any? %>
     <ul
       class="flex flex-col space-y-[4px]"
@@ -25,7 +27,7 @@
   %>
   <% if comment.persisted? %>
     <%= link_to "Cancel", comment,
-      class: "h-8 w-full px-[8px] text-lg text-stone-300 bg-rose-400 rounded-md hover:bg-indigo-600 focus:bg-indigo-700 hover:cursor-pointer"
+      class: "h-8 w-full px-[8px] leading-8 text-center align-middle text-lg text-stone-300 bg-rose-400 rounded-md hover:bg-rose-500 focus:bg-rose-600 hover:cursor-pointer"
     %>
   <% end %>
 <% end %>
