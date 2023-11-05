@@ -33,14 +33,6 @@ RSpec.describe "comments", type: :system do
         it "shows new comment on the note page" do
           expect(page).to have_content(comment_input)
         end
-
-        it "shows indicator that note has comments on the journal notes page" do
-          pending "Implement comment indicator"
-          # visit journal_notes_path(note.journal)
-
-          # How should this be checked? What would indicator look like?
-          # expect(page).to have_content()
-        end
       end
     end
   end

@@ -14,7 +14,7 @@ RSpec.describe "deleting notes", type: :system do
 
     it "has current page path as journal's notes index" do
       accept_alert do
-        click_button "note-delete-btn"
+        click_button "note-destroy-btn"
       end
 
       expect(page).to have_current_path(journal_notes_path(journal))
@@ -22,7 +22,7 @@ RSpec.describe "deleting notes", type: :system do
 
     it "does not show deleted note after destroying note" do
       accept_alert do
-        click_button "note-delete-btn"
+        click_button "note-destroy-btn"
       end
 
       expect(page).not_to have_content(existing_note.body)
@@ -32,7 +32,7 @@ RSpec.describe "deleting notes", type: :system do
       delete_notification = "Note successfully deleted."
 
       accept_alert do
-        click_button "note-delete-btn"
+        click_button "note-destroy-btn"
       end
 
       within "div[data-testid='flash-msg']" do

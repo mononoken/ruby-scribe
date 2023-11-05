@@ -45,8 +45,8 @@ RSpec.describe "showing notes", type: :system do
       expect(page).to have_link(href: journal_notes_path(note.journal))
     end
 
-    it "has button to edit note" do
-      expect(page).to have_button("note-edit-btn")
+    it "has link to edit note" do
+      expect(page).to have_link("note-edit-link")
     end
 
     it "has button to destroy note" do
