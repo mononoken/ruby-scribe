@@ -19,11 +19,11 @@
   %>
   <%= form.text_area :body,
     class: "w-full bg-slate-800 border-slate-600 rounded-md placeholder:italic placeholder:text-slate-600",
-    data: {testid: "comment-body-input"}
+    data: {testid: "#{dom_id(comment)}-body-input"}
   %>
   <%= form.submit "Save Comment",
     class: "h-8 w-full px-[8px] text-lg text-stone-300 bg-indigo-500 rounded-md hover:bg-indigo-600 focus:bg-indigo-700 hover:cursor-pointer",
-    data: {testid: "comment-save-btn"}
+    data: {testid: "#{dom_id(comment)}-save-btn"}
   %>
   <% if comment.persisted? %>
     <%= link_to "Cancel", comment,

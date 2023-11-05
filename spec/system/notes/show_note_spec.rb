@@ -54,7 +54,7 @@ RSpec.describe "showing notes", type: :system do
     end
 
     it "has button to create a comment for note" do
-      expect(page).to have_button("comment-save-btn")
+      expect(page).to have_button("new_comment-save-btn")
     end
   end
 end

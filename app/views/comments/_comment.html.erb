@@ -8,7 +8,7 @@
   </p>
   <ul class="flex justify-end">
     <%= link_to edit_comment_path(comment), 
-      data: {testid: "comment-edit-link"},
+      data: {testid: "#{dom_id(comment)}-edit-link"},
       aria: {label: "edit comment"} do
     %>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -18,7 +18,7 @@
     <%= button_to comment_path(comment), method: :delete,
       data: {
         turbo_confirm: "This will permanently delete this comment. Are you sure?",
-        testid: "comment-delete-btn"
+        testid: "#{dom_id(comment)}-destroy-btn"
       },
       aria: {label: "delete comment"} do
     %>
