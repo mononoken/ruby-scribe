@@ -1,71 +1,149 @@
 <h1
-  class="text-xl text-lime-300 font-bold mb-[16px]"
+  class="text-xl text-lime-300 font-bold mb-[8px]"
 >
   <%= current_user.username %>'s Dashboard
 </h1>
-<h2
-  class="text-lg text-lime-300 font-bold mb-[16px]"
+<div
+  class="flex flex-col space-y-[8px]"
 >
-  Notifications
-</h2>
-<ul data-testid="notifications-list">
-  <% @invitations.each do |invitation| %>
-    <li>
-      <%= link_to invitation.message, users_invitation_path(invitation) %>
-    </li>
-  <% end %>
-</ul>
-<ul
-  class="flex flex-col space-y-[24px]"
->
-  <% if current_user.journals.any? %>
-
-  <% else %> 
-    <li>
-      <%= link_to new_journal_path,
-        class: "inline-flex items-center text-xl text-emerald-300 bg-slate-600 px-[16px] py-[8px] rounded-full",
-        data: { testid: "new-journal-link" } do %>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="w-6 h-6 inline mr-[8px]"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
-          />
-        </svg>
-        Create your first journal!
+  <div
+    class="border-solid border-2"
+  >
+    <h2
+      class="text-lg text-lime-300 font-bold mb-[4px]"
+    >
+      Notifications
+    </h2>
+    <ul data-testid="notifications-list">
+      <li>Notification (DELETE_ME placeholder)</li>
+      <li>Another  (DELETE_ME placeholder)</li>
+      <% @invitations.each do |invitation| %>
+        <li>
+          <%= link_to invitation.message, users_invitation_path(invitation) %>
+        </li>
       <% end %>
-    </li>
+    </ul>
+  </div>
+  <ul
+    class="flex flex-col space-y-[8px]"
+  >
+    <% unless current_user.journals.any? %>
+      <li>
+        <%= link_to new_journal_path,
+          class: "inline-flex items-center text-xl text-emerald-300 bg-slate-600 px-[16px] py-[8px] rounded-full",
+          data: { testid: "new-journal-link" } do %>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6 inline mr-[8px]"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
+            />
+          </svg>
+          Create your first journal!
+        <% end %>
+      </li>
+    <% end %>
+    <% unless current_user.collections.any? %>
+      <li>
+        <%= link_to new_collection_path,
+            class: "inline-flex items-center text-xl text-emerald-300 bg-slate-600 px-[16px] py-[8px] rounded-full",
+            data: { testid: "new-collection-link" } do %>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6 inline mr-[8px]"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0l4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0l-5.571 3-5.571-3"
+            />
+          </svg>
+          Create your first collection!
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+  <% if current_user.journals.any? %>
+    <div
+      class="border-solid border-2"
+    >
+      <h3
+        class=""
+      >
+        Journals:
+      </h3>
+      <ul>
+        <% current_user.journals.each do |journal| %>
+          <li>
+            <%= link_to journal_notes_path(journal),
+              class: "" do
+            %>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="inline-block w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
+                />
+              </svg>
+              <%= journal.name %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
   <% if current_user.collections.any? %>
-
-  <% else %> 
-    <li>
-      <%= link_to new_collection_path,
-          class: "inline-flex items-center text-xl text-emerald-300 bg-slate-600 px-[16px] py-[8px] rounded-full",
-          data: { testid: "new-collection-link" } do %>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="w-6 h-6 inline mr-[8px]"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0l4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0l-5.571 3-5.571-3"
-          />
-        </svg>
-        Create your first collection!
-      <% end %>
-    </li>
+    <div
+      class="border-solid border-2"
+    >
+      <h3
+        class=""
+      >
+        Collections:
+      </h3>
+      <ul>
+        <% current_user.collections.each do |collection| %>
+          <li>
+            <%= link_to collection,
+              class: "" do
+            %>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="inline-block w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
+                />
+              </svg>
+              <%= collection.name %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
-</ul>
+</div>
