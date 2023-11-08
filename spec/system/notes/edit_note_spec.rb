@@ -21,9 +21,9 @@ RSpec.describe "editing notes", type: :system do
     it "shows edited journal note after saving edited note" do
       click_link "note-edit-link"
 
-      fill_in "Body", with: "Note has been edited!"
+      fill_in "note-body-input", with: ""
+      fill_in "note-body-input", with: "Note has been edited!"
       click_button "note-save-btn"
-      sleep 0.5
 
       expect(page).to have_content("Note has been edited!")
     end
@@ -33,8 +33,8 @@ RSpec.describe "editing notes", type: :system do
 
       click_link "note-edit-link"
 
-      fill_in "Body", with: "Note has been edited!"
-      sleep 0.5
+      fill_in "note-body-input", with: ""
+      fill_in "note-body-input", with: "Note has been edited!"
       click_button "note-save-btn"
 
       expect(page).not_to have_content(original_note_body)
