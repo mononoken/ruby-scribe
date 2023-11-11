@@ -28,6 +28,7 @@
   %>
   <%= form.button :search,
     class: "",
+    aria: {label: "search button"},
     data: {testid: "note-search-btn"} do
   %>
     <svg
@@ -45,7 +46,9 @@
       />
     </svg>
   <% end %>
-  <%= link_to journal_notes_path(@journal) do %>
+  <%= link_to journal_notes_path(@journal),
+    aria: {label: "reset search"} do
+  %>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
