@@ -21,7 +21,7 @@
 </div>
 
 <%= search_form_for @q, url: journal_notes_path(@journal),
-  class: "flex py-2 space-x-[8px]" do |form| %>
+  class: "flex py-2 space-x-[8px] items-center" do |form| %>
   <%= form.search_field :name_or_body_cont,
     class: "w-full bg-slate-800 border-slate-600 rounded-md placeholder:italic placeholder:text-slate-600",
     data: {testid: "note-search-input"}
@@ -45,7 +45,24 @@
       />
     </svg>
   <% end %>
+  <%= link_to journal_notes_path(@journal) do %>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="w-6 h-6"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M6 18L18 6M6 6l12 12"
+      />
+    </svg>
+  <% end %>
 <% end %>
+
 
 <ul
   class="flex flex-col justify-stetch py-2 space-y-2"
