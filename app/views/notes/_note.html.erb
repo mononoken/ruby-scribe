@@ -1,16 +1,15 @@
-<h3 class="font-bold">
+<h3 class="font-bold mb-[8px]">
   <%= link_to note.name, note_path(note),
     data: {testid: "note-link"}
   %>
 </h3>
 <div
-  class="prose prose-invert marker:text-slate-400 bg-slate-600 rounded-md px-4 py-2"
+  class="prose prose-invert marker:text-slate-400 max-w-none mb-[8px] bg-slate-600 rounded-md px-[16px] py-[8px]"
   id="<%= dom_id(note, :body) %>"
   data-turbo-transition="note-body"
   data-testid="note-body"
 >
-  <%= markdown(note.body) 
-%>
+  <%= markdown(note.body) %>
 </div>
 <ul class="flex justify-end">
   <%= link_to edit_note_path(note), 

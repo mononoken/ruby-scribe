@@ -4,7 +4,8 @@ class NotesController < ApplicationController
 
   def index
     @note = Note.new
-    @notes = @journal.notes
+    @q = @journal.notes.ransack(params[:q])
+    @notes = @q.result(distinct: true)
   end
 
   def new

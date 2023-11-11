@@ -16,11 +16,39 @@
   <% end %>
 </div>
 
-<div class="bg-slate-600 rounded-md px-4 pt-2 pb-4">
+<div class="bg-slate-600 rounded-md px-4 pt-2 pb-4 mb-[16px]">
   <%= render partial: "form", locals: {note: @note, journal: @journal} %>
 </div>
+
+<%= search_form_for @q, url: journal_notes_path(@journal),
+  class: "flex py-2 space-x-[8px]" do |form| %>
+  <%= form.search_field :name_or_body_cont,
+    class: "w-full bg-slate-800 border-slate-600 rounded-md placeholder:italic placeholder:text-slate-600",
+    data: {testid: "note-search-input"}
+  %>
+  <%= form.button :search,
+    class: "",
+    data: {testid: "note-search-btn"} do
+  %>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="w-6 h-6"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+      />
+    </svg>
+  <% end %>
+<% end %>
+
 <ul
-  class="px-4 py-2 space-y-2"
+  class="flex flex-col justify-stetch py-2 space-y-2"
 >
   <% @notes.each do |note| %>
     <li>
