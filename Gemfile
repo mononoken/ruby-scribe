@@ -60,6 +60,9 @@ gem "redcarpet", "~> 3.6.0"
 # User authorization
 gem "action_policy", "~> 0.6.7"
 
+# Search Rails app
+gem "ransack", "~> 4.1"
+
 group :development, :test do
   gem "standard", "~> 1.30"
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
