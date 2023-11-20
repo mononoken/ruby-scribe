@@ -6,13 +6,19 @@ module NotesHelper
       process_custom_tags("<p>#{text.strip}</p>\n")
     end
 
-    def list_item(text, params)
+    def list_item(text, list_type)
       "<li>#{process_custom_tags(text)}</li>\n"
     end
 
     def header(text, level)
       "<h#{level}>#{process_custom_tags(text)}</h#{level}>"
     end
+
+    def link(url, title, content)
+      %(<a href="#{url}">#{content}</a>)
+    end
+
+    private
 
     def internal_link(note_name)
       note = Note.find_by(name: note_name)
@@ -24,12 +30,6 @@ module NotesHelper
 
       link(url, title, content)
     end
-
-    def link(link, title, content)
-      "<a href='#{link}'>#{content}</a>"
-    end
-
-    private
 
     def process_custom_tags(text)
       matches = text.to_enum(:scan, /\[\[(.*?)\]\]/).map { Regexp.last_match }
@@ -44,7 +44,6 @@ module NotesHelper
 
   def markdown(input)
     # Redcarpet docs recommend instantiating renderer object first before use.
-    options = [:hard_wrap, :autolink, :no_intra_emphasis, :fenced_code_blocks]
     renderer = FaeScribeRenderer.new(
       filter_html: true, hard_wrap: true
     )
