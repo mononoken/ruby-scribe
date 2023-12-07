@@ -1,2 +1,2 @@
-class SessionPolicy < ApplicationPolicy
+class Users::SessionPolicy < ApplicationPolicy
 end
