@@ -1,4 +1,4 @@
-<%= link_to "Back to Journal", journal_notes_path(@journal),
+<%= link_to "Back to #{@journal.name}", journal_notes_path(@journal),
   class: ""
 %>
 <%= render @note %>

@@ -1,1 +1,3 @@
+<%= link_to "Back to #{@journal.name}", journal_notes_path(@journal) %>
+
 <%= render partial: "form", locals: {note: @note, journal: @journal} %>

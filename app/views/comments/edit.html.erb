@@ -1,4 +1,4 @@
-<%= link_to "Back to Note", note_path(@comment.note) %>
+<%= link_to "Back to #{@comment.note.name}", note_path(@comment.note) %>
 
 <%= turbo_frame_tag @comment do %>
   <%= render "form", {note: nil, comment: @comment} %>

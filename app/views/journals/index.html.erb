@@ -4,7 +4,9 @@
   <%= current_user.username %>'s Journals
 </h2>
 <%= link_to "New journal", new_journal_path,
-    data: { testid: "new-journal-link" } %>
+  class: "",
+  data: { testid: "new-journal-link" }
+%>
 <ul data-testid="journals-list">
   <% @journals.each do |journal| %>
     <li>
