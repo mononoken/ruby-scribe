@@ -20,4 +20,5 @@ class User < ApplicationRecord
     foreign_key: "sender_id", dependent: :destroy
   has_many :received_invitations, class_name: "Invitation",
     foreign_key: "recipient_id", dependent: :destroy
+  has_many :notifications, as: :recipient, dependent: :destroy
 end
