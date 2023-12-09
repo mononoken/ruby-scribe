@@ -63,6 +63,9 @@ gem "action_policy", "~> 0.6.7"
 # Search Rails app
 gem "ransack", "~> 4.1"
 
+# Notification support for multiple delivery methods
+gem "noticed", "~> 1.6"
+
 group :development, :test do
   gem "standard", "~> 1.30"
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
