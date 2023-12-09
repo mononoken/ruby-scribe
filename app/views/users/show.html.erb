@@ -7,7 +7,7 @@
   class="flex flex-col space-y-[8px]"
 >
   <div
-    class="border-solid border-2"
+    class=""
   >
     <h2
       class="text-lg text-lime-300 font-bold mb-[4px]"
@@ -76,13 +76,13 @@
   </ul>
   <% if current_user.journals.any? %>
     <div
-      class="border-solid border-2"
+      class=""
     >
-      <h3
-        class=""
+      <h2
+        class="text-lg text-lime-300 font-bold mb-[4px]"
       >
         Journals:
-      </h3>
+      </h2>
       <ul>
         <% current_user.journals.each do |journal| %>
           <li>
@@ -112,13 +112,13 @@
   <% end %>
   <% if current_user.collections.any? %>
     <div
-      class="border-solid border-2"
+      class=""
     >
-      <h3
-        class=""
+      <h2
+        class="text-lg text-lime-300 font-bold mb-[4px]"
       >
         Collections:
-      </h3>
+      </h2>
       <ul>
         <% current_user.collections.each do |collection| %>
           <li>
