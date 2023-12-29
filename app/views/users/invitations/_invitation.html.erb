@@ -1,11 +1,6 @@
-<ul>
-  <li>
-    For: <%= invitation.collection.name %>
-  </li>
-  <li>
-    From: <%= invitation.sender.username %>
-  </li>
-</ul>
+<p>
+  <%= invitation.message %>
+</p>
 
 <div>
   <%= button_to "Accept", accept_users_invitation_path(invitation),
