@@ -26,6 +26,6 @@ class Invitation < ApplicationRecord
   end
 
   def notify_recipient
-    InvitationNotification.with(invitation: self).deliver_later(recipient)
+    NewInvitationNotification.with(invitation: self).deliver_later(recipient)
   end
 end

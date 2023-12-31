@@ -1,4 +1,4 @@
-class InvitationNotification < Noticed::Base
+class NewInvitationNotification < Noticed::Base
   # Add your delivery methods
   deliver_by :database
   # deliver_by :email, mailer: "UserMailer"
@@ -10,10 +10,24 @@ class InvitationNotification < Noticed::Base
 
   # Define helper methods to make rendering easier.
   def message
-    t(".message")
+    t(".message", collection:, sender:)
   end
 
   def url
-    invitation_path(params[:invitation])
+    users_invitations_path
+  end
+
+  def invitation
+    params[:invitation]
+  end
+
+  private
+
+  def collection
+    invitation.collection.name
+  end
+
+  def sender
+    invitation.sender.username
   end
 end

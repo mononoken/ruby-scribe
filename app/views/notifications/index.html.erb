@@ -1,0 +1,12 @@
+<h1>
+  <%= current_user.username %>'s Notifications
+</h1>
+<ul>
+  <% @notifications.map(&:to_notification).each do |notification| %>
+    <li>
+      <%= link_to notification.url do %>
+        <%= notification.message %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

@@ -4,11 +4,14 @@ RSpec.describe "Notifications", type: :system do
   describe "notifications count" do
     let!(:user) { create(:user) }
 
+    before do
+      sign_in user
+    end
+
     context "when user has 1 notification" do
       before do
-        create(:notification, user: user)
+        create(:notification, recipient: user)
 
-        sign_in user
         visit root_path
       end
 
@@ -20,17 +23,29 @@ RSpec.describe "Notifications", type: :system do
     end
 
     context "when user has no notifications" do
-      it "does not show a notification count"
+      it "does not show a notification count" do
+        visit root_path
+
+        within "[data-testid='notifications-count']" do
+          expect(page).to have_content("")
+        end
+      end
     end
 
     context "when user has 3 notifications" do
-      # before do
-      #   3.times do
-      #     create(:notification, user: user)
-      #   end
-      # end
+      before do
+        3.times do
+          create(:notification, recipient: user)
+        end
 
-      it "shows text '3' with notification icon"
+        visit root_path
+      end
+
+      it "shows text '3' with notification icon" do
+        within "[data-testid='notifications-count']" do
+          expect(page).to have_content("3")
+        end
+      end
     end
   end
 

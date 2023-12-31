@@ -38,4 +38,6 @@ Rails.application.routes.draw do
   end
 
   resources :memberships, only: %i[destroy]
+
+  resources :notifications, only: %i[index]
 end
