@@ -54,15 +54,30 @@ RSpec.describe "Notifications", type: :system do
     let(:notification) { notification_record.to_notification }
 
     context "when user accepts an invitation" do
-      it "destroys associated notification"
+      before do
+        notification.invitation.accept
+      end
+
+      it "does not show notification in index view" do
+        visit notifications_path
+
+        expect(page).not_to have_content(notification.message)
+      end
     end
 
     context "when user clicks dismiss button for a notification" do
-      it "destroys notification"
+      it "does not show notification in index view" do
+        visit notifications_path
+        within "[data-testid='notifications-list']" do
+          click_button "notification-destroy-btn"
+        end
+
+        expect(page).not_to have_content(notification.message)
+      end
     end
 
     context "when user views notifications" do
-      it "does not destroy notification" do
+      it "shows notification in index view" do
         visit notifications_path
 
         expect(page).to have_content(notification.message)

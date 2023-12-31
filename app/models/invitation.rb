@@ -19,6 +19,8 @@ class Invitation < ApplicationRecord
       member: recipient,
       role: :member
     )
+
+    notifications_as_invitation.destroy_all
   end
 
   def message
