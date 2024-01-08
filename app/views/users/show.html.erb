@@ -17,11 +17,6 @@
     <ul data-testid="notifications-list">
       <li>Notification (DELETE_ME placeholder)</li>
       <li>Another  (DELETE_ME placeholder)</li>
-      <% @invitations.each do |invitation| %>
-        <li>
-          <%= link_to invitation.message, users_invitation_path(invitation) %>
-        </li>
-      <% end %>
     </ul>
   </div>
   <ul
