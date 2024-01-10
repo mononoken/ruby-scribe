@@ -5,15 +5,13 @@ RSpec.describe "invitations", type: :system do
   let!(:recipient) { create(:user) }
 
   context "when no invitations have been sent" do
-    it "does not show invitations in recipient's dashboard notifications" do
+    it "does not show invitations in recipient's invitations index" do
       sign_in recipient
-      visit dashboard_path
+      visit users_invitations_path
 
-      within "[data-testid='notifications-list']" do
-        expect(page).not_to have_content(
-          "#{sender.username} has invited you to their collection"
-        )
-      end
+      expect(page).not_to have_content(
+        "#{sender.username} has invited you to their collection"
+      )
     end
   end
 
@@ -31,15 +29,13 @@ RSpec.describe "invitations", type: :system do
       sleep 0.5
     end
 
-    it "shows invitation in recipient user's dashboard" do
+    it "shows invitation in recipient user's invitations index" do
       sign_in recipient
-      visit dashboard_path
+      visit users_invitations_path
 
-      within "[data-testid='notifications-list']" do
-        expect(page).to have_content(
-          "#{sender.username} has invited you to their collection #{collection.name}."
-        )
-      end
+      expect(page).to have_content(
+        "#{sender.username} has invited you to their collection #{collection.name}."
+      )
     end
 
     it "shows invitation sent success message with recipient name" do
@@ -57,8 +53,8 @@ RSpec.describe "invitations", type: :system do
       sign_in recipient
     end
 
-    it "shows link to the invitation on dashboard" do
-      visit dashboard_path
+    it "shows link to the invitation on index" do
+      visit users_invitations_path
 
       expect(page).to have_link(href: users_invitation_path(invitation))
     end
@@ -86,8 +82,8 @@ RSpec.describe "invitations", type: :system do
         expect(page).not_to have_content(collection.name)
       end
 
-      it "does not show link to the invitation on dashboard" do
-        visit dashboard_path
+      it "does not show link to the invitation on index" do
+        visit users_invitations_path
 
         expect(page).not_to have_link(href: users_invitation_path(invitation))
       end
