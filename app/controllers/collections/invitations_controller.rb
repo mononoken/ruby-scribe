@@ -10,13 +10,10 @@ module Collections
       @invitation = Invitation.new(invitation_params)
 
       if @invitation.save
-        # respond_to do |format|
-        #   format.html do
+        @invitation.notify_recipient
+
         flash[:success] = "You invited #{@invitation.recipient.username} to your collection #{@invitation.collection.name}."
         redirect_to collection_invitations_path(@collection)
-        # end
-        # format.turbo_stream
-        # end
       else
         flash.now[:error] = @invitation.errors.full_messages
         render :new, status: :unprocessable_entity

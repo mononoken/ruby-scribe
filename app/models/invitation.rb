@@ -9,8 +9,6 @@ class Invitation < ApplicationRecord
 
   scope :pending, -> { where(accepted_at: nil) }
 
-  after_create_commit :notify_recipient
-
   def accept(membership_class = Membership)
     update(accepted_at: DateTime.now)
 
