@@ -24,6 +24,7 @@ RSpec.describe Invitation, type: :model do
     include ActiveSupport::Testing::TimeHelpers
 
     let(:membership_class) { spy("Membership") }
+    let(:membership) { instance_double(Membership) }
 
     before do
       allow(membership_class).to receive(:create)
@@ -31,7 +32,10 @@ RSpec.describe Invitation, type: :model do
           collection: invitation.collection,
           member: invitation.recipient,
           role: :member
-        )
+        ).and_return(membership)
+
+      allow(membership).to receive(:valid?)
+        .and_return(true)
     end
 
     it "sets accepted_at to current time" do

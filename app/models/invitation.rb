@@ -12,13 +12,13 @@ class Invitation < ApplicationRecord
   def accept(membership_class = Membership)
     update(accepted_at: DateTime.now)
 
-    membership_class.create(
+    membership = membership_class.create(
       collection: collection,
       member: recipient,
       role: :member
     )
 
-    notifications_as_invitation.destroy_all
+    cleanup if membership.valid?
   end
 
   def message
@@ -27,5 +27,12 @@ class Invitation < ApplicationRecord
 
   def notify_recipient
     NewInvitationNotification.with(invitation: self).deliver_later(recipient)
+  end
+
+  private
+
+  def cleanup
+    notifications_as_invitation.destroy_all
+    destroy
   end
 end
