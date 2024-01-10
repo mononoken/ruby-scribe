@@ -1,12 +1,18 @@
 <h1>
   <%= current_user.username %>'s Notifications
 </h1>
-<ul>
-  <% @notifications.map(&:to_notification).each do |notification| %>
+<ul
+  data-testid="notifications-list"
+>
+  <% @notifications.each do |notification| %>
     <li>
-      <%= link_to notification.url do %>
-        <%= notification.message %>
+      <%= link_to notification.to_notification.url do %>
+        <%= notification.to_notification.message %>
       <% end %>
+      <%= button_to "Dismiss", notification_path(notification),
+        method: :delete,
+        data: {testid: "notification-destroy-btn"}
+      %>
     </li>
   <% end %>
 </ul>

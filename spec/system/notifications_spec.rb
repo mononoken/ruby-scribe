@@ -51,7 +51,7 @@ RSpec.describe "Notifications", type: :system do
 
   describe "destroying notifications" do
     let!(:notification_record) { create(:invitation_notification, recipient: user) }
-    let(:notification) { notification_record.to_notification }
+    let!(:notification) { notification_record.to_notification }
 
     context "when user accepts an invitation" do
       before do
@@ -71,6 +71,8 @@ RSpec.describe "Notifications", type: :system do
         within "[data-testid='notifications-list']" do
           click_button "notification-destroy-btn"
         end
+
+        visit notifications_path
 
         expect(page).not_to have_content(notification.message)
       end
