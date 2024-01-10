@@ -32,8 +32,4 @@ class CollectionPolicy < ApplicationPolicy
   def member?
     record.members.any? { |member| user == member }
   end
-
-  # def manager?
-  #   record.managers.any?(user)
-  # end
 end
