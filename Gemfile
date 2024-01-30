@@ -87,7 +87,6 @@ group :development do
   # gem "spring"
 
   # For deployment with fly.io
-  gem "dockerfile-rails", ">= 1.5"
   gem "hotwire-livereload", "~> 1.2"
 end
 
