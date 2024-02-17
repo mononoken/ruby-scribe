@@ -18,10 +18,4 @@ class CommentPolicy < ApplicationPolicy
   def manage?
     author?
   end
-
-  private
-
-  def author?
-    user.id == record.author_id
-  end
 end
