@@ -1,6 +1,4 @@
 class CommentsController < ApplicationController
-  include ActionView::RecordIdentifier
-
   before_action :set_note, only: %i[index new create]
   before_action :set_comment, only: %i[edit update destroy show]
 
@@ -20,7 +18,7 @@ class CommentsController < ApplicationController
         format.turbo_stream do
           @comment.broadcast_prepend_to(
             [@note, :comments],
-            target: dom_id(@note, :comments)
+            target: helpers.dom_id(@note, :comments)
           )
 
           @comment = @note.comments.build
