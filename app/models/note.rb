@@ -5,6 +5,7 @@ class Note < ApplicationRecord
   belongs_to :author, class_name: "User"
 
   has_many :comments
+  has_many :counters
 
   def self.ransackable_attributes(auth_object = nil)
     ["name", "body"]

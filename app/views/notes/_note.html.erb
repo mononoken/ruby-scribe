@@ -3,6 +3,15 @@
     data: {testid: "note-link"}
   %>
 </h3>
+<% if @counters %>
+  <ul>
+    <% @counters.each do |counter| %>
+      <li>
+        <%= "#{counter.label} #{counter.count}" %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
 <div
   class="prose prose-invert marker:text-slate-400 max-w-none mb-[8px] bg-slate-600 rounded-md px-[16px] py-[8px]"
   id="<%= dom_id(note, :body) %>"
@@ -12,6 +21,17 @@
   <%= markdown(note.body) %>
 </div>
 <ul class="flex justify-end">
+  <% if false %>
+    <%= form_with model: @new_counter do |form| %>
+      <%= form.label :label %>
+      <%= form.text_field :label, data: {testid: "counter-name-input"},
+        placeholder: "New counter"
+      %>
+      <%= form.submit "Create Counter",
+        data: {testid: "counter-create-btn"}
+      %>
+    <% end %>
+  <% end %>
   <%= link_to edit_note_path(note), 
     data: {testid: "note-edit-link"},
     aria: {label: "edit note"} do

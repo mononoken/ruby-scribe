@@ -45,6 +45,8 @@ class NotesController < ApplicationController
   def show
     @journal = @note.journal
     @comments = @note.comments
+    @counters = @note.counters.persisted
+    @new_counter = @note.counters.build
   end
 
   private
