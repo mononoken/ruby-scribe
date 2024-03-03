@@ -1,0 +1,33 @@
+<%= form_with model: [note, counter],
+  class: "flex space-x-[8px] items-center" do |form|
+%>
+  <% if counter.errors.any? %>
+    <ul
+      class="flex flex-col space-y-[4px]"
+    >
+      <% counter.errors.full_messages.each do |message| %>
+        <li
+          class="font-medium text-rose-400 bg-slate-700 px-4 py-2 rounded-md"
+        >
+          <%= message %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+  <%= form.label :label, "Counter",
+    class: "block text-sm text-indigo-400 font-bold"
+  %>
+  <%= form.text_field :label,
+    class: "h-8 w-full bg-slate-800 border-slate-600 rounded-md placeholder:italic placeholder:text-slate-600",
+    data: {testid: "#{dom_id(counter)}-label-input"}
+  %>
+  <%= form.submit "Save counter",
+    class: "h-8 w-full px-[8px] text-lg text-stone-300 bg-indigo-500 rounded-md hover:bg-indigo-600 focus:bg-indigo-700 hover:cursor-pointer",
+    data: {testid: "#{dom_id(counter)}-save-btn"}
+  %>
+  <% if counter.persisted? %>
+    <%= link_to "Cancel", counter,
+      class: "h-8 w-full px-[8px] leading-8 text-center align-middle text-lg text-stone-300 bg-rose-400 rounded-md hover:bg-rose-500 focus:bg-rose-600 hover:cursor-pointer"
+    %>
+  <% end %>
+<% end %>

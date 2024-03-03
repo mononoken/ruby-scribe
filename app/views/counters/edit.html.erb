@@ -1,0 +1,5 @@
+<%= link_to "Back to #{@counter.note.name}", note_path(@counter.note) %>
+
+<%= turbo_frame_tag @counter do %>
+  <%= render "form", {note: nil, counter: @counter} %>
+<% end %>
