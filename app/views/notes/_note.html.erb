@@ -17,11 +17,25 @@
 >
   <%= markdown(note.body) %>
 </div>
-<ul class="flex justify-end">
-  <li>
+<ul class="flex justify-end items-center space-x-[4px]">
+  <li
+    class="flex justify-end items-center"
+    data-controller="reveal"
+  >
     <%= turbo_frame_tag dom_id(note, :new_counter),
-      src: new_note_counter_path(note)
+      src: new_note_counter_path(note),
+      data: {reveal_target: "revealable"},
+      hidden: true
     %>
+    <button
+      class=""
+      data-action="reveal#toggle"
+      aria-label="toggle new counter form"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
+      </svg>
+    </button>
   </li>
   <li>
     <%= link_to edit_note_path(note), 
@@ -39,6 +53,7 @@
         turbo_confirm: "This will permanently delete this note. Are you sure?",
         testid: "note-destroy-btn"
       },
+      class: "flex items-center",
       aria: {label: "delete note"} do
     %>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
