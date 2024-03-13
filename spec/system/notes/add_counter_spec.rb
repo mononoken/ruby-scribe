@@ -9,20 +9,20 @@ RSpec.describe "Counter", type: :system do
 
   context "when user has existing note" do
     let!(:note) { create(:note, author: user) }
-    let(:counter) { build(:counter) }
+    let(:counter) { build(:counter, note:) }
 
     xit "shows button to add counter" do
       visit note_path(note)
-      click_button "counter-create-btn"
+      click_button "counter-toggle-btn"
 
-      expect(page).to have_content("New counter")
-    end
+      within "[data-testid='counter-form']" do
+        fill_in "new_counter-label-input", with: counter.label
+      end
+      sleep 0.5
+      click_button "new_counter-save-btn"
 
-    context "when incrementable exists" do
-      # let!(:incrementable) { create(:incrementable, note:) }
-
-      it "should have button to increment"
-      it "should have button to decrement"
+      expect(page).to have_content(counter.label)
+      expect(page).to have_content(counter.label)
     end
   end
 end

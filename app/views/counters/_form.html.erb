@@ -1,5 +1,6 @@
 <%= form_with model: [note, counter],
-  class: "flex space-x-[8px] items-center" do |form|
+  class: "flex space-x-[8px] items-center",
+  data: {testid: "counter-form"} do |form|
 %>
   <% if counter.errors.any? %>
     <ul
