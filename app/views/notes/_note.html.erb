@@ -9,14 +9,17 @@
     src: note_counters_path(@note)
   %>
 <% end %>
-<div
-  class="prose prose-invert marker:text-slate-400 max-w-none mb-[8px] bg-slate-600 rounded-md px-[16px] py-[8px]"
-  id="<%= dom_id(note, :body) %>"
-  data-turbo-transition="note-body"
-  data-testid="note-body"
->
-  <%= markdown(note.body) %>
-</div>
+<% if note.body != "" %>
+  <% debugger %>
+  <div
+    class="prose prose-invert marker:text-slate-400 max-w-none mb-[8px] bg-slate-600 rounded-md px-[16px] py-[8px]"
+    id="<%= dom_id(note, :body) %>"
+    data-turbo-transition="note-body"
+    data-testid="note-body"
+  >
+    <%= markdown(note.body) %>
+  </div>
+<% end %>
 <ul class="flex justify-end items-center space-x-[4px]">
   <li
     class="flex justify-end items-center"
