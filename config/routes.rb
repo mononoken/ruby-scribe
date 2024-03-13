@@ -24,7 +24,7 @@ Rails.application.routes.draw do
       resources :counters, shallow: true do
         member do
           patch "increment"
-          # patch "decrement"
+          patch "decrement"
         end
       end
     end

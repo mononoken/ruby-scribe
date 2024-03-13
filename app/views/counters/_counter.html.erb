@@ -11,15 +11,23 @@
     </ul>
     <ul class="flex space-x-2 justify-end">
       <li>
-        <% if true %>
-          <%= button_to increment_counter_path(counter), method: :patch,
-            data: {
-              testid: "#{dom_id(counter)}-increment-btn"
-            },
-            aria: {label: "increment counter"} do
-          %>
-            +
-          <% end %>
+        <%= button_to increment_counter_path(counter), method: :patch,
+          data: {
+            testid: "#{dom_id(counter)}-increment-btn"
+          },
+          aria: {label: "increment counter"} do
+        %>
+          +
+        <% end %>
+      </li>
+      <li>
+        <%= button_to decrement_counter_path(counter), method: :patch,
+          data: {
+            testid: "#{dom_id(counter)}-decrement-btn"
+          },
+          aria: {label: "decrement counter"} do
+        %>
+          -
         <% end %>
       </li>
       <li>
