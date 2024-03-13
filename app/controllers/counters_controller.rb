@@ -2,7 +2,7 @@ class CountersController < ApplicationController
   skip_verify_authorized
 
   before_action :set_note, only: %i[index new create]
-  before_action :set_counter, only: %i[edit update destroy show]
+  before_action :set_counter, only: %i[edit update destroy show increment]
 
   def index
     @counters = @note.counters.order(created_at: :desc)
@@ -67,6 +67,18 @@ class CountersController < ApplicationController
   end
 
   def increment
+    respond_to do |format|
+      if @counter.increment!(:count)
+        format.turbo_stream { @counter.broadcast_replace }
+        format.html { redirect_to @counter }
+      else
+        format.turbo_stream { @counter.broadcast_replace }
+        format.html do
+          flash.now[:error] = @counter.errors.full_messages
+          redirect_to @note, status: :unprocessable_entity
+        end
+      end
+    end
   end
 
   def decrement

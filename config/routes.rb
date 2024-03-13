@@ -21,7 +21,12 @@ Rails.application.routes.draw do
   resources :journals, only: %i[new create index edit update destroy] do
     resources :notes, shallow: true do
       resources :comments, shallow: true
-      resources :counters, shallow: true
+      resources :counters, shallow: true do
+        member do
+          patch "increment"
+          # patch "decrement"
+        end
+      end
     end
   end
 
