@@ -27,6 +27,7 @@ RSpec.describe "comments", type: :system do
 
         before do
           fill_in "new_comment-body-input", with: comment_input
+          sleep 0.5
           click_button "new_comment-save-btn"
         end
 
@@ -55,6 +56,7 @@ RSpec.describe "comments", type: :system do
       context "when user clicks destroy comment button" do
         before do
           accept_alert do
+            sleep 0.5
             click_button "comment_#{comment.id}-destroy-btn"
           end
         end
