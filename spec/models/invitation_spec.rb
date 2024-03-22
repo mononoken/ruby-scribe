@@ -5,16 +5,16 @@ RSpec.describe Invitation, type: :model do
 
   describe "#message" do
     let(:sender) { build_stubbed(:user, username: "Gandalf") }
-    let(:collection) { build_stubbed(:collection, name: "Thorin's Quest") }
-    let(:invitation) { build(:invitation, sender:, collection:) }
+    let(:campaign) { build_stubbed(:campaign, name: "Thorin's Quest") }
+    let(:invitation) { build(:invitation, sender:, campaign:) }
 
     before do
       allow(sender).to receive(:username).and_return("Gandalf")
-      allow(collection).to receive(:name).and_return("Thorin's Quest")
+      allow(campaign).to receive(:name).and_return("Thorin's Quest")
     end
 
-    it "returns string showing message with sender and collection" do
-      expected_message = "Gandalf has invited you to their collection Thorin's Quest."
+    it "returns string showing message with sender and campaign" do
+      expected_message = "Gandalf has invited you to their campaign Thorin's Quest."
 
       expect(invitation.message).to eq(expected_message)
     end
@@ -29,7 +29,7 @@ RSpec.describe Invitation, type: :model do
     before do
       allow(membership_class).to receive(:create)
         .with(
-          collection: invitation.collection,
+          campaign: invitation.campaign,
           member: invitation.recipient,
           role: :member
         ).and_return(membership)
@@ -46,12 +46,12 @@ RSpec.describe Invitation, type: :model do
         .to(DateTime.now)
     end
 
-    it "sends create to Membership class with collection and recipient" do
+    it "sends create to Membership class with campaign and recipient" do
       invitation.accept(membership_class)
 
       expect(membership_class).to have_received(:create)
         .with(
-          collection: invitation.collection,
+          campaign: invitation.campaign,
           member: invitation.recipient,
           role: :member
         )
@@ -64,7 +64,7 @@ RSpec.describe Invitation, type: :model do
     context "when duplicate invitation is built" do
       let(:duplicate_invitation) {
         build(:invitation, sender: invitation.sender,
-          recipient: invitation.recipient, collection: invitation.collection)
+          recipient: invitation.recipient, campaign: invitation.campaign)
       }
 
       # Delete if failing
@@ -73,10 +73,10 @@ RSpec.describe Invitation, type: :model do
       end
     end
 
-    context "when invitation has same recipient and collection but different sender" do
+    context "when invitation has same recipient and campaign but different sender" do
       let(:duplicate_invitation) {
         build(:invitation, recipient: invitation.recipient,
-          collection: invitation.collection)
+          campaign: invitation.campaign)
       }
 
       # Delete if failing
@@ -89,7 +89,7 @@ RSpec.describe Invitation, type: :model do
       let(:new_recipient) { create(:user) }
       let(:new_invitation) {
         build(:invitation, sender: invitation.sender,
-          recipient: new_recipient, collection: invitation.collection)
+          recipient: new_recipient, campaign: invitation.campaign)
       }
 
       # Delete if failing

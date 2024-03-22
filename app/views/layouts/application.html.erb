@@ -147,16 +147,16 @@
                   <li 
                     class="relative px-[16px] py-[8px] rounded-md text-indigo-200"
                   >
-                    <%= link_to "Collections", collections_path,
+                    <%= link_to "Campaigns", campaigns_path,
                       class: "before:absolute before:inset-0"
                     %>
                   </li>
-                  <% if current_user.collections.any? %>
-                    <% current_user.collections.each do |collection| %>
+                  <% if current_user.campaigns.any? %>
+                    <% current_user.campaigns.each do |campaign| %>
                       <li 
                         class="relative px-[16px] py-[8px] rounded-md text-indigo-200"
                       >
-                        <%= link_to collection.name, collection_path(collection),
+                        <%= link_to campaign.name, campaign_path(campaign),
                           class: "before:absolute before:inset-0"
                         %>
                       </li>

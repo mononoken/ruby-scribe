@@ -32,7 +32,7 @@ If you are interested in seeing features that are being worked on or have sugges
 
 ## General Information
 
-This app utilizes [Turbo](https://turbo.hotwired.dev/)'s Turbo Frames to quickly render new notes without the need of reloading. It also supports WebSocket through Turbo Streams so that notes created by other users in your shared collection will automatically load without reloading the page.
+This app utilizes [Turbo](https://turbo.hotwired.dev/)'s Turbo Frames to quickly render new notes without the need of reloading. It also supports WebSocket through Turbo Streams so that notes created by other users in your shared campaigns will automatically load without reloading the page.
 
 Extensive testing is implemented using RSpec and Capybara.
 

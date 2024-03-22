@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :membership do
-    collection
+    campaign
     journal { nil }
     member {
       if journal

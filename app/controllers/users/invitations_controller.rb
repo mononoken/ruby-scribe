@@ -4,7 +4,7 @@ class Users::InvitationsController < Users::ApplicationController
   def accept
     @invitation.accept
 
-    redirect_to @invitation.collection
+    redirect_to @invitation.campaign
   end
 
   def index
@@ -25,6 +25,6 @@ class Users::InvitationsController < Users::ApplicationController
 
   def invitation_params
     params.require(:invitation).permit(:sender_id, :recipient_id,
-      :collection_id)
+      :campaign_id)
   end
 end

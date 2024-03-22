@@ -30,9 +30,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :collections do
+  resources :campaigns do
     resources :invitations, only: %i[new create index],
-      controller: "collections/invitations"
+      controller: "campaigns/invitations"
   end
 
   resources :invitations, only: %i[destroy]

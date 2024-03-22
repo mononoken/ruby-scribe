@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_28_091643) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_22_070403) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "collections", force: :cascade do |t|
+  create_table "campaigns", force: :cascade do |t|
+    t.bigint "owner_id", null: false
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name", null: false
-    t.bigint "owner_id", null: false
-    t.index ["owner_id"], name: "index_collections_on_owner_id"
+    t.index ["owner_id"], name: "index_campaigns_on_owner_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -42,14 +42,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_28_091643) do
   end
 
   create_table "invitations", force: :cascade do |t|
-    t.bigint "collection_id", null: false
     t.datetime "accepted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "sender_id", null: false
     t.bigint "recipient_id", null: false
-    t.index ["collection_id", "recipient_id"], name: "index_invitations_on_collection_id_and_recipient_id", unique: true
-    t.index ["collection_id"], name: "index_invitations_on_collection_id"
+    t.bigint "campaign_id", null: false
+    t.index ["campaign_id", "recipient_id"], name: "index_invitations_on_campaign_id_and_recipient_id", unique: true
+    t.index ["campaign_id"], name: "index_invitations_on_campaign_id"
     t.index ["recipient_id"], name: "index_invitations_on_recipient_id"
     t.index ["sender_id"], name: "index_invitations_on_sender_id"
   end
@@ -63,15 +63,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_28_091643) do
   end
 
   create_table "memberships", force: :cascade do |t|
-    t.bigint "collection_id", null: false
     t.bigint "member_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "journal_id"
     t.integer "role", null: false
-    t.index ["collection_id"], name: "index_memberships_on_collection_id"
+    t.bigint "campaign_id", null: false
+    t.index ["campaign_id"], name: "index_memberships_on_campaign_id"
     t.index ["journal_id"], name: "index_memberships_on_journal_id"
-    t.index ["member_id", "collection_id"], name: "index_memberships_on_member_id_and_collection_id", unique: true
     t.index ["member_id"], name: "index_memberships_on_member_id"
   end
 
@@ -112,15 +111,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_28_091643) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
-  add_foreign_key "collections", "users", column: "owner_id"
+  add_foreign_key "campaigns", "users", column: "owner_id"
   add_foreign_key "comments", "notes"
   add_foreign_key "comments", "users", column: "author_id"
   add_foreign_key "counters", "notes"
-  add_foreign_key "invitations", "collections"
+  add_foreign_key "invitations", "campaigns"
   add_foreign_key "invitations", "users", column: "recipient_id"
   add_foreign_key "invitations", "users", column: "sender_id"
   add_foreign_key "journals", "users", column: "author_id"
-  add_foreign_key "memberships", "collections"
+  add_foreign_key "memberships", "campaigns"
   add_foreign_key "memberships", "journals"
   add_foreign_key "memberships", "users", column: "member_id"
   add_foreign_key "notes", "journals"

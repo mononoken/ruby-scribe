@@ -1,0 +1,37 @@
+<%= form_with model: campaign,
+  class: "flex flex-col items-stretch" do |form|
+%>
+  <div
+    class="space-y-[16px]"
+  >
+    <div>
+      <%= form.label :name,
+        class: "block text-sm text-indigo-400 font-bold"
+      %>
+      <%= form.text_field :name,
+        class: "w-full bg-slate-800 border-slate-600 rounded-md
+                placeholder:italic placeholder:text-slate-600",
+        placeholder: "Name your campaign",
+        data: {testid: "campaign-name-input"}
+      %>
+    </div>
+    <div>
+      <%= form.fields_for :memberships do |memberships_form| %> 
+        <div>
+          <%= memberships_form.label :journal_id %>
+          <%= memberships_form.select :journal_id, journals.pluck(:name, :id), 
+            {prompt: "Select a journal"},
+            {
+              class: "w-full bg-slate-800 border-slate-600 rounded-md",
+              data: {testid: "journals-select"}
+            }
+          %>
+        </div>
+      <% end %>
+    </div>
+    <%= form.submit "Save Campaign",
+      class: "h-8 w-full px-[8px] text-lg text-stone-300 bg-indigo-500 rounded-md hover:bg-indigo-600 focus:bg-indigo-700 hover:cursor-pointer",
+      data: {testid: "campaign-save-btn"}
+    %>
+  </div>
+<% end %>

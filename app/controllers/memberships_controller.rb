@@ -4,8 +4,8 @@ class MembershipsController < ApplicationController
   def destroy
     @membership.destroy
 
-    flash[:success] = "You successfully left #{@membership.collection.name}."
-    redirect_to collections_path
+    flash[:success] = "You successfully left #{@membership.campaign.name}."
+    redirect_to campaigns_path
   end
 
   private

@@ -77,7 +77,7 @@ RSpec.describe "viewing navbar", type: :system do
       let(:valid_paths) do
         [
           journals_path,
-          collections_path,
+          campaigns_path,
           root_path
         ]
       end
@@ -157,9 +157,9 @@ RSpec.describe "viewing navbar", type: :system do
     end
   end
 
-  context "when user has collections" do
-    let!(:collection1) { create(:collection, owner: user) }
-    let!(:collection2) { collection_with_members(members: [user]) }
+  context "when user has campaigns" do
+    let!(:campaign1) { create(:campaign, owner: user) }
+    let!(:campaign2) { campaign_with_members(members: [user]) }
 
     before do
       sign_in user
@@ -168,12 +168,12 @@ RSpec.describe "viewing navbar", type: :system do
       click_button "nav-hamburger-btn"
     end
 
-    it "has links to user's collections in navbar" do
-      collection_paths = [collection1, collection2].map do |collection|
-        collection_path(collection)
+    it "has links to user's campaigns in navbar" do
+      campaign_paths = [campaign1, campaign2].map do |campaign|
+        campaign_path(campaign)
       end
 
-      collection_paths.each do |path|
+      campaign_paths.each do |path|
         within "nav" do
           expect(page).to have_link(href: path)
         end

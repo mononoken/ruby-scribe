@@ -33,4 +33,4 @@ en:
   hello: "Hello world"
   notifications:
     new_invitation_notification:
-      message: "You have an invitation to %{collection} from %{sender}."
+      message: "You have an invitation to %{campaign} from %{sender}."

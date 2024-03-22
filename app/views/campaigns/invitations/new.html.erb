@@ -1,0 +1,4 @@
+<h1>New Invitation to <%= @campaign.name %></h1>
+<%= render partial: "campaigns/invitations/form",
+  locals: {campaign: @campaign, invitation: @invitation}
+%>

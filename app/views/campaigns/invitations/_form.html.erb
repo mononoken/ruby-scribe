@@ -1,0 +1,14 @@
+<%= form_with model: invitation, url: [campaign, invitation],
+  data: {testid: "invitation-form"} do |form|
+%>
+  <%= form.hidden_field :sender_id, value: current_user.id %>
+  <%= form.hidden_field :campaign_id, value: campaign.id %>
+  <%= form.label :recipient_id, "Username" %>
+  <%= form.collection_select :recipient_id, User.all, :id, :username,
+    {},
+    data: {testid: "campaign-username-select"}
+  %>
+  <%= form.submit "Invite",
+    data: {testid: "invite-submit-btn"}
+  %>
+<% end %>

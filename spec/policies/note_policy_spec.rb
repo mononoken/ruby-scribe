@@ -55,12 +55,12 @@ RSpec.describe NotePolicy, type: :policy do
   #   end
   #
   #   context "when user is not author" do
-  #     context "when user has membership to same collection as note's journal" do
+  #     context "when user has membership to same campaign as note's journal" do
   #       before do
   #         @journal_membership = create(:membership,
   #           journal: record.journal)
   #         @user_membership = create(:membership,
-  #           member: user, collection: @journal_membership.collection)
+  #           member: user, campaign: @journal_membership.campaign)
   #       end
   #
   #       it "returns true" do
@@ -68,7 +68,7 @@ RSpec.describe NotePolicy, type: :policy do
   #       end
   #     end
   #
-  #     context "when user is not a member of the journal's collection" do
+  #     context "when user is not a member of the journal's campaign" do
   #       it "returns false" do
   #         is_expected.to be(false)
   #       end

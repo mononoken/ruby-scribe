@@ -10,7 +10,7 @@ class NewInvitationNotification < Noticed::Base
 
   # Define helper methods to make rendering easier.
   def message
-    t(".message", collection:, sender:)
+    t(".message", campaign:, sender:)
   end
 
   def url
@@ -23,8 +23,8 @@ class NewInvitationNotification < Noticed::Base
 
   private
 
-  def collection
-    invitation.collection.name
+  def campaign
+    invitation.campaign.name
   end
 
   def sender

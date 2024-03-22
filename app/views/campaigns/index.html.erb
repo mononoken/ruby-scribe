@@ -1,0 +1,23 @@
+<h2
+  class="text-lg text-lime-300 font-bold mb-[16px]"
+>
+  <%= current_user.username %>'s Campaigns
+</h2>
+<%= link_to "New campaign", new_campaign_path,
+    data: { testid: "new-campaign-link" } %>
+<ul data-testid="campaigns-list">
+  <% @campaigns.each do |campaign| %>
+    <li>
+      <h3><%= link_to campaign.name, campaign_path(campaign) %></h3>
+      <div>
+        <%= link_to "Edit", edit_campaign_path(campaign) %>
+        <%= button_to "Delete", campaign_path(campaign), method: :delete,
+          data: {
+            turbo_confirm: "Are you sure?",
+            testid: "campaign-delete-btn"
+          }
+        %>
+      </div>
+    </li>
+  <% end %>
+</ul>
