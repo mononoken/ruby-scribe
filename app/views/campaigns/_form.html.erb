@@ -17,17 +17,19 @@
     </div>
     <% unless campaign.persisted? %>
       <div>
-        <%= form.fields_for :memberships do |memberships_form| %> 
-          <div>
-            <%= memberships_form.label :journal_id %>
-            <%= memberships_form.select :journal_id, journals.pluck(:name, :id), 
-              {prompt: "Select a journal"},
-              {
-                class: "w-full bg-slate-800 border-slate-600 rounded-md",
-                data: {testid: "journals-select"}
-              }
-            %>
-          </div>
+        <%= form.fields_for :memberships do |memberships_form| %>
+          <%= memberships_form.fields_for :membership_journals do |membership_journals_form| %>
+            <div>
+              <%= membership_journals_form.label :journal_id %>
+              <%= membership_journals_form.select :journal_id, journals.pluck(:name, :id), 
+                {prompt: "Select a journal"},
+                {
+                  class: "w-full bg-slate-800 border-slate-600 rounded-md",
+                  data: {testid: "journals-select"}
+                }
+              %>
+            </div>
+          <% end %>
         <% end %>
       </div>
     <% end %>

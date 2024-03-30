@@ -4,8 +4,8 @@ class CampaignsController < ApplicationController
   def new
     authorize!
     @campaign = Campaign.new
-    @campaign.memberships.build
-
+    membership = @campaign.memberships.build
+    membership.membership_journals.build
     @journals = current_user.journals
   end
 
@@ -67,8 +67,15 @@ class CampaignsController < ApplicationController
 
   def campaign_params
     params.require(:campaign)
-      .permit(:name, :owner_id,
-        memberships_attributes:
-          [:campaign_id, :member_id, :journal_id, :role])
+      .permit(
+        :name,
+        :owner_id,
+        memberships_attributes: [
+          :campaign_id,
+          :member_id,
+          :role,
+          membership_journals_attributes: [:journal_id]
+        ]
+      )
   end
 end
