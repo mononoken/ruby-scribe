@@ -1,3 +1,5 @@
+<%= link_to "Back to #{@campaign.name}", campaign_path(@campaign) %>
+
 <h1><%= @campaign.name %>'s Invitations</h1>
 <%= link_to "New Invitation", new_campaign_invitation_path(@campaign),
     data: { testid: "new-invitation-link" } %>
