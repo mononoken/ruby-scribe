@@ -74,7 +74,10 @@ class CampaignsController < ApplicationController
           :campaign_id,
           :member_id,
           :role,
-          membership_journals_attributes: [:journal_id]
+          membership_journals_attributes: [
+            :membership_journal,
+            :journal_id
+          ]
         ]
       )
   end
