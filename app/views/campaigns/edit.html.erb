@@ -5,6 +5,17 @@
 >
   Edit <%= @campaign.name %>
 </h2>
-<%= render partial: "form",
-  locals: {campaign: @campaign, journals: @journals}
-%>
+<div
+  class="flex flex-col space-y-[16px]"
+>
+  <%= render partial: "form",
+    locals: {campaign: @campaign, journals: @journals}
+  %>
+  <%= button_to "Delete", campaign_path(@campaign), method: :delete,
+    class: "h-8 w-full px-[8px] text-lg text-stone-300 bg-rose-400 rounded-md hover:bg-rose-500 focus:bg-rose-600 hover:cursor-pointer",
+    data: {
+      turbo_confirm: "Are you sure? Members will no longer be able to share their journals and notes. This will not destroy journals.",
+      testid: "destroy-campaign-btn"
+    }
+  %>
+</div>
