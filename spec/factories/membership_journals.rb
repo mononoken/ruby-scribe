@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :membership_journal do
-    membership { nil }
-    journal { nil }
+    membership
+    journal { association(:journal, author: membership.member) }
   end
 end

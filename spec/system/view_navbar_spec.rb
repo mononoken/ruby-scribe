@@ -159,7 +159,8 @@ RSpec.describe "viewing navbar", type: :system do
 
   context "when user has campaigns" do
     let!(:campaign1) { create(:campaign, owner: user) }
-    let!(:campaign2) { campaign_with_members(members: [user]) }
+    let!(:campaign2) { create(:campaign) }
+    let!(:membership) { create(:membership, campaign: campaign2, member: user) }
 
     before do
       sign_in user
