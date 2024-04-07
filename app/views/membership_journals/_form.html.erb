@@ -1,0 +1,22 @@
+<%= form_with model: membership_journal, url: [campaign, membership_journal],
+  class: "flex flex-col items-stretch" do |form|
+%>
+  <div
+    class="space-y-[16px]"
+  >
+    <div>
+      <%= form.label :journal_id %>
+      <%= form.select :journal_id, journals.pluck(:name, :id), 
+        {prompt: "Select a journal"},
+        {
+          class: "w-full bg-slate-800 border-slate-600 rounded-md",
+          data: {testid: "journals-select"}
+        }
+      %>
+    </div>
+    <%= form.submit "Add Journal",
+      class: "h-8 w-full px-[8px] text-lg text-stone-300 bg-indigo-500 rounded-md hover:bg-indigo-600 focus:bg-indigo-700 hover:cursor-pointer",
+      data: {testid: "membership-journal-save-btn"}
+    %>
+  </div>
+<% end %>
