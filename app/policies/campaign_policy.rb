@@ -19,6 +19,10 @@ class CampaignPolicy < ApplicationPolicy
     owner? || member?
   end
 
+  def edit?
+    member?
+  end
+
   def manage?
     owner?
   end
