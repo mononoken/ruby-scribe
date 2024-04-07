@@ -33,8 +33,10 @@ Rails.application.routes.draw do
   resources :campaigns do
     resources :invitations, only: %i[new create index],
       controller: "campaigns/invitations"
-    resources :membership_journals, only: %i[new create destroy]
+    resources :membership_journals, only: %i[new create]
   end
+
+  resources :membership_journals, only: %i[destroy]
 
   resources :invitations, only: %i[destroy]
 

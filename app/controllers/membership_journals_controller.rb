@@ -23,8 +23,11 @@ class MembershipJournalsController < ApplicationController
   end
 
   def destroy
-    # @membership_journal = MembershipJournal.find(params[:id])
-    # @membership_journal.destroy
+    @membership_journal = MembershipJournal.find(params[:id])
+    @membership_journal.destroy
+
+    flash[:success] = "You successfully removed #{@membership_journal.journal.name}."
+    redirect_to edit_campaign_path(@membership_journal.campaign)
   end
 
   private
