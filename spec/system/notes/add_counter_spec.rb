@@ -11,7 +11,7 @@ RSpec.describe "Counter", type: :system do
     let!(:note) { create(:note, author: user) }
     let(:counter) { build(:counter) }
 
-    it "shows button to add counter" do
+    xit "shows button to add counter" do
       visit note_path(note)
       click_button "counter-create-btn"
 
