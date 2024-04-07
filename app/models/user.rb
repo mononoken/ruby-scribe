@@ -14,6 +14,8 @@ class User < ApplicationRecord
     foreign_key: "owner_id", inverse_of: "owner", dependent: :destroy
   has_many :memberships, foreign_key: "member_id", inverse_of: "member",
     dependent: :destroy
+  has_many :membership_journals, through: :memberships,
+    foreign_key: "member_id", inverse_of: "member", dependent: :destroy
   has_many :campaigns, through: :memberships,
     dependent: :destroy
   has_many :sent_invitations, class_name: "Invitation",

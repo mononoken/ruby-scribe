@@ -2,7 +2,7 @@ class Membership < ApplicationRecord
   belongs_to :campaign
   belongs_to :member, class_name: "User"
 
-  has_many :membership_journals
+  has_many :membership_journals, dependent: :destroy
   has_many :journals, through: :membership_journals
 
   accepts_nested_attributes_for :membership_journals
