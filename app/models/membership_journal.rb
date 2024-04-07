@@ -3,6 +3,8 @@ class MembershipJournal < ApplicationRecord
   belongs_to :journal
 
   has_one :member, through: :membership
+  has_one :campaign, through: :membership
+
   validates :journal, uniqueness: {scope: :membership}
   validate :member_owns_journal
 
