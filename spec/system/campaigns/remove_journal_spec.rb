@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe "remove journal from campaign", type: :system do
   let!(:campaign) { create(:campaign, :with_owner_journal) }
   let(:user) { campaign.owner }
-  let(:journal) { campaign.journals.first }
+  let(:owner_journal) { campaign.journals.first }
 
   scenario "valid input for owner" do
     sign_in user
@@ -11,11 +11,11 @@ RSpec.describe "remove journal from campaign", type: :system do
 
     click_link "edit-campaign-link"
     accept_alert do
-      click_button "remove-journal_#{journal.id}-btn"
+      click_button "remove-journal_#{owner_journal.id}-btn"
     end
 
     within "[data-testid='campaign-journals-list']" do
-      expect(page).not_to have_content(journal.name)
+      expect(page).not_to have_content(owner_journal.name)
     end
   end
 
@@ -24,7 +24,7 @@ RSpec.describe "remove journal from campaign", type: :system do
     let(:member) { membership.member }
     let(:member_journal) { membership.journals.last }
 
-    scenario "valid input for member" do
+    scenario "member can remove own journals from campaign" do
       sign_in member
       visit campaign_path(campaign)
 
@@ -34,11 +34,22 @@ RSpec.describe "remove journal from campaign", type: :system do
       end
 
       within "[data-testid='campaign-journals-list']" do
-        expect(page).not_to have_content(journal.name)
+        expect(page).not_to have_content(member_journal.name)
       end
     end
 
     scenario "member cannot remove others' journals" do
+      sign_in member
+      visit campaign_path(campaign)
+
+      click_link "edit-campaign-link"
+      accept_alert do
+        click_button "remove-journal_#{owner_journal.id}-btn"
+      end
+
+      within "[data-testid='campaign-journals-list']" do
+        expect(page).to have_content(owner_journal.name)
+      end
     end
   end
 end
