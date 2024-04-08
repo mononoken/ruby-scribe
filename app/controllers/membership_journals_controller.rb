@@ -24,10 +24,15 @@ class MembershipJournalsController < ApplicationController
 
   def destroy
     @membership_journal = MembershipJournal.find(params[:id])
+    authorize! @membership_journal
+
     @membership_journal.destroy
 
     flash[:success] = "You successfully removed #{@membership_journal.journal.name}."
     redirect_to edit_campaign_path(@membership_journal.campaign)
+  rescue ActionPolicy::Unauthorized
+    flash[:error] = "You do not have permission to remove that journal."
+    redirect_to edit_campaign_path(@membership_journal.campaign), status: :forbidden
   end
 
   private
