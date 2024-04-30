@@ -28,6 +28,22 @@ RSpec.describe CommentPolicy, type: :policy do
           .with(:manage?, record.note)
           .and_return(false)
       end
+
+      succeed "when user is a member of the comment's note's journal's campaign" do
+        let(:user) { create :user }
+
+        before do
+          campaign = create :campaign
+          # Create membership for comment's author
+          author_membership = create :membership, campaign:, member: record.author
+          # Make comment's journal part of the campaign
+          create :membership_journal,
+            membership: author_membership,
+            journal: record.note.journal
+          # Create membership for user
+          create :membership, campaign:, member: user
+        end
+      end
     end
   end
 
@@ -47,6 +63,22 @@ RSpec.describe CommentPolicy, type: :policy do
         allow(policy).to receive(:allowed_to?)
           .with(:manage?, record.note)
           .and_return(false)
+      end
+
+      succeed "when user is a member of the comment's note's journal's campaign" do
+        let(:user) { create :user }
+
+        before do
+          campaign = create :campaign
+          # Create membership for comment's author
+          author_membership = create :membership, campaign:, member: record.author
+          # Make comment's journal part of the campaign
+          create :membership_journal,
+            membership: author_membership,
+            journal: record.note.journal
+          # Create membership for user
+          create :membership, campaign:, member: user
+        end
       end
     end
   end
@@ -79,9 +111,33 @@ RSpec.describe CommentPolicy, type: :policy do
     end
   end
 
-  describe "show?" do
-    it "is an alias of :manage? rule" do
-      expect(:show?).to be_an_alias_of(policy, :manage?)
+  # describe "show?" do
+  #   it "is an alias of :manage? rule" do
+  #     expect(:show?).to be_an_alias_of(policy, :manage?)
+  #   end
+  # end
+
+  describe_rule :show? do
+    succeed "when user is author" do
+      let(:user) { record.author }
+    end
+
+    failed "when user is not author" do
+      succeed "when user is a member of the comment's note's journal's campaign" do
+        let(:user) { create :user }
+
+        before do
+          campaign = create :campaign
+          # Create membership for comment's author
+          author_membership = create :membership, campaign:, member: record.author
+          # Make comment's journal part of the campaign
+          create :membership_journal,
+            membership: author_membership,
+            journal: record.note.journal
+          # Create membership for user
+          create :membership, campaign:, member: user
+        end
+      end
     end
   end
 end
