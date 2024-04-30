@@ -1,6 +1,4 @@
 class CampaignPolicy < ApplicationPolicy
-  default_rule :manage?
-
   def index?
     record.all? do |campaign|
       campaign.members.any? { |member| user.id == member.id }

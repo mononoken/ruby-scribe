@@ -1,6 +1,4 @@
 class JournalPolicy < ApplicationPolicy
-  default_rule :manage?
-
   def index?
     user.present?
   end

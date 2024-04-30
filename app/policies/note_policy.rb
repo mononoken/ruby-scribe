@@ -1,8 +1,6 @@
 class NotePolicy < ApplicationPolicy
   authorize :journal, optional: true
 
-  default_rule :manage?
-
   def index?
     allowed_to?(:show?, journal)
   end

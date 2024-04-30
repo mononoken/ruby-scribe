@@ -1,6 +1,4 @@
 class MembershipPolicy < ApplicationPolicy
-  default_rule :manage?
-
   def manage?
     member?
   end

@@ -3,13 +3,15 @@ class ApplicationPolicy < ActionPolicy::Base
   # Configure additional authorization contexts here
   # (`user` is added by default).
   #
-  #   authorize :account, optional: true
+  # Action Policy defaults https://actionpolicy.evilmartians.io/#/aliases?id=default-rule
   #
-  # Read more about authorization context: https://actionpolicy.evilmartians.io/#/authorization_context
+  # default_rule :manage?
+  # alias_rule :new?, to: :create?
+  # def index?() = false
+  # def create?() = false
+  # def manage?() = false
 
   private
-
-  # Define shared methods useful for most policies.
 
   def author?
     user.id == record.author_id
