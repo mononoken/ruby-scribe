@@ -1,6 +1,8 @@
 <%= turbo_stream_from comment %>
 <%= turbo_frame_tag comment do %>
-  <div>
+  <div
+    class="text-sm font-bold text-indigo-400"
+  >
     <%= comment.author.username %>
   </div>
   <p>
