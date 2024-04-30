@@ -2,15 +2,11 @@ class CommentPolicy < ApplicationPolicy
   authorize :note, optional: true
 
   def index?
-    allowed_to?(:show?, note)
-  end
-
-  def new?
-    create?
+    allowed_to?(:manage?, note)
   end
 
   def create?
-    allowed_to?(:show?, note)
+    allowed_to?(:manage?, note)
   end
 
   def manage?
