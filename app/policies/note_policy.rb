@@ -2,15 +2,11 @@ class NotePolicy < ApplicationPolicy
   authorize :journal, optional: true
 
   def index?
-    allowed_to?(:show?, journal)
-  end
-
-  def new?
-    create?
+    allowed_to?(:manage?, journal)
   end
 
   def create?
-    allowed_to?(:show?, journal)
+    allowed_to?(:manage?, journal)
   end
 
   def manage?
