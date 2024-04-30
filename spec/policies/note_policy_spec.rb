@@ -48,6 +48,22 @@ RSpec.describe NotePolicy, type: :policy do
           .with(:manage?, record.journal)
           .and_return(false)
       end
+
+      succeed "when user is a member of the note's journal's campaign" do
+        let(:user) { create :user }
+
+        before do
+          campaign = create :campaign
+          # Create membership for author
+          author_membership = create :membership, campaign:, member: record.author
+          # Make comment's journal part of the campaign
+          create :membership_journal,
+            membership: author_membership,
+            journal: record.journal
+          # Create membership for user
+          create :membership, campaign:, member: user
+        end
+      end
     end
   end
 
@@ -79,9 +95,27 @@ RSpec.describe NotePolicy, type: :policy do
     end
   end
 
-  describe "show?" do
-    it "is an alias of :manage? rule" do
-      expect(:show?).to be_an_alias_of(policy, :manage?)
+  describe_rule :show? do
+    succeed "when user is author" do
+      let(:user) { record.author }
+    end
+
+    failed "when user is not author" do
+      succeed "when user is a member of the note's journal's campaign" do
+        let(:user) { create :user }
+
+        before do
+          campaign = create :campaign
+          # Create membership for author
+          author_membership = create :membership, campaign:, member: record.author
+          # Make comment's journal part of the campaign
+          create :membership_journal,
+            membership: author_membership,
+            journal: record.journal
+          # Create membership for user
+          create :membership, campaign:, member: user
+        end
+      end
     end
   end
 end
