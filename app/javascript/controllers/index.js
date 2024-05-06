@@ -4,8 +4,11 @@
 
 import { application } from "./application"
 
+import CampfireController from "./campfire_controller"
+application.register("campfire", CampfireController)
+
 import PopoverController from "./popover_controller"
 application.register("popover", PopoverController)
 
-import RevealController from "./reveal_controller"
-application.register("reveal", RevealController)
+import RevealController from "./reveal_controller";
+application.register("reveal", RevealController);
