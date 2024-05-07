@@ -24,10 +24,10 @@
     class="flex flex-col space-y-[16px]"
   >
     <li class="h-8 w-full text-center px-[8px] py-[4px] text-lg text-stone-300 bg-indigo-500 rounded-md hover:bg-indigo-600 focus:bg-indigo-700 hover:cursor-pointer">
-      <%= link_to "Sign up", new_user_registration_path %>
+      <%= link_to "Sign up", new_user_registration_path, class: "h-full w-full block" %>
     </li>
     <li class="h-8 w-full text-center px-[8px] py-[4px] text-lg text-stone-300 bg-indigo-500 rounded-md hover:bg-indigo-600 focus:bg-indigo-700 hover:cursor-pointer">
-      <%= link_to "Sign in", new_user_session_path %>
+      <%= link_to "Sign in", new_user_session_path, class: "h-full w-full block" %>
     </li>
   </ul>
 <% end %>
