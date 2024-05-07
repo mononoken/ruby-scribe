@@ -5,10 +5,15 @@
 
 
   <div class="w-[300px] h-[300px] relative flex flex-col justify-end items-center border-2 border-white" data-controller="campfire">
-    <div class="w-3/5 h-[100px] absolute bottom-0">
-      <div class="w-[100px] h-[100px] absolute bottom-0 left-[15px] bg-[#c63509] opacity-90 rounded-2xl fire-pulse-low" data-campfire-target"base"></div>
-      <div class="w-[60px] h-[60px] absolute bottom-0 right-[20px] bg-[#e0af68] opacity-80 rounded-2xl fire-pulse-low delay-pulse" data-campfire-target"base"></div>
-      <div class="w-[100px] h-[100px] absolute bottom-1 right-[20px] bg-[#c63509] opacity-80 rounded-2xl fire-pulse-med" data-campfire-target"base"></div>
+    <div class="w-3/5 h-[100px] absolute flex justify-center bottom-0" data-campfire-target="particles">
+      <div class="w-[50px] h-[50px] bg-white particle-slow"></div>
+      <div class="w-[50px] h-[50px] bg-yellow-400 particle-med"></div>
+      <div class="w-[50px] h-[50px] bg-orange-400 particle-fast"></div>
+    </div>
+    <div class="w-3/5 h-[100px] absolute bottom-0" data-campfire-target"base">
+      <div class="w-[100px] h-[100px] absolute bottom-0 left-[15px] bg-[#c63509] opacity-90 rounded-2xl fire-pulse-low"></div>
+      <div class="w-[60px] h-[60px] absolute bottom-0 right-[20px] bg-[#e0af68] opacity-80 rounded-2xl fire-pulse-low delay-pulse"></div>
+      <div class="w-[100px] h-[100px] absolute bottom-1 right-[20px] bg-[#c63509] opacity-80 rounded-2xl fire-pulse-med"></div>
     </div>
     <div class="w-3/5 h-[100px] absolute bottom-0" data-campfire-target="logs">
       <div class="w-full h-[30px] absolute origin-center rotate-12 bg-[#965027] bottom-0 rounded-lg shadow-[0_3px_10px_#372113]"></div>
