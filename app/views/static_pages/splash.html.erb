@@ -4,7 +4,7 @@
 >
   Organize your RPG notes. Style them with markdown. Share them with your party members. Never forget anything, unless you roll a nat 1.
 <ul
-  class="flex flex-col space-y-[16px]"
+  class="flex flex-col space-y-[16px] py-8"
 >
   <li class="h-8 w-full text-center px-[8px] py-[4px] text-lg text-stone-300 bg-indigo-500 rounded-md hover:bg-indigo-600 focus:bg-indigo-700 hover:cursor-pointer">
     <%= link_to "Sign up", new_user_registration_path, class: "h-full w-full block" %>
@@ -13,3 +13,20 @@
     <%= link_to "Sign in", new_user_session_path, class: "h-full w-full block" %>
   </li>
 </ul>
+<footer
+  class="border-t-2 py-8 text-lg"
+>
+  <nav
+    class="flex flex-col justify-center space-y-2 md:flex-row md:items-center md:space-x-8"
+  >
+    <div class="">
+      <%= link_to "FAQ", "", class: "" %>
+    </div>
+    <div>
+      <%= link_to "Github", "", class: "" %>
+    </div>
+    <div>
+      <%= link_to "Contact", "", class: "" %>
+    </div>
+  </nav>
+</footer>
