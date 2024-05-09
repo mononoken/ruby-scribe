@@ -2,29 +2,29 @@
   class: "flex flex-col items-stretch" do |form|
 %>
   <div
-    class="space-y-[16px]"
+    class="text-stone-400 space-y-[16px]"
   >
     <div>
       <%= form.label :name,
-        class: "block text-sm text-indigo-400 font-bold"
+        class: "block text-sm font-bold"
       %>
       <%= form.text_field :name, data: {testid: "note-name-input"},
-        class: "w-full bg-slate-800 border-slate-600 rounded-md placeholder:italic placeholder:text-slate-600",
+        class: "w-full bg-zinc-900 border-zinc-700 rounded-md placeholder:italic placeholder:text-stone-600",
         placeholder: "Name your note"
       %>
     </div>
     <div>
       <%= form.label :body,
-        class: "block text-sm text-indigo-400 font-bold"
+        class: "block text-sm font-bold"
       %>
       <%= form.text_area :body,
-        class: "w-full bg-slate-800 border-slate-600 rounded-md placeholder:italic placeholder:text-slate-600",
+        class: "w-full bg-zinc-900 border-zinc-700 rounded-md placeholder:italic placeholder:text-slate-600",
         data: {testid: "note-body-input"}
       %>
     </div>
     <div>
       <%= form.submit "Save Note", data: {testid: "note-save-btn"},
-        class: "h-8 w-full px-[8px] text-lg text-stone-300 bg-indigo-500 rounded-md hover:bg-indigo-600 focus:bg-indigo-700 hover:cursor-pointer"
+        class: "h-8 w-full px-[8px] text-lg text-white rounded-md bg-mauve-700 hover:bg-mauve-600 focus:bg-mauve-800 hover:cursor-pointer"
       %>
     </div>
   </div>
