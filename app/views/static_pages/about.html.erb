@@ -1,33 +1,31 @@
-<h1 class="text-center text-3xl text-lime-300 font-bold mb-[16px]">About <em class="text-orange-300">Fae Scribe</em></h1>
-<p
-  class="text-center mb-[16px]"
->
-  I used to always use pen and paper for my RPG notes, but when I took notes for anything else, I would make digital notes. I still keep my paper journals from these precious campaigns, but I often rarely used them during my actual games. My notebooks were not useful because I could not find info from them easily.
-</p>
-<p
-  class="text-center mb-[16px]"
->
-  When I learned Ruby on Rails, this was one of my first project ideas. What if I could create a better way to not only create and organize my notes, but I could also make it easy to share these notes with friends.
-</p>
-<p
-  class="text-center mb-[16px]"
->
-  The note taker I admired most in all my games was my wife, Fae. This app is dedicated to her. I hope it turns into a tool that she and other diligent notetakers enjoy using.
-</p>
-<p
-  class="text-center mb-[16px]"
->
-  If you would like to follow the development of this project, it is open source and available on <%= link_to "Github", "https://github.com/mononoken/fae-scribe" %>.
-</p>
+<h1 class="text-center text-3xl font-bold mb-[16px]">Fae Scribe is an additional companion on your RPG adventures</h1>
+<article class="text-center text-stone-400">
+  <p
+    class="mb-[16px]"
+  >
+    I used to always use pen and paper for my RPG notes, but when I took notes for anything else, I would make digital notes. I still keep my paper journals from these precious campaigns, but I often rarely used them during my actual games. My notebooks were not useful because I could not find info from them easily.
+  </p>
+  <p
+    class="mb-[16px]"
+  >
+    When I learned Ruby on Rails, this was one of my first project ideas. What if I could create a better way to not only create and organize my notes, but I could also make it easy to share these notes with friends.
+  </p>
+  <p
+    class="mb-[16px]"
+  >
+    The note taker I admired most in all my games was my wife, Fae. This app is dedicated to her. I hope it turns into a tool that she and other diligent notetakers enjoy using.
+  </p>
+  <p
+    class="mb-[16px]"
+  >
+    If you would like to follow the development of this project, it is open source and available on <%= link_to "Github", "https://github.com/mononoken/fae-scribe" %>.
+  </p>
+</article>
 <% unless current_user %>
-  <ul
+  <div
     class="flex flex-col space-y-[16px]"
   >
-    <li class="h-8 w-full text-center px-[8px] py-[4px] text-lg text-stone-300 bg-indigo-500 rounded-md hover:bg-indigo-600 focus:bg-indigo-700 hover:cursor-pointer">
-      <%= link_to "Sign up", new_user_registration_path, class: "h-full w-full block" %>
-    </li>
-    <li class="h-8 w-full text-center px-[8px] py-[4px] text-lg text-stone-300 bg-indigo-500 rounded-md hover:bg-indigo-600 focus:bg-indigo-700 hover:cursor-pointer">
-      <%= link_to "Sign in", new_user_session_path, class: "h-full w-full block" %>
-    </li>
-  </ul>
+    <%= link_to "Sign up", new_user_registration_path, class: "h-8 w-full block text-center px-[8px] py-[4px] text-lg text-white bg-purple-600 rounded-md hover:bg-purple-700 focus:bg-fuchsia-800" %>
+    <%= link_to "Sign in", new_user_session_path, class: "h-8 w-full block text-center px-[8px] py-[4px] text-lg text-white bg-purple-600 rounded-md hover:bg-purple-700 focus:bg-fuchsia-800" %>
+  </div>
 <% end %>

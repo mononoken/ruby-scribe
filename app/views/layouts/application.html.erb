@@ -11,13 +11,16 @@
     <%= hotwire_livereload_tags if Rails.env.development? %>
   </head>
 
-  <body class="bg-slate-800 text-indigo-300">
+  <body class="bg-neutral-900 text-white">
     <header
       class="min-h-80 sticky inset-0 flex w-full items-center 
-             justify-between bg-slate-800 px-4 py-2"
+             justify-between px-4 py-2 text-stone-400"
     >
-      <h1 class="text-2xl font-bold text-orange-300">
-        <%= link_to "Fae Scribe", root_path %>
+      <h1 class="text-2xl font-bold">
+        <%= link_to root_path, class: "flex items-center space-x-2" do %>
+          <div class="w-6 h-6 bg-purplehaze rounded-sm"></div>
+          <div class="text-white">Fae Scribe</div>
+        <% end %>
       </h1>
       <div
         class="flex justify-end items-center space-x-2"
@@ -85,16 +88,17 @@
             <div
               class="fixed right-[-80%] h-full w-[80%] z-50
                     flex flex-col justify-between
-                    bg-slate-700 p-[24px] rounded-l-2xl"
+                    bg-neutral-900 p-[24px] rounded-l-2xl"
               data-popover-target="slideable"
             >
               <div
                 class="flex-none flex justify-between"
               >
-                <h1
-                  class="flex-none text-xl font-bold text-orange-300"
-                >
-                  <%= link_to "Fae Scribe", root_path %>
+                <h1 class="text-xl font-bold">
+                  <%= link_to root_path, class: "flex items-center space-x-2" do %>
+                    <div class="w-4 h-4 bg-purplehaze rounded-sm"></div>
+                    <div class="text-white">Fae Scribe</div>
+                  <% end %>
                 </h1>
                 <button
                   class="flex-none h-8 w-8"
@@ -121,7 +125,7 @@
                 class="flex-auto overflow-auto flex-vertical space-y-[4px] items-stretch text-xl leading-5"
               >
                 <li 
-                  class="relative px-[16px] py-[8px] rounded-md text-indigo-200"
+                  class="relative px-[16px] py-[8px] rounded-md"
                 >
                   <%= link_to "About", about_path,
                     class: " before:absolute before:inset-0"
@@ -129,7 +133,7 @@
                 </li>
                 <% if current_user %>
                   <li 
-                    class="relative px-[16px] py-[8px] rounded-md text-indigo-200"
+                    class="relative px-[16px] py-[8px] rounded-md"
                   >
                     <%= link_to "Journals", journals_path,
                       class: "before:absolute before:inset-0"
@@ -138,7 +142,7 @@
                   <% if current_user.journals.any? %>
                     <% current_user.journals.each do |journal| %>
                       <li 
-                        class="relative px-[16px] py-[8px] rounded-md text-indigo-200"
+                        class="relative px-[16px] py-[8px] rounded-md"
                       >
                         <%= link_to journal.name, journal_notes_path(journal),
                           class: "before:absolute before:inset-0"
@@ -147,7 +151,7 @@
                     <% end %>
                   <% end %>
                   <li 
-                    class="relative px-[16px] py-[8px] rounded-md text-indigo-200"
+                    class="relative px-[16px] py-[8px] rounded-md"
                   >
                     <%= link_to "Campaigns", campaigns_path,
                       class: "before:absolute before:inset-0"
@@ -156,7 +160,7 @@
                   <% if current_user.campaigns.any? %>
                     <% current_user.campaigns.each do |campaign| %>
                       <li 
-                        class="relative px-[16px] py-[8px] rounded-md text-indigo-200"
+                        class="relative px-[16px] py-[8px] rounded-md"
                       >
                         <%= link_to campaign.name, campaign_path(campaign),
                           class: "before:absolute before:inset-0"
@@ -165,7 +169,7 @@
                     <% end %>
                   <% end %>
                   <li
-                    class="relative px-[16px] py-[8px] rounded-md text-indigo-200"
+                    class="relative px-[16px] py-[8px] rounded-md"
                   >
                     <%= link_to "Invitations", users_invitations_path,
                       class: "before:absolute before:inset-0"
@@ -176,19 +180,19 @@
                   >
                     <%= button_to "Sign out", destroy_user_session_path, 
                       method: :delete, data: {testid: "sign-out-btn"},
-                      class: "h-full w-full text-left px-[16px] py-[8px] text-indigo-200"
+                      class: "h-full w-full text-left px-[16px] py-[8px]"
                     %>
                   </li>
                 <% else %>
                   <li 
-                    class="relative px-[16px] py-[8px] rounded-md text-indigo-200"
+                    class="relative px-[16px] py-[8px] rounded-md"
                   >
                     <%= link_to "Sign in", new_user_session_path,
                       class: "before:absolute before:inset-0"
                     %>
                   </li>
                   <li 
-                    class="relative px-[16px] py-[8px] rounded-md text-indigo-200"
+                    class="relative px-[16px] py-[8px] rounded-md"
                   >
                     <%= link_to "Sign up", new_user_registration_path,
                       class: "before:absolute before:inset-0"
@@ -197,7 +201,7 @@
                 <% end %>
               </ul>
               <div
-                class="flex-none flex items-center space-x-[8px] relative px-[16px] py-[8px] text-indigo-200 rounded-md text-xl leading-5"
+                class="flex-none flex items-center space-x-[8px] relative px-[16px] py-[8px] rounded-md text-xl leading-5"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -221,7 +225,7 @@
     <div class="flex-col overflow-y-auto">
       <% if flash.any? %>
         <div
-          class="px-4 py-2 font-medium text-rose-400 bg-slate-700 mb-[8px]"
+          class="px-4 py-2 font-medium text-rose-400 mb-[8px]"
           data-testid="flash-msg"
         >
           <% flash.each do |type, message| %>
@@ -238,7 +242,7 @@
         </div>
       <% end %>
       <main
-        class="px-[16px]"
+        class="px-[16px] mb-4"
       >
         <%= yield %>
       </main>
