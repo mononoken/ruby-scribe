@@ -7,6 +7,8 @@ class Note < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :counters, dependent: :destroy
 
+  broadcasts_refreshes
+
   def self.ransackable_attributes(auth_object = nil)
     ["name", "body"]
   end
