@@ -4,8 +4,8 @@ class Note < ApplicationRecord
   belongs_to :journal
   belongs_to :author, class_name: "User"
 
-  has_many :comments
-  has_many :counters
+  has_many :comments, dependent: :destroy
+  has_many :counters, dependent: :destroy
 
   def self.ransackable_attributes(auth_object = nil)
     ["name", "body"]
