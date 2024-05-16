@@ -20,8 +20,7 @@
   </div>
 <% end %>
 <ul class="flex justify-end items-center space-x-[4px]">
-  <%# FIX_ME this should use CounterPolicy #new? %>
-  <% if allowed_to?(:edit?, note) %>
+  <% if allowed_to?(:manage?, note) %>
     <li
       class="flex justify-end items-center"
       data-controller="reveal"
@@ -44,8 +43,6 @@
         </svg>
       </button>
     </li>
-  <% end %>
-  <% if allowed_to?(:edit?, note) %>
     <li>
       <%= link_to edit_note_path(note), 
         data: {testid: "note-edit-link"},
@@ -56,8 +53,6 @@
         </svg>
       <% end %>
     </li>
-  <% end %>
-  <% if allowed_to?(:destroy?, note) %>
     <li>
       <%= button_to note_path(note), method: :delete,
         data: {
