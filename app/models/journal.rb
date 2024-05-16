@@ -7,4 +7,6 @@ class Journal < ApplicationRecord
   has_many :campaigns, through: :memberships
 
   validates :name, presence: true
+
+  broadcasts_refreshes
 end

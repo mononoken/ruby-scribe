@@ -1,7 +1,7 @@
 class Note < ApplicationRecord
   default_scope { order(updated_at: :desc) }
 
-  belongs_to :journal
+  belongs_to :journal, touch: true
   belongs_to :author, class_name: "User"
 
   has_many :comments, dependent: :destroy
