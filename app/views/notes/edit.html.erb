@@ -1,1 +1,5 @@
-<%= render partial: "form", locals: {note: @note, journal: @journal} %>
+<%= link_to "Back to #{@note.journal.name}", journal_path(@note.journal) %>
+
+<%= turbo_frame_tag @note do %>
+  <%= render "form", {journal: nil, note: @note} %>
+<% end %>

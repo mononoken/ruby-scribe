@@ -1,4 +1,4 @@
-<%= form_with model: note, url: [journal, note],
+<%= form_with model: [journal, note],
   class: "flex flex-col items-stretch" do |form|
 %>
   <div
@@ -27,5 +27,12 @@
         class: "h-8 w-full px-[8px] text-lg text-stone-300 bg-indigo-500 rounded-md hover:bg-indigo-600 focus:bg-indigo-700 hover:cursor-pointer"
       %>
     </div>
+    <% if note.persisted? %>
+      <div>
+        <%= link_to "Cancel", note,
+          class: "block h-8 w-full px-[8px] leading-8 text-center align-middle text-lg text-stone-300 bg-rose-400 rounded-md hover:bg-rose-500 focus:bg-rose-600"
+        %>
+      </div>
+    <% end %>
   </div>
 <% end %>

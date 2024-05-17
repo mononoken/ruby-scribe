@@ -1,4 +1,5 @@
 <%= turbo_refreshes_with method: :morph, scroll: :preserve %>
+<%= turbo_stream_from @journal %>
 
 <div
   class="flex justify-between"
@@ -72,13 +73,9 @@
   <% end %>
 <% end %>
 
-<ul
+<div
   class="flex flex-col justify-stetch py-2 space-y-2"
   data-testid="notes-list"
 >
-  <% @notes.each do |note| %>
-    <li>
-      <%= render partial: "note", locals: {note: note} %>
-    </li>
-  <% end %>
-</ul>
+  <%= render @notes %>
+</div>
