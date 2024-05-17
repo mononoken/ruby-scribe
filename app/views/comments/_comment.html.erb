@@ -9,7 +9,7 @@
     <%= comment.body %>
   </p>
   <ul class="flex justify-end">
-    <%# if allowed_to?(:manage?, comment) %>
+    <% if allowed_to?(:manage?, comment) %>
       <li>
         <%= link_to edit_comment_path(comment), 
           data: {testid: "#{dom_id(comment)}-edit-link"},
@@ -34,6 +34,6 @@
           </svg>
         <% end %>
       </li>
-    <%# end %>
+    <% end %>
   </ul>
 <% end %>
