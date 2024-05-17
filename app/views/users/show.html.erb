@@ -69,7 +69,11 @@
         <% current_user.journals.each_with_index do |journal, i| %>
           <li class="hover:text-white">
             <%= link_to journal_notes_path(journal) do %>
-              <% if i === 0 %>
+              <% if i === 0 && current_user.journals.count === 1 %>
+                <div
+                  class="flex items-center space-x-4 text-lg p-4 outline outline-1 rounded-md"
+                >
+              <% elsif i === 0 %>
                 <div
                   class="flex items-center space-x-4 text-lg p-4 outline outline-1 rounded-t-md"
                 >
@@ -120,7 +124,11 @@
         <% current_user.campaigns.each_with_index do |campaign, i| %>
           <li class="hover:text-white">
             <%= link_to campaign_path(campaign) do %>
-              <% if i === 0 %>
+              <% if i === 0 && current_user.campaigns.count === 1 %>
+                <div
+                  class="flex items-center space-x-4 text-lg p-4 outline outline-1 rounded-md"
+                >
+              <% elsif i === 0 %>
                 <div
                   class="flex items-center space-x-4 text-lg p-4 outline outline-1 rounded-t-md"
                 >
