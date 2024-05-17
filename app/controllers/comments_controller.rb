@@ -24,9 +24,13 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
 
-    flash[:success] = "Comment successfully deleted."
-    # redirect_to note_comments_path(@comment.note)
-    redirect_to @comment.note
+    respond_to do |format|
+      format.turbo_stream { @comment.broadcast_remove }
+      format.html do
+        flash[:success] = "Comment successfully deleted."
+        redirect_to note_comments_url(@comment.note)
+      end
+    end
   end
 
   def edit
@@ -34,10 +38,10 @@ class CommentsController < ApplicationController
 
   def update
     if @comment.update(comment_params)
-      redirect_to @comment.note
+      redirect_to @comment
     else
       flash.now[:error] = @comment.errors.full_messages
-      redirect_to @comment.note, status: :unprocessable_entity
+      redirect_to @comment, status: :unprocessable_entity
     end
   end
 

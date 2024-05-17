@@ -9,18 +9,9 @@
 <div
   class="flex flex-col space-y-2"
 >
-  <%# turbo_frame_tag dom_id(@note, :new_comment),
-    src: new_note_comment_path(@note)
-  %>
-  <%= render "comments/form", {note: @note, comment: Comment.new(note: @note) } %>
+  <%= render "comments/form", {note: @note, comment: @note.comments.build } %>
 
-  <%# turbo_stream_from @note, :comments %>
-  <%# turbo_frame_tag dom_id(@note, :comments),
-    src: note_comments_path(@note)
+  <%= turbo_frame_tag dom_id(@note, :comments),
+    src: note_comments_path(@note), refresh: :morph
   %>
-  <div
-    class="flex flex-col space-y-2"
-  >
-    <%= render @note.comments %>
-  </div>
 </div>
