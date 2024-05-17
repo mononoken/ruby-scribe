@@ -6,12 +6,10 @@
         data: {testid: "note-link"}
       %>
     </h3>
-    <% if @counters %>
-      <%= turbo_stream_from @note, :counters %>
-      <%= turbo_frame_tag dom_id(@note, :counters),
-        src: note_counters_path(@note)
-      %>
-    <% end %>
+    <%= turbo_stream_from note, :counters %>
+    <%= turbo_frame_tag dom_id(note, :counters),
+      src: note_counters_path(note)
+    %>
     <% if note.body != "" %>
       <div
         class="prose prose-invert marker:text-slate-400 max-w-none mb-[8px] bg-slate-600 rounded-md px-[16px] py-[8px]"
