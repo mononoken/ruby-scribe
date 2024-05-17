@@ -3,10 +3,10 @@
     data: {testid: "note-link"}
   %>
 </h3>
-<% if @counters %>
-  <%= turbo_stream_from @note, :counters %>
-  <%= turbo_frame_tag dom_id(@note, :counters),
-    src: note_counters_path(@note)
+<% if note.counters.any? %>
+  <%= turbo_stream_from note, :counters %>
+  <%= turbo_frame_tag dom_id(note, :counters),
+    src: note_counters_path(note)
   %>
 <% end %>
 <% if note.body != "" %>
