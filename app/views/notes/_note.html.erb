@@ -4,7 +4,7 @@
     <h3 class="font-bold mb-[8px]">
       <%= link_to note.name, note_path(note),
         data: {
-          turbo: false,
+          turbo_frame: "_top",
           testid: "note-link"
         }
       %>
