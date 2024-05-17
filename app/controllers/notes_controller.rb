@@ -26,8 +26,13 @@ class NotesController < ApplicationController
   def destroy
     @note.destroy
 
-    flash[:success] = "Note successfully deleted."
-    redirect_to journal_notes_path(@note.journal)
+    respond_to do |format|
+      format.turbo_stream { @note.broadcast_remove }
+      format.html do
+        flash[:success] = "Note successfully deleted."
+        redirect_to journal_notes_url(@note.journal)
+      end
+    end
   end
 
   def edit

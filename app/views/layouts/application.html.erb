@@ -9,11 +9,12 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <%= hotwire_livereload_tags if Rails.env.development? %>
+    <%= yield :head %>
   </head>
 
   <body class="bg-zinc-950 text-white">
     <header
-      class="min-h-80 sticky inset-0 flex w-full items-center 
+      class="min-h-8 sticky inset-0 flex w-full items-center 
              justify-between bg-zinc-950 px-4 py-2 text-stone-400"
     >
       <h1 class="text-2xl font-bold">

@@ -13,24 +13,11 @@ class CommentsController < ApplicationController
   def create
     @comment = @note.comments.build(comment_params.merge(author: current_user))
 
-    respond_to do |format|
-      if @comment.save
-        format.turbo_stream do
-          @comment.broadcast_prepend_to(
-            [@note, :comments],
-            target: helpers.dom_id(@note, :comments)
-          )
-
-          @comment = @note.comments.build
-        end
-        format.html { redirect_to @note }
-      else
-        format.turbo_stream {}
-        format.html do
-          flash.now[:error] = @comment.errors.full_messages
-          redirect_to @note, status: :unprocessable_entity
-        end
-      end
+    if @comment.save
+      redirect_to @note
+    else
+      flash.now[:error] = @comment.errors.full_messages
+      redirect_to @note, status: :unprocessable_entity
     end
   end
 
@@ -41,7 +28,7 @@ class CommentsController < ApplicationController
       format.turbo_stream { @comment.broadcast_remove }
       format.html do
         flash[:success] = "Comment successfully deleted."
-        redirect_to note_comments_path(@comment.note)
+        redirect_to note_comments_url(@comment.note)
       end
     end
   end
@@ -50,17 +37,11 @@ class CommentsController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @comment.update(comment_params)
-        format.turbo_stream { @comment.broadcast_replace }
-        format.html { redirect_to @comment }
-      else
-        format.turbo_stream { @comment.broadcast_replace }
-        format.html do
-          flash.now[:error] = @comment.errors.full_messages
-          redirect_to @note, status: :unprocessable_entity
-        end
-      end
+    if @comment.update(comment_params)
+      redirect_to @comment
+    else
+      flash.now[:error] = @comment.errors.full_messages
+      redirect_to @comment, status: :unprocessable_entity
     end
   end
 
