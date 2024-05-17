@@ -3,7 +3,10 @@
   <div>
     <h3 class="font-bold mb-[8px]">
       <%= link_to note.name, note_path(note),
-        data: {testid: "note-link"}
+        data: {
+          turbo: false,
+          testid: "note-link"
+        }
       %>
     </h3>
     <%= turbo_stream_from note, :counters %>
