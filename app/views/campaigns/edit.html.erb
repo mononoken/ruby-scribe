@@ -15,7 +15,7 @@
     data-testid="campaign-journals-list"
   >
     <h3
-      class= "block text-sm text-indigo-400 font-bold"
+      class= "block text-sm font-bold"
     >
       Journals
     </h3>
@@ -44,7 +44,7 @@
   </ul>
 
   <%= button_to "Delete", campaign_path(@campaign), method: :delete,
-    class: "h-8 w-full px-[8px] text-lg text-stone-300 bg-rose-400 rounded-md hover:bg-rose-500 focus:bg-rose-600 hover:cursor-pointer",
+    class: "h-8 w-full px-[8px] text-lg text-stone-300 bg-rose-500 rounded-md hover:bg-rose-400 focus:bg-rose-600 hover:cursor-pointer",
     data: {
       turbo_confirm: "Are you sure? Members will no longer be able to share their journals and notes. This will not destroy journals.",
       testid: "destroy-campaign-btn"

@@ -6,11 +6,10 @@
   >
     <div>
       <%= form.label :name,
-        class: "block text-sm text-indigo-400 font-bold"
+        class: "block text-sm font-bold"
       %>
       <%= form.text_field :name,
-        class: "w-full bg-slate-800 border-slate-600 rounded-md
-                placeholder:italic placeholder:text-slate-600",
+        class: "w-full bg-slate-800 border-slate-700 rounded-md placeholder:italic placeholder:text-stone-600",
         placeholder: "Name your campaign",
         data: {testid: "campaign-name-input"}
       %>
@@ -32,7 +31,7 @@
       <% end %>
     <% end %>
     <%= form.submit "Save Campaign",
-      class: "h-8 w-full px-[8px] text-lg text-stone-300 bg-indigo-500 rounded-md hover:bg-indigo-600 focus:bg-indigo-700 hover:cursor-pointer",
+      class: "h-8 w-full px-[8px] text-lg text-white rounded-md bg-mauve-700 hover:bg-mauve-600 focus:bg-mauve-800 hover:cursor-pointer",
       data: {testid: "campaign-save-btn"}
     %>
   </div>

@@ -16,14 +16,14 @@
     </ul>
   <% end %>
   <%= form.label :label, "Counter",
-    class: "block text-sm text-indigo-400 font-bold"
+    class: "block text-sm font-bold"
   %>
   <%= form.text_field :label,
     class: "h-8 w-full bg-slate-800 border-slate-600 rounded-md placeholder:italic placeholder:text-slate-600",
     data: {testid: "#{dom_id(counter)}-label-input"}
   %>
   <%= form.submit "Save counter",
-    class: "h-8 w-full px-[8px] text-lg text-stone-300 bg-indigo-500 rounded-md hover:bg-indigo-600 focus:bg-indigo-700 hover:cursor-pointer",
+    class: "h-8 w-full px-[8px] text-lg text-white rounded-md bg-mauve-700 hover:bg-mauve-600 focus:bg-mauve-800 hover:cursor-pointer",
     data: {testid: "#{dom_id(counter)}-save-btn"}
   %>
   <% if counter.persisted? %>
