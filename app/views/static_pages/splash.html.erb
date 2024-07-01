@@ -1,14 +1,36 @@
-<h1 class="text-center text-3xl font-bold mb-[16px]">Share your <em class="bg-gradient-to-r from-mauve-600 to-rose-400 text-transparent bg-clip-text">adventuring notes</em> with your companions</h1>
-<p
-  class="text-center mb-[16px] text-stone-400"
->
-  Organize your RPG notes. Style them with markdown. Share them with your party members. Never forget anything, unless you roll a nat 1.
 <div
-  class="flex flex-col space-y-[16px] py-8"
+  class="flex flex-col items-center"
 >
-  <%= link_to "Sign up", new_user_registration_path, class: "h-8 w-full block text-center px-[8px] py-[4px] text-lg text-white rounded-md bg-mauve-700 hover:bg-mauve-600 focus:bg-mauve-800" %>
-  <%= link_to "Sign in", new_user_session_path, class: "h-8 w-full block text-center px-[8px] py-[4px] text-lg text-white rounded-md bg-mauve-700 hover:bg-mauve-600 focus:bg-mauve-800" %>
+  <h1 class="text-center text-3xl font-bold mb-[16px]">Share your <em class="bg-gradient-to-r from-mauve-600 to-rose-400 text-transparent bg-clip-text">adventuring notes</em> with your companions</h1>
+  <p
+    class="text-center mb-[16px] text-stone-400"
+  >
+    Organize your RPG notes. Style them with markdown. Share them with your party members. Never forget anything, unless you roll a nat 1.
+  <div
+    class="flex flex-col w-full space-y-[16px] py-8"
+  >
+    <%= link_to "Sign up", new_user_registration_path, class: "h-8 w-full block text-center px-[8px] py-[4px] text-lg text-white rounded-md bg-mauve-700 hover:bg-mauve-600 focus:bg-mauve-800" %>
+    <%= link_to "Sign in", new_user_session_path, class: "h-8 w-full block text-center px-[8px] py-[4px] text-lg text-white rounded-md bg-mauve-700 hover:bg-mauve-600 focus:bg-mauve-800" %>
+  </div>
+
+  <div class="w-[300px] h-[300px] relative flex flex-col justify-end items-center mb-8">
+    <div class="w-3/5 h-[100px] absolute flex justify-center bottom-0">
+      <div class="w-[50px] h-[50px] bg-white particle-slow"></div>
+      <div class="w-[50px] h-[50px] bg-yellow-400 particle-med"></div>
+      <div class="w-[50px] h-[50px] bg-orange-400 particle-fast"></div>
+    </div>
+    <div class="w-3/5 h-[100px] absolute bottom-0">
+      <div class="w-[100px] h-[100px] absolute bottom-0 left-[15px] bg-[#c63509] opacity-90 rounded-2xl fire-pulse-low"></div>
+      <div class="w-[60px] h-[60px] absolute bottom-0 right-[20px] bg-[#e0af68] opacity-80 rounded-2xl fire-pulse-low delay-pulse"></div>
+      <div class="w-[100px] h-[100px] absolute bottom-1 right-[20px] bg-[#c63509] opacity-80 rounded-2xl fire-pulse-med"></div>
+    </div>
+    <div class="w-3/5 h-[100px] absolute bottom-0">
+      <div class="w-full h-[30px] absolute origin-center rotate-12 bg-[#965027] bottom-0 rounded-lg shadow-[0_3px_10px_#372113]"></div>
+      <div class="w-full h-[30px] absolute origin-center -rotate-12 bg-[#965027] bottom-0 rounded-lg shadow-[0_3px_10px_#372113]"></div>
+    </div>
+  </div>
 </div>
+
 <footer
   class="text-stone-400 border-t-[1px] border-stone-400 py-6 text-lg"
 >
