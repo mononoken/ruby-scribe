@@ -12,10 +12,10 @@
     <%= yield :head %>
   </head>
 
-  <body class="bg-zinc-950 text-white">
+  <body class="bg-slate-800 text-white">
     <header
       class="min-h-8 sticky inset-0 flex w-full items-center 
-             justify-between bg-zinc-950 px-4 py-2 text-stone-400"
+             justify-between bg-slate-800 px-4 py-2 text-stone-400"
     >
       <h1 class="text-2xl font-bold">
         <%= link_to root_path, class: "flex items-center space-x-2" do %>
@@ -81,7 +81,7 @@
             data-popover-target="togglable"
           >
             <div
-              class="fixed h-full w-full z-40 bg-slate-800/30 backdrop-blur-sm"
+              class="fixed h-full w-full z-40 bg-slate-900/30 backdrop-blur-sm"
               data-action="click->popover#popover"
               aria-hidden="true"
             >
@@ -89,7 +89,7 @@
             <div
               class="fixed right-[-80%] h-full w-[80%] z-50
                     flex flex-col justify-between
-                    bg-neutral-900 p-[24px] rounded-l-2xl"
+                    bg-slate-900 p-[24px] rounded-l-2xl"
               data-popover-target="slideable"
             >
               <div

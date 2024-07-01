@@ -22,7 +22,7 @@
 </div>
 
 <% if allowed_to?(:new?, Note, context: {journal: @journal}) %>
-  <div class="bg-zinc-900 border border-zinc-800 rounded-md px-4 pt-2 pb-4 mb-[16px]">
+  <div class="bg-slate-700 border border-slate-800 rounded-md px-4 pt-2 pb-4 mb-[16px]">
     <%= render partial: "form", locals: {note: @note, journal: @journal} %>
   </div>
 <% end %>
@@ -30,7 +30,7 @@
 <%= search_form_for @q, url: journal_notes_path(@journal),
   class: "flex py-2 space-x-[8px] items-center" do |form| %>
   <%= form.search_field :name_or_body_cont,
-    class: "w-full bg-zinc-900 border-zinc-700 rounded-md placeholder:italic placeholder:text-stone-600",
+    class: "w-full bg-slate-800 border-slate-700 rounded-md placeholder:italic placeholder:text-stone-600",
     data: {testid: "note-search-input"}
   %>
   <%= form.button :search,
