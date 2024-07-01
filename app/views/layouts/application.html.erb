@@ -14,7 +14,7 @@
 
   <body class="bg-slate-800 text-white">
     <header
-      class="min-h-8 sticky inset-0 flex w-full items-center 
+      class="min-h-8 z-10 sticky inset-0 flex w-full items-center 
              justify-between bg-slate-800 px-4 py-2 text-stone-400"
     >
       <h1 class="text-2xl font-bold">
@@ -223,7 +223,7 @@
         </nav>
       </div>
     </header>
-    <div class="flex-col overflow-y-auto">
+    <div class="relative z-0 flex-col overflow-y-auto">
       <% if flash.any? %>
         <div
           class="px-4 py-2 font-medium text-rose-400 mb-[8px]"
