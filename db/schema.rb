@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_30_081624) do
+ActiveRecord::Schema[7.0].define(version: 2024_07_01_070623) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -89,6 +89,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_30_081624) do
     t.bigint "journal_id", null: false
     t.string "name", default: "", null: false
     t.bigint "author_id", null: false
+    t.integer "comments_count", default: 0
     t.index ["author_id"], name: "index_notes_on_author_id"
     t.index ["journal_id"], name: "index_notes_on_journal_id"
   end
