@@ -1,7 +1,5 @@
 # # Fae Scribe
 
-<!-- ![A screenshot showing a preview of the project.](screenshot.png "Project Preview") -->
-
 [Click here to see a live version!](http://fae-scribe-c77ffba44917.herokuapp.com/dashboard)
 
 This app is for note-taking on your tabletop adventures! Create notes that you can format quickly using [Markdown](https://www.markdownguide.org/cheat-sheet/).
