@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   resource :dashboard, only: %i[show]
 
+  resources :users, only: %i[show]
+
   resources :journals, only: %i[new create index edit update destroy] do
     resources :notes, shallow: true do
       resources :comments, shallow: true
