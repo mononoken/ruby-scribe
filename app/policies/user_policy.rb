@@ -1,5 +1,5 @@
 class UserPolicy < ApplicationPolicy
   def show?
-    user.id === record.id
+    user.present?
   end
 end
