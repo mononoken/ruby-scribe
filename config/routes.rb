@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   get "about", to: "static_pages#about"
 
-  get "dashboard", to: "users#show", as: :dashboard
+  resource :dashboard, only: %i[show]
 
   resources :journals, only: %i[new create index edit update destroy] do
     resources :notes, shallow: true do
