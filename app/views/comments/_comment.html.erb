@@ -3,7 +3,9 @@
   <div
     class="text-sm font-bold"
   >
-    <%= comment.author.username %>
+    <%= link_to comment.author.username, user_path(comment.author),
+      data: {turbo: false}
+    %>
   </div>
   <p>
     <%= comment.body %>
