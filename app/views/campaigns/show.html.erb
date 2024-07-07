@@ -51,8 +51,7 @@
   <ul data-testid="members-list">
     <% @members.each do |member| %>
       <li>
-        <%= member.username %>
-        <%# link_to member.username, user_path(member) %>
+        <%= link_to member.username, user_path(member) %>
       </li>
     <% end %>
   </ul>
