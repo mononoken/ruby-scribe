@@ -1,6 +1,7 @@
-const colors = require("tailwindcss/colors");
-
 /** @type {import('tailwindcss').Config} */
+import forms from "@tailwindcss/forms";
+import typography from "@tailwindcss/typography";
+
 export default {
   content: [
     "./app/views/**/*.html.erb",
@@ -8,7 +9,7 @@ export default {
     "./app/assets/stylesheets/**/*.css",
     "./app/javascript/**/*.js",
   ],
-  plugins: [require("@tailwindcss/forms"), require("@tailwindcss/typography")],
+  plugins: [forms, typography],
   theme: {
     extend: {
       colors: {
